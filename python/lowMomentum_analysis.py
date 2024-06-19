@@ -1136,83 +1136,152 @@ class LowMomentumAnalysis:
             mupi_purity = sum(selected_genuine_mupi)/sum(is_selected_mupi)
             mupi_efficiency = sum(selected_genuine_mupi)/sum(is_genuine_mupi)
             
-        if sum(is_genuine_electron) < 1:
+        if sum(is_selected_electron) < 1:
             electron_efficiency = 0
             electron_purity = 0
         else:
             electron_purity = sum(selected_genuine_electron)/sum(is_selected_electron)
             electron_efficiency = sum(selected_genuine_electron)/sum(is_genuine_electron)
         
-        return mupi_purity, mupi_efficiency, electron_purity, electron_efficiency
+        return mupi_purity, mupi_efficiency, electron_purity, electron_efficiency, sum(is_selected_mupi), sum(is_selected_electron)
 
-    def scanOverACTLinearAB(self, start_A_value, start_B_value, coarse_bounds, nTests, metric = "purity2_times_efficiency"):
+    def scanOverACTLinearAB(self, start_A_value, start_B_value, start_H_value, start_L_value, coarse_bounds, nTests, metric = "purity2_times_efficiency"):
         
         slowEvents= self.makeNewDataFrameFromSelection(self.arrayData, self.arrayData[0]["matchedHit0_TOF"] < self.protonsTOFCut)
     
         #define genuine electron and mu/pi events
         LGid = self.channelNames.index("PbGlass")
-        is_genuine_electron = slowEvents[LGid]["matchedHit0_WindowIntPE"] > self.weirdElectronLGcut
-        is_genuine_mupi = slowEvents[LGid]["matchedHit0_WindowIntPE"] < self.weirdElectronLGcut
 
+        #we are deciding the position of the lead glass cut based on the fitted gaussians for windowIntPE distribution of electron and muon populations
+
+        eMu_LG_params = self.fitMuonsAndElectronLGPeaks()
+        e_params = eMu_LG_params[0]
+        mu_params = eMu_LG_params[1]
+        
+        five_sigma_e = e_params[1] - 5 * e_params[2]
+        five_sigma_mu = mu_params[1] + 5 * mu_params[2]
+
+        three_sigma_e = e_params[1] - 3 * e_params[2]
+        three_sigma_mu = mu_params[1] + 3 * mu_params[2]
+
+        four_sigma_e = e_params[1] - 4 * e_params[2]
+        four_sigma_mu = mu_params[1] + 4 * mu_params[2]
+
+        if five_sigma_mu < five_sigma_e:
+            electronLGcut =  five_sigma_e
+            mupiLGcut = five_sigma_mu
+        
+        elif four_sigma_mu < four_sigma_e:
+            electronLGcut =  four_sigma_e
+            mupiLGcut = four_sigma_mu
+        
+        elif three_sigma_mu < three_sigma_e:
+            electronLGcut =  three_sigma_e
+            mupiLGcut = three_sigma_mu
+
+        else:
+            weighted_mean_distance = ((mu_params[2] + mu_params[1]) * e_params[0] +  ( - e_params[2] + e_params[1]) * mu_params[0]) / (e_params[0] + mu_params[0])
+            electronLGcut =  weighted_mean_distance # self.weirdElectronLGcut
+            mupiLGcut = weighted_mean_distance # self.weirdElectronLGcut 
+
+        is_genuine_electron = slowEvents[LGid]["matchedHit0_WindowIntPE"] > electronLGcut
+
+        print(sum(is_genuine_electron))
+        is_genuine_mupi = slowEvents[LGid]["matchedHit0_WindowIntPE"] < mupiLGcut
         #list storing values:
         A_values=[]
         B_values=[]
+        nMuPi_values=[]
+        nE_values=[]
         mupi_pur_values=[]
         mupi_eff_values=[]
         electron_pur_values=[]
         electron_eff_values=[]
+        hori_values = []
+        lower_values = []
 
         #select values of ACTLinearA and ACTLinearB within +/-50% of default values, first do a coarse search, need to make sure that the order is correct
-        if start_A_value * coarse_bounds < start_A_value * (1+coarse_bounds):
-            coarse_values_ACTLinearA = np.linspace(start_A_value * coarse_bounds, start_A_value * (1+coarse_bounds), nTests)
+        if start_A_value * (1-coarse_bounds) < start_A_value * (1+coarse_bounds):
+            coarse_values_ACTLinearA = np.linspace(start_A_value * (1-coarse_bounds), start_A_value * (1+coarse_bounds), nTests)
         else:
-            coarse_values_ACTLinearA = np.linspace(start_A_value * (1+coarse_bounds), start_A_value * coarse_bounds, nTests)
+            coarse_values_ACTLinearA = np.linspace(start_A_value * (1+coarse_bounds), start_A_value * (1-coarse_bounds), nTests)
 
-        if start_B_value * coarse_bounds < start_B_value * (1+coarse_bounds):
-            coarse_values_ACTLinearB = np.linspace(start_B_value * coarse_bounds, start_B_value * (1+coarse_bounds), nTests)
+        if start_B_value * (1-coarse_bounds) < start_B_value * (1+coarse_bounds):
+            coarse_values_ACTLinearB = np.linspace(start_B_value * (1-coarse_bounds), start_B_value * (1+coarse_bounds), nTests)
         else:
-            coarse_values_ACTLinearB = np.linspace(start_B_value * (1+coarse_bounds), start_B_value * coarse_bounds, nTests)
+            coarse_values_ACTLinearB = np.linspace(start_B_value * (1+coarse_bounds), start_B_value * (1-coarse_bounds), nTests)
+
+        if start_H_value * (1-coarse_bounds * 2) < start_H_value * (1+coarse_bounds):
+            coarse_values_H = np.linspace(start_H_value * (1-coarse_bounds * 2), start_H_value * (1+coarse_bounds), nTests)
+        else:
+            coarse_values_H = np.linspace(start_H_value * (1+coarse_bounds), start_H_value * (1-coarse_bounds * 2), nTests)
+
+        if start_L_value * (1-coarse_bounds * 3) < start_L_value * (1+coarse_bounds * 3):
+            coarse_values_L = np.linspace(start_L_value * (1-coarse_bounds * 5), start_L_value * (1+coarse_bounds * 5), nTests)
+        else:
+            coarse_values_L = np.linspace(start_L_value * (1+coarse_bounds * 5), start_L_value * (1-coarse_bounds * 5), nTests)
+
+
 
 
         print(coarse_values_ACTLinearA, coarse_values_ACTLinearB)
 
-        #self.horizontal_el = 0 \
+        
+    
 
         #for granularity in ["coarse", "fine"]:
         for coarse_A in coarse_values_ACTLinearA:
             for coarse_B in coarse_values_ACTLinearB:
-                is_selected_electron = slowEvents[LGid]["sumDownstreamACTs"] > (slowEvents[LGid]["sumACT1"] * coarse_A + coarse_B) 
-                
-                is_selected_electron = is_selected_electron & slowEvents[LGid]["sumACT1"]< (self.horizontal_el-coarse_B)/(coarse_A) 
+                for coarse_H in coarse_values_H:  
+                        
+                        is_above_diag = slowEvents[LGid]["sumDownstreamACTs"] > (slowEvents[LGid]["sumACT1"] * coarse_A + coarse_B) 
+                        
+                        is_left =  slowEvents[LGid]["sumACT1"] < (coarse_H-coarse_B)/(coarse_A) 
 
-                is_selected_electron = is_selected_electron | slowEvents[LGid]["sumACT1"] > (self.horizontal_el-coarse_B)/(coarse_A) 
+                        is_above_hori = slowEvents[LGid]["sumDownstreamACTs"] > coarse_H
 
-                
-                is_selected_mupi = slowEvents[LGid]["sumDownstreamACTs"] < (slowEvents[LGid]["sumACT1"] * coarse_A + coarse_B)
+                        is_right =  slowEvents[LGid]["sumACT1"] > (coarse_H-coarse_B)/(coarse_A) 
 
-                is_selected_mupi = is_selected_mupi & slowEvents[LGid]["sumACT1"]< (self.horizontal_el-coarse_B)/(coarse_A) 
+                        is_selected_left = is_above_diag & is_left
+                        is_selected_right = is_above_hori & is_right
 
+                        is_selected_electron = is_selected_left | is_selected_right 
 
-                mupi_pur, mupi_eff, electron_pur, electron_eff = self.calculateMuPiAndElPurityEfficiency(is_selected_mupi, is_selected_electron, is_genuine_mupi, is_genuine_electron)
+                        
+                        is_below_diag = slowEvents[LGid]["sumDownstreamACTs"] < (slowEvents[LGid]["sumACT1"] * coarse_A + coarse_B)
+                        is_below_hori = slowEvents[LGid]["sumDownstreamACTs"] < coarse_H
+                        isAboveMin = slowEvents[LGid]["sumDownstreamACTs"] > start_L_value
 
-                # print(r"ACTLinearA = %.3f, ACTLinearB = %.3f: "%(coarse_A, coarse_B),
-                #       "\n"r"$\mu\pi$ purity =  %.2f percent"%(mupi_pur *100),
-                #       "\n"r"$\mu\pi$ efficiency =  %.2f percent"%(mupi_eff*100),
-                #       "\n"r"electron purity =  %.2f percent"%(electron_pur*100),
-                #       "\n"r"electron efficiency =  %.2f percent"%(electron_eff*100),
-                #       "\n\n")
-                
-                A_values.append(coarse_A)
-                B_values.append(coarse_B)
-                mupi_pur_values.append(mupi_pur*100)
-                mupi_eff_values.append(mupi_eff*100)
-                electron_pur_values.append(electron_pur*100)
-                electron_eff_values.append(electron_eff*100)
+                        is_selected_mupi = is_below_diag | is_below_hori
+                        is_selected_mupi = is_selected_mupi & isAboveMin
+
+                        mupi_pur, mupi_eff, electron_pur, electron_eff, nMuPi, nE = self.calculateMuPiAndElPurityEfficiency(is_selected_mupi, is_selected_electron, is_genuine_mupi, is_genuine_electron)
+
+                        # print(r"ACTLinearA = %.3f, ACTLinearB = %.3f: "%(coarse_A, coarse_B),
+                        #       "\n"r"$\mu\pi$ purity =  %.2f percent"%(mupi_pur *100),
+                        #       "\n"r"$\mu\pi$ efficiency =  %.2f percent"%(mupi_eff*100),
+                        #       "\n"r"electron purity =  %.2f percent"%(electron_pur*100),
+                        #       "\n"r"electron efficiency =  %.2f percent"%(electron_eff*100),
+                        #       "\n\n")
+                        
+                        A_values.append(coarse_A)
+                        B_values.append(coarse_B)
+                        hori_values.append(coarse_H)
+                        lower_values.append(start_L_value)
+                        nMuPi_values.append(nMuPi)
+                        nE_values.append(nE)
+                        mupi_pur_values.append(mupi_pur*100)
+                        mupi_eff_values.append(mupi_eff*100)
+                        electron_pur_values.append(electron_pur*100)
+                        electron_eff_values.append(electron_eff*100)
+
+            
 
         print("\n---------------------------------------------\n",
               "Run %i p = %i MeV/c: The maximal (muon or pion) purity achieved \nin the (%i, %i) points scan within \n the %.0f percent of the A, B values (%.2f, %.2f) is for: " %(self.runNumber, self.runMomentum, nTests, nTests, coarse_bounds * 100, start_A_value, start_B_value))
         bestI = mupi_pur_values.index(max(mupi_pur_values)) 
         print(r"ACTLinearA = %.3f, ACTLinearB = %.3f: "%(A_values[bestI], B_values[bestI]),
+                    "\n"r"%i $\mu\pi$ and %i e"%(nMuPi_values[bestI], nE_values[bestI]),
                       "\n"r"$\mu\pi$ purity =  %.3f percent"%(mupi_pur_values[bestI]),
                       "\n"r"$\mu\pi$ efficiency =  %.3f percent"%(mupi_eff_values[bestI]),
                       "\n"r"electron purity =  %.3f percent"%(electron_pur_values[bestI]),
@@ -1223,7 +1292,8 @@ class LowMomentumAnalysis:
               "Run %i p = %i MeV/c: The maximal (muon or pion) purity * efficiency achieved \nin the (%i, %i) points scan within \n the %.0f percent of the A, B values (%.2f, %.2f) is for: " %(self.runNumber, self.runMomentum, nTests, nTests, coarse_bounds * 100, start_A_value, start_B_value))
         quality_metric = np.array(mupi_pur_values) * np.array(mupi_eff_values)
         bestIpe = list(quality_metric).index(max(quality_metric)) 
-        print(r"ACTLinearA = %.3f, ACTLinearB = %.3f: "%(A_values[bestI], B_values[bestI]),
+        print(r"ACTLinearA = %.3f, ACTLinearB = %.3f: "%(A_values[bestIpe], B_values[bestIpe]),
+                    "\n"r"%i $\mu\pi$ and %i e"%(nMuPi_values[bestIpe], nE_values[bestIpe]),
                       "\n"r"$\mu\pi$ purity =  %.3f percent"%(mupi_pur_values[bestIpe]),
                       "\n"r"$\mu\pi$ efficiency =  %.3f percent"%(mupi_eff_values[bestIpe]),
                       "\n"r"electron purity =  %.3f percent"%(electron_pur_values[bestIpe]),
@@ -1235,20 +1305,84 @@ class LowMomentumAnalysis:
         quality_metric = np.array(mupi_pur_values) * np.array(mupi_pur_values) * np.array(mupi_eff_values)
         bestIp2e = list(quality_metric).index(max(quality_metric))  
         print(r"ACTLinearA = %.3f, ACTLinearB = %.3f: "%(A_values[bestIp2e], B_values[bestIp2e]),
+                    "\n"r"%i $\mu\pi$ and %i e"%(nMuPi_values[bestIp2e], nE_values[bestIp2e]),
                       "\n"r"$\mu\pi$ purity =  %.3f percent"%(mupi_pur_values[bestIp2e]),
                       "\n"r"$\mu\pi$ efficiency =  %.3f percent"%(mupi_eff_values[bestIp2e]),
                       "\n"r"electron purity =  %.3f percent"%(electron_pur_values[bestIp2e]),
                       "\n"r"electron efficiency =  %.3f percent"%(electron_eff_values[bestIp2e]),
                       "\n\n")
-
+        
         if metric == "p":
             #chosen metric: muon/pion purity
-            return bestI, A_values, B_values, mupi_pur_values, mupi_eff_values,electron_pur_values, electron_eff_values
+            bestI_chosen =  bestI
+
         if metric == "pe":
             #chosen metric purity * efficiency for (mu or pi)
-            return bestIpe, A_values, B_values, mupi_pur_values, mupi_eff_values,electron_pur_values, electron_eff_values
+            bestI_chosen =  bestIpe
+            
         if metric == "p2e":
-            return bestIp2e, A_values, B_values, mupi_pur_values, mupi_eff_values,electron_pur_values, electron_eff_values
+            bestI_chosen =  bestIp2e
+            
+        
+        coarse_A, coarse_B, coarse_H = A_values[bestI_chosen], B_values[bestI_chosen], hori_values[bestI_chosen]
+
+        for coarse_L in coarse_values_L: 
+            is_above_diag = slowEvents[LGid]["sumDownstreamACTs"] > (slowEvents[LGid]["sumACT1"] * coarse_A + coarse_B) 
+            
+            is_left =  slowEvents[LGid]["sumACT1"] < (coarse_H-coarse_B)/(coarse_A) 
+
+            is_above_hori = slowEvents[LGid]["sumDownstreamACTs"] > coarse_H
+
+            is_right =  slowEvents[LGid]["sumACT1"] > (coarse_H-coarse_B)/(coarse_A) 
+
+            is_selected_left = is_above_diag & is_left
+            is_selected_right = is_above_hori & is_right
+
+            is_selected_electron = is_selected_left | is_selected_right 
+
+            
+            is_below_diag = slowEvents[LGid]["sumDownstreamACTs"] < (slowEvents[LGid]["sumACT1"] * coarse_A + coarse_B)
+            is_below_hori = slowEvents[LGid]["sumDownstreamACTs"] < coarse_H
+            isAboveMin = slowEvents[LGid]["sumDownstreamACTs"] > coarse_L
+
+            is_selected_mupi = is_below_diag | is_below_hori
+            is_selected_mupi = is_selected_mupi & isAboveMin
+
+            mupi_pur, mupi_eff, electron_pur, electron_eff, nMuPi, nE = self.calculateMuPiAndElPurityEfficiency(is_selected_mupi, is_selected_electron, is_genuine_mupi, is_genuine_electron)
+
+            A_values.append(coarse_A)
+            B_values.append(coarse_B)
+            hori_values.append(coarse_H)
+            lower_values.append(coarse_L)
+            nMuPi_values.append(nMuPi)
+            nE_values.append(nE)
+            mupi_pur_values.append(mupi_pur*100)
+            mupi_eff_values.append(mupi_eff*100)
+            electron_pur_values.append(electron_pur*100)
+            electron_eff_values.append(electron_eff*100)
+
+
+        #need to recalculate the best value:
+        quality_metric = np.array(mupi_pur_values)
+        #chosen metric purity * efficiency for (mu or pi)
+        bestI = list(quality_metric).index(max(quality_metric))
+        if metric == "p":
+            #chosen metric: muon/pion purity
+            bestI_chosen = bestI
+        quality_metric = np.array(mupi_pur_values) * np.array(mupi_eff_values)
+        bestIpe = list(quality_metric).index(max(quality_metric))  
+        if metric == "pe":
+            #chosen metric purity * efficiency for (mu or pi)
+            bestI_chosen = bestIpe
+        quality_metric = np.array(mupi_pur_values) * np.array(mupi_pur_values) * np.array(mupi_eff_values)
+        bestIp2e = list(quality_metric).index(max(quality_metric))
+
+        if metric == "p2e":
+            bestI_chosen = bestIp2e
+
+        self.plotSelectionScan(start_A_value, start_B_value, start_H_value, start_L_value, A_values, B_values, hori_values, lower_values, mupi_pur_values, mupi_eff_values, nMuPi_values, nE_values, bestI, bestIpe, bestIp2e, is_genuine_mupi, is_genuine_electron, electronLGcut, mupiLGcut)
+
+        return bestI_chosen, A_values, B_values,  hori_values, lower_values,  mupi_pur_values, mupi_eff_values,electron_pur_values, electron_eff_values
         
         
 
@@ -1256,12 +1390,16 @@ class LowMomentumAnalysis:
         """This function is designed to find the optimal cut line in ACT1 and sumDowsntream ACTs between the muons and electrons, based on the lead glass distribution"""
         
         #decide the number of points we want to search
-        nTests = 15
-        coarse_bounds = 0.5  #+/-50% 
-        fine_bounds = 0.1 #+/-10% of the best fitted coarse value
-        bestI, A_values, B_values, mupi_pur_values, mupi_eff_values,electron_pur_values, electron_eff_values = self.scanOverACTLinearAB(self.ACTlinearA, self.ACTlinearB, coarse_bounds, nTests, quality_metric)
+        nTests = 7
+        nTests_fine = 7
+        coarse_bounds = 0.5 
+        fine_bounds = 0.2 #+/-10% of the best fitted coarse value
+        bestI, A_values, B_values, H_values, L_values,  mupi_pur_values, mupi_eff_values,electron_pur_values, electron_eff_values = self.scanOverACTLinearAB(self.ACTlinearA, self.ACTlinearB, self.horizontal_el, self.ACTLowerCut, coarse_bounds, nTests, quality_metric)
 
-        bestI_fine, A_values_fine, B_values_fine, mupi_pur_values_fine, mupi_eff_values_fine,electron_pur_values_fine, electron_eff_values_fine = self.scanOverACTLinearAB(A_values[bestI], B_values[bestI], fine_bounds, nTests, quality_metric)
+        #might be useful to catch extremums.. will see 
+        #if A_values[bestI] == max(A_values) or A_values[bestI] == min(A_values) or :
+
+        bestI_fine, A_values_fine, B_values_fine, H_values_fine, L_values_fine, mupi_pur_values_fine, mupi_eff_values_fine,electron_pur_values_fine, electron_eff_values_fine = self.scanOverACTLinearAB(A_values[bestI], B_values[bestI], H_values[bestI], L_values[bestI], fine_bounds, nTests_fine, quality_metric)
 
         #below the plotting of the values
 
@@ -1431,6 +1569,231 @@ class LowMomentumAnalysis:
             plt.savefig("../%s/SelectionACTs_Run%i.png"%(self.saving_folder_path_png, self.runNumber))
             plt.savefig("../%s/SelectionsACTs_Run%i.pdf"%( self.saving_folder_path_pdf, self.runNumber))
 
+    def makeMuPiESelectionUsingCuts(self,):
+        #do the input values as first ones
+        coarse_A = self.ACTlinearA
+        coarse_B = self.ACTlinearB
+        coarse_H = self.horizontal_el
+        coarse_L = self.ACTLowerCut
+        is_above_diag = slowEvents[LGid]["sumDownstreamACTs"] > (slowEvents[LGid]["sumACT1"] * coarse_A + coarse_B)   
+        
+        is_left =  slowEvents[LGid]["sumACT1"] < (coarse_H-coarse_B)/(coarse_A) 
+        is_above_hori = slowEvents[LGid]["sumDownstreamACTs"] > coarse_H
+        is_right =  slowEvents[LGid]["sumACT1"] > (coarse_H-coarse_B)/(coarse_A) 
+        is_selected_left = is_above_diag & is_left
+        is_selected_right = is_above_hori & is_right
+        is_selected_electron = is_selected_left | is_selected_right 
+
+
+        is_below_diag = slowEvents[LGid]["sumDownstreamACTs"] < (slowEvents[LGid]["sumACT1"] * coarse_A + coarse_B)
+        is_below_hori = slowEvents[LGid]["sumDownstreamACTs"] < coarse_H
+        isAboveMin = slowEvents[LGid]["sumDownstreamACTs"] > start_L_value
+        is_selected_mupi = is_below_diag | is_below_hori
+        is_selected_mupi = is_selected_mupi & isAboveMin
+        mupi_pur_start, mupi_eff_start, electron_pur_start, electron_eff_start, nMuPi_start, nE_start = self.calculateMuPiAndElPurityEfficiency(is_selected_mupi, is_selected_electron, is_genuine_mupi, is_genuine_electron)
+
+    def plotSelectionScan(self, start_A_value, start_B_value, start_H_value, start_L_value, A_values, B_values, hori_values, lower_values,  mupi_pur_values, mupi_eff_values, nMuPi_values, nE_values, bestI, bestIpe, bestIp2e, is_genuine_mupi, is_genuine_electron, electronLGcut, mupiLGcut):
+        xmin, xmax = 0, 20
+        ymin, ymax = 0, max(max(B_values) * 1.1, max(hori_values) * 1.1)
+        
+        
+        fig, ax = self.plot2DHistFromBranches(0, "sumACT1", 0, "sumDownstreamACTs", "(PE)", "(PE)", "Initially A: %.2f, B: %.2f, H: %.2f, L: %.2f, LG cut: %.1f" %(start_A_value, start_B_value, start_H_value, start_L_value, self.weirdElectronLGcut), True, [500, 300], [[xmin, xmax], [ymin, ymax]], False)
+        
+        xrange = np.linspace(xmin, xmax, 100)
+
+        muonElcut = np.where(start_A_value * xrange + start_B_value > self.horizontal_el, start_A_value * xrange + start_B_value, self.horizontal_el)
+
+        ax.plot(xrange, self.ACTLowerCut + xrange * 0, 'k-', linewidth = 2)
+        slowEvents= self.makeNewDataFrameFromSelection(self.arrayData, self.arrayData[0]["matchedHit0_TOF"] < self.protonsTOFCut)
+    
+        #define genuine electron and mu/pi events
+        LGid = self.channelNames.index("PbGlass")
+
+        #do the input values as first ones
+        coarse_A = self.ACTlinearA
+        coarse_B = self.ACTlinearB
+        coarse_H = self.horizontal_el
+        coarse_L = self.ACTLowerCut
+        is_above_diag = slowEvents[LGid]["sumDownstreamACTs"] > (slowEvents[LGid]["sumACT1"] * coarse_A + coarse_B)   
+        
+        is_left =  slowEvents[LGid]["sumACT1"] < (coarse_H-coarse_B)/(coarse_A) 
+        is_above_hori = slowEvents[LGid]["sumDownstreamACTs"] > coarse_H
+        is_right =  slowEvents[LGid]["sumACT1"] > (coarse_H-coarse_B)/(coarse_A) 
+        is_selected_left = is_above_diag & is_left
+        is_selected_right = is_above_hori & is_right
+        is_selected_electron = is_selected_left | is_selected_right 
+
+
+        is_below_diag = slowEvents[LGid]["sumDownstreamACTs"] < (slowEvents[LGid]["sumACT1"] * coarse_A + coarse_B)
+        is_below_hori = slowEvents[LGid]["sumDownstreamACTs"] < coarse_H
+        isAboveMin = slowEvents[LGid]["sumDownstreamACTs"] > start_L_value
+        is_selected_mupi = is_below_diag | is_below_hori
+        is_selected_mupi = is_selected_mupi & isAboveMin
+        mupi_pur_start, mupi_eff_start, electron_pur_start, electron_eff_start, nMuPi_start, nE_start = self.calculateMuPiAndElPurityEfficiency(is_selected_mupi, is_selected_electron, is_genuine_mupi, is_genuine_electron)
+
+        ax.plot(xrange, muonElcut, 'k-', label = 'mupi/el separation: from config \nA: %.2f B: %.2f H: %.2f L:%.2f\n# selected mupi: %i, e: %i\nmupi pur. = %.2f%% eff. = %.2f%%'%(self.ACTlinearA, self.ACTlinearB, self.horizontal_el,  self.ACTLowerCut, nMuPi_start, nE_start, mupi_pur_start * 100, mupi_eff_start * 100), linewidth = 2)
+
+        area_scan_x = [0, (max(hori_values) - max(B_values))/max(A_values),
+                       xmax, xmax, 
+                       (min(hori_values) - min(B_values))/min(A_values), 0, 0]
+        
+        area_scan_y = [max(B_values), max(hori_values), max(hori_values), min(hori_values), min(hori_values), max(min(B_values), min(hori_values)), max(B_values)]
+
+        ax.fill(area_scan_x, area_scan_y, alpha = 0.1, color = "magenta", label = 'Region scanned')
+
+        area_scan_x = [0, xmax, xmax, 0]
+        
+        area_scan_y = [max(lower_values), max(lower_values), min(lower_values), min(lower_values)]
+
+        ax.fill(area_scan_x, area_scan_y, alpha = 0.1, color = "magenta")
+
+        muonElcut_purity = np.where(A_values[bestI] * xrange + B_values[bestI] > hori_values[bestI], A_values[bestI] * xrange + B_values[bestI], hori_values[bestI])
+
+        ax.plot(xrange, muonElcut_purity, 'g--', label = 'mupi/el separation: max purity\nA: %.2f B: %.2f H: %.2f L:%.2f\n# selected mupi: %i, e: %i\nmupi pur. = %.2f%% eff. = %.2f%%'%(A_values[bestI], B_values[bestI],  hori_values[bestI],  lower_values[bestI], nMuPi_values[bestI], nE_values[bestI], mupi_pur_values[bestI], mupi_eff_values[bestI]), linewidth = 2)
+
+
+        ax.plot(xrange, np.array(muonElcut_purity) * 0 + lower_values[bestI], 'g--', linewidth = 2)
+
+        muonElcut_pe = np.where(A_values[bestIpe] * xrange + B_values[bestIpe] > hori_values[bestIpe], A_values[bestIpe] * xrange + B_values[bestIpe], hori_values[bestIpe])
+        
+
+        ax.plot(xrange, muonElcut_pe, 'b--', label = 'mupi/el separation: max purity x efficiency\nA: %.2f B: %.2f H: %.2f L:%.2f\n# selected mupi: %i, e: %i\nmupi pur. = %.2f%% eff. = %.2f%%'%(A_values[bestIpe], B_values[bestIpe],  hori_values[bestIpe],  lower_values[bestIpe], nMuPi_values[bestIpe], nE_values[bestIpe], mupi_pur_values[bestIpe], mupi_eff_values[bestIpe]), linewidth = 2)
+
+        ax.plot(xrange, np.array(muonElcut_purity) * 0 + lower_values[bestIpe], 'b--', linewidth = 2)
+
+
+        muonElcut_p2e = np.where(A_values[bestIp2e] * xrange + B_values[bestIp2e] > hori_values[bestIp2e], A_values[bestIp2e] * xrange + B_values[bestIp2e], hori_values[bestIp2e])
+
+        ax.plot(xrange, muonElcut_p2e, 'r--', label = 'mupi/el separation: max purity^2 x efficiency\nA: %.2f B: %.2f H: %.2f L:%.2f\n# selected mupi: %i, e: %i\nmupi pur. = %.2f%% eff. = %.2f%%'%(A_values[bestIp2e], B_values[bestIp2e],  hori_values[bestIp2e],  lower_values[bestIp2e], nMuPi_values[bestIp2e], nE_values[bestIp2e], mupi_pur_values[bestIp2e], mupi_eff_values[bestIp2e]), linewidth = 2)
+
+        ax.plot(xrange, np.array(muonElcut_purity) * 0 + lower_values[bestIp2e], 'r--', linewidth = 2)
+
+        ax.legend(fontsize = 15, loc = 1)
+
+        plt.savefig("../%s/SelectionACTsScan_startA%.2f_startB%.2f_startH%.2f_startL%.2f_Run%i.png"%(self.saving_folder_path_png, start_A_value, start_B_value, start_H_value, start_L_value, self.runNumber))
+        plt.savefig("../%s/SelectionACTsScan_startA%.2f_startB%.2f_startH%.2f_startL%.2f_Run%i.pdf"%( self.saving_folder_path_pdf,start_A_value, start_B_value, start_H_value, start_L_value, self.runNumber))
+
+
+        fig, ax = self.plot2DHistFromBranches(0, "sumACT1", 0, "sumDownstreamACTs", "(PE)", "(PE)", "Initially A: %.2f, B: %.2f, H: %.2f, L: %.2f" %(start_A_value, start_B_value, start_H_value, start_L_value), True, [500, 300], [[xmin, xmax], [ymin, ymax]], False)
+
+        for i in range(len(hori_values)):
+            muonElcut_pe = np.where(A_values[i] * xrange + B_values[i] > hori_values[i], A_values[i] * xrange + B_values[i], hori_values[i])
+            
+            ax.plot(xrange, muonElcut_pe, alpha = 0.2, color = 'black', linewidth = 1)
+            ax.plot(xrange, muonElcut_pe * 0 + lower_values[i], alpha = 0.2, color = 'lightgray')
+
+        ax.plot(xrange, muonElcut_pe, alpha = 0.2, color = 'black', linewidth = 1, label = 'Cut lines tested')
+
+        
+
+
+        ax.legend(fontsize = 15, loc = 1)
+        plt.savefig("../%s/SelectionACTsScan_startA%.2f_startB%.2f_startH%.2f_startL%.2f_CutLines_Run%i.png"%(self.saving_folder_path_png, start_A_value, start_B_value, start_H_value, start_L_value, self.runNumber))
+        plt.savefig("../%s/SelectionACTsScan_startA%.2f_startB%.2f_startH%.2f_startL%.2f_CutLines_Run%i.pdf"%( self.saving_folder_path_pdf,start_A_value, start_B_value, start_H_value, start_L_value, self.runNumber))
+
+
+        #need to visualise the quality of the cuts using the LG
+        #step1: gray histogram of the LG distribution of all slow events
+        for i in range(20):
+            plt.close()
+
+        #############################################################
+        fig, ax = plt.subplots(1, 1, figsize = (16, 9))
+        LG_all = slowEvents[LGid]["matchedHit0_WindowIntPE"]
+        nBins = 200
+        binWidth = (max(LG_all)-min(LG_all)) / nBins
+        bins_all = int((max(LG_all)-min(LG_all)) / binWidth)
+        counts, bins, _ = ax.hist(LG_all, bins = bins_all, histtype="stepfilled", 
+                color="lightgray", 
+                label = "All slow particles: %i (%.2f %% of total)"%(len(LG_all), len(LG_all)/len(self.getArrayData()[LGid]["matchedHit0_WindowIntPE"])* 100))
+
+        #returns the gaussian fit to the electron and muon distributions from the original cut value, we need to propagate the bins for the fit params to make sense
+        electron_muon_LG_gaussian_params = self.fitMuonsAndElectronLGPeaks(bins)
+        x_range = np.linspace(min(LG_all), max(LG_all), 400)
+        ax.plot(x_range, gaussian(x_range, *electron_muon_LG_gaussian_params[0]), "b--", label = 'Fitted electron peak\nA= %.1e mean = %.2f std = %.2f'%(electron_muon_LG_gaussian_params[0][0], electron_muon_LG_gaussian_params[0][1], electron_muon_LG_gaussian_params[0][2]))
+        ax.plot(x_range, gaussian(x_range, *electron_muon_LG_gaussian_params[1]), "g--", label = 'Fitted muon peak\nA= %.1e mean = %.2f std = %.2f'%(electron_muon_LG_gaussian_params[1][0], electron_muon_LG_gaussian_params[1][1], electron_muon_LG_gaussian_params[1][2]))
+        ax.axvline(electronLGcut, color = "red", label = "electron LG cut: %.1f \n%i genuine electrons "%(electronLGcut, sum(is_genuine_electron)))
+        ax.axvline(mupiLGcut, color = "black", label = "mu and pi LG cut: %.1f \n%i genuine muons and pions "%(mupiLGcut, sum(is_genuine_mupi)))
+
+        ax.set_xlabel("Lead Glass WindowIntPE", fontsize = 18)
+        ax.set_ylabel("Number of events", fontsize = 18)
+        ax.tick_params(axis='both', which='major', labelsize=15)
+
+        muPiLG = slowEvents[LGid]["matchedHit0_WindowIntPE"][is_selected_mupi]
+        electronLG = slowEvents[LGid]["matchedHit0_WindowIntPE"][is_selected_electron]
+        nBinsMuPiLG = int((max(muPiLG)-min(muPiLG)) / binWidth)
+        nBinsELG = int((max(electronLG)-min(electronLG)) / binWidth)
+        colors = ["green", "blue"]
+        
+        ax.hist([muPiLG, electronLG], bins, 
+                histtype='step', color = colors, stacked=False, 
+                label = ["Selected muons and pions: %i\n(%.3f %% of slow events)\npurity: %.2f, efficiciency: %.2f"%(len(muPiLG), len(muPiLG)/len(slowEvents[LGid]["matchedHit0_WindowIntPE"]) * 100, mupi_pur_start * 100, mupi_eff_start * 100),
+                "Selected electrons: %i\n(%.3f %% of slow events)"%(len(electronLG), len(electronLG)/len(slowEvents[LGid]["matchedHit0_WindowIntPE"]) * 100)])
+
+        ax.legend(fontsize = 15)
+        ax.grid()
+        ax.set_xlim(min(LG_all), max(LG_all))
+        
+        fig.suptitle('WCTE Beamtest - Run %i, p = %i MeV/c n = %s \n Default config'%(self.runNumber, self.runMomentum, self.runRefractiveIndex), fontsize=18, weight ='bold')
+        ax.set_yscale("log")
+        ax.set_ylim(0.5, len(slowEvents[LGid]["matchedHit0_WindowIntPE"]) * 1.1)
+
+        fig.savefig("../%s/MuPi_E_LGseparation_config_startA%.2f_startB%.2f_startH%.2f_startL%.2f_Run%i.png"%(self.saving_folder_path_png, start_A_value, start_B_value, start_H_value, start_L_value, self.runNumber))
+       
+        fig.savefig("../%s/MuPi_E_LGseparation_config_startA%.2f_startB%.2f_startH%.2f_startL%.2f_Run%i.pdf"%(self.saving_folder_path_pdf, start_A_value, start_B_value, start_H_value, start_L_value, self.runNumber))
+
+        plt.show()
+
+        #########################################################
+
+        #############################################################
+        fig, ax = plt.subplots(1, 1, figsize = (16, 9))
+        LG_all = slowEvents[LGid]["matchedHit0_WindowIntPE"]
+        nBins = 200
+        binWidth = (max(LG_all)-min(LG_all)) / nBins
+        bins_all = int((max(LG_all)-min(LG_all)) / binWidth)
+        counts, bins, _ = ax.hist(LG_all, bins = bins_all, histtype="stepfilled", 
+                color="lightgray", 
+                label = "All slow particles: %i (%.2f %% of total)"%(len(LG_all), len(LG_all)/len(self.getArrayData()[LGid]["matchedHit0_WindowIntPE"])* 100))
+
+        #returns the gaussian fit to the electron and muon distributions from the original cut value, we need to propagate the bins for the fit params to make sense
+        electron_muon_LG_gaussian_params = self.fitMuonsAndElectronLGPeaks(bins)
+        x_range = np.linspace(min(LG_all), max(LG_all), 400)
+        ax.plot(x_range, gaussian(x_range, *electron_muon_LG_gaussian_params[0]), "b--", label = 'Fitted electron peak\nA= %.1e mean = %.2f std = %.2f'%(electron_muon_LG_gaussian_params[0][0], electron_muon_LG_gaussian_params[0][1], electron_muon_LG_gaussian_params[0][2]))
+        ax.plot(x_range, gaussian(x_range, *electron_muon_LG_gaussian_params[1]), "g--", label = 'Fitted muon peak\nA= %.1e mean = %.2f std = %.2f'%(electron_muon_LG_gaussian_params[1][0], electron_muon_LG_gaussian_params[1][1], electron_muon_LG_gaussian_params[1][2]))
+        ax.axvline(electronLGcut, color = "red", label = "electron LG cut: %.1f \n%i genuine electrons "%(electronLGcut, sum(is_genuine_electron)))
+        ax.axvline(mupiLGcut, color = "black", label = "mu and pi LG cut: %.1f \n%i genuine muons and pions "%(mupiLGcut, sum(is_genuine_mupi)))
+
+        ax.set_xlabel("Lead Glass WindowIntPE", fontsize = 18)
+        ax.set_ylabel("Number of events", fontsize = 18)
+        ax.tick_params(axis='both', which='major', labelsize=15)
+
+        muPiLG = slowEvents[LGid]["matchedHit0_WindowIntPE"][is_selected_mupi]
+        electronLG = slowEvents[LGid]["matchedHit0_WindowIntPE"][is_selected_electron]
+        nBinsMuPiLG = int((max(muPiLG)-min(muPiLG)) / binWidth)
+        nBinsELG = int((max(electronLG)-min(electronLG)) / binWidth)
+        colors = ["green", "blue"]
+        
+        ax.hist([muPiLG, electronLG], bins, 
+                histtype='step', color = colors, stacked=False, 
+                label = ["Selected muons and pions: %i\n(%.3f %% of slow events)\npurity: %.2f, efficiciency: %.2f"%(len(muPiLG), len(muPiLG)/len(slowEvents[LGid]["matchedHit0_WindowIntPE"]) * 100, mupi_pur_start * 100, mupi_eff_start * 100),
+                "Selected electrons: %i\n(%.3f %% of slow events)"%(len(electronLG), len(electronLG)/len(slowEvents[LGid]["matchedHit0_WindowIntPE"]) * 100)])
+
+        ax.legend(fontsize = 15)
+        ax.grid()
+        ax.set_xlim(min(LG_all), max(LG_all))
+        
+        fig.suptitle('WCTE Beamtest - Run %i, p = %i MeV/c n = %s \nMaximizing purity^2 * efficiency'%(self.runNumber, self.runMomentum, self.runRefractiveIndex), fontsize=18, weight ='bold')
+        ax.set_yscale("log")
+        ax.set_ylim(0.5, len(slowEvents[LGid]["matchedHit0_WindowIntPE"]) * 1.1)
+
+        fig.savefig("../%s/MuPi_E_LGseparation_p2e_startA%.2f_startB%.2f_startH%.2f_startL%.2f_Run%i.png"%(self.saving_folder_path_png, start_A_value, start_B_value, start_H_value, start_L_value, self.runNumber))
+       
+        fig.savefig("../%s/MuPi_E_LGseparation_p2e_startA%.2f_startB%.2f_startH%.2f_startL%.2f_Run%i.pdf"%(self.saving_folder_path_pdf, start_A_value, start_B_value, start_H_value, start_L_value, self.runNumber))
+
+        plt.show()
+
+
     def plotSelectionWindow2ACT1sumDownstreamACT(self, ymax = 100):
         if self.isLowMomentum:
             if "sumACT1window2" not in self.getBranchList(0):
@@ -1500,7 +1863,6 @@ class LowMomentumAnalysis:
 
         if len(data1D) == 0:
             return 0
-        
         
         else:
             if lims != None:
@@ -1573,6 +1935,8 @@ class LowMomentumAnalysis:
             fig.suptitle('WCTE Beamtest - Run %i, p = %i MeV/c n = %s'%(self.runNumber, self.runMomentum, self.runRefractiveIndex), fontsize=18, weight ='bold')
             plt.savefig("../%s/Hist2D_%s_%s_Run%i.png"%(self.saving_folder_path_png, xlabel, ylabel, self.runNumber))
             plt.savefig("../%s/Hist2D_%s_%s_Run%i.pdf"%(self.saving_folder_path_pdf, xlabel, ylabel, additionalLabel, self.runNumber))
+
+        
         
 
 
@@ -1661,13 +2025,15 @@ class LowMomentumAnalysis:
              print(f"In the config file, checking the coincidence is set to {self.nCoincidenceSelectionBool}, we are therefore not processing the change", end="", flush=True)
             #  self.nCoincidenceSelectionPassed = self.arrayData[0]["DigitimingOffset"]!= -9998
 
-    def fitMuonsAndElectronLGPeaks(self):
+    def fitMuonsAndElectronLGPeaks(self, bins_values = 100):
         """FIt and plot a Guassian distribution to the energy deposited in the lead glass for electrons and  muons - LM only"""
         leadGlassID = self.channelNames.index("PbGlass")
         if self.isLowMomentum:
             particle_list = ["electron", "muon"]
+            if self.electronArray == None:
+                self.makeAllParticleSelection()
             population_list = [self.electronArray[leadGlassID], self.muonArray[leadGlassID]]
-        
+            all_params = []
 
             if "matchedHit0_Window2IntPE" in self.getBranchList(leadGlassID):
                 branches = ["MaxVoltage", "matchedHit0_WindowIntPE", "matchedHit0_Window2IntPE"]
@@ -1681,8 +2047,8 @@ class LowMomentumAnalysis:
                     plt.figure(figsize = [16, 9])
                     electron_leadGlass = population[branch]
                     particle = particle_list[p]
-
-                    counts, bins, _ = plt.hist(electron_leadGlass, bins = 100, alpha = 0.75, label = "%s-like: %i events"%(particle, len(electron_leadGlass)))
+                    counts, bins, _ = plt.hist(electron_leadGlass, bins = bins_values, alpha = 0.75, label = "%s-like: %i events"%(particle, len(electron_leadGlass)))
+                    print("COUNTS AND BINS:", counts, bins)
                     params, covariance = fitGaussian(counts, bins)
                     print("%s peak mean: %.3f std: %.3f"%(particle, params[1], params[2]))
                     plt.plot(np.linspace(bins[0], bins[-1], 100), gaussian(np.linspace(bins[0], bins[-1], 100), *params), 'k--', label = 'Mean = %.3f V std = %.3f V'%(params[1], params[2]))
@@ -1698,10 +2064,16 @@ class LowMomentumAnalysis:
                     plt.savefig("../%s/%s_fitted_Run%i.pdf"%(self.saving_folder_path_pdf, "%s_%s"%(particle, branch), self.runNumber))
 
                     plt.savefig("../%s/%s_fitted_Run%i.png"%(self.saving_folder_path_png, "%s_%s"%(particle, branch), self.runNumber))
+                    if branch == "matchedHit0_WindowIntPE":
+                        all_params.append(params)
+            
+            return all_params
 
 
         for i in range(20):
             plt.close()
+
+        
 
 
     def TStotalChargeSelection(self):

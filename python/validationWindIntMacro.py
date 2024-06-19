@@ -118,9 +118,7 @@ if "matchedHit0_Window2IntPE" in BeamDataAna.getBranchList(0):
 BeamDataAna.TStotalChargeSelection()
 
 
-##############
-#new module: to measure the optimal separation el/mu
-# BeamDataAna.findOptimalMuElCuts()
+
 
 #This can be useful to have a look out: timing of hits
 #add a new branch with the delay between the centre of the window and the peak time. 
@@ -135,6 +133,10 @@ BeamDataAna.makeAllParticleSelection()
 #Fit the lead glass charge distribution in the Lead Glass
 #for muon and electron-like events. 
 BeamDataAna.fitMuonsAndElectronLGPeaks()
+
+##############
+#new module: to measure the optimal separation el/mu, chose from p = purity, pe = purity * efficiency, p2e = purity ^2 * efficiency
+BeamDataAna.findOptimalMuElCuts("p2e")
 
 
 #BeamDataAna.measureElTOFresolutionFunctionOfTScharge([6, 6, 5, 5, 5, 4])

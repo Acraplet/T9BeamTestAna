@@ -84,7 +84,7 @@ BeamDataAna.fitMuonsAndElectronLGPeaks()
 BeamDataAna.measureMomentumUsingTOF(0.1)
 
 #Make n= bins equally populated in terms of the Trigger scintillator 10 wholeWaveformIntPE charge and check the resolution of the time of flight there which should follow a 1/sqrt(TScharge) logic, work in progress, this is not needed anymore but if you want to compare the plots with the TN I leave this here
-BeamDataAna.measureElTOFresolutionFunctionOfTScharge(10)
+#BeamDataAna.measureElTOFresolutionFunctionOfTScharge(10)
 
 #Useful to know: config["channelNames"].index("PbGlass") gives the index of the lead glass detector.
 
