@@ -45,6 +45,9 @@ BeamDataAna.openDataFile()
 BeamDataAna.makeSumTS()
 BeamDataAna.makeSumTSwindow2()
 BeamDataAna.makeSumDownstreamACTs()
+################this line should be added
+BeamDataAna.makeSumDownstreamACTsWindow2()
+#######################################
 BeamDataAna.makeSumACT1()
 BeamDataAna.makeSumACT1window2()
 
@@ -67,6 +70,11 @@ if BeamDataAna.WindowBoundsAreAvailable:
 #based on the -16ns to 45ns window selection, ID all particles that we have in this run, values in the config file
 BeamDataAna.makeAllParticleSelection()
 
+#This needs to be run after the inital particle selection, it finds the optimal cut line for different particles and re-run the selection, saving particles to the folder_optimal 
+BeamDataAna.findOptimalPiMuElCuts(True)
+
+BeamDataAna.plotBranchHistForAllParticles(0, "matchedHit0_TOF", 5, True)
+
 #Not yet available but soon to be: automated way to identify particles for the low momentum setup:
 # BeamDataAna.findOptimalMuElCuts()
 
@@ -81,7 +89,7 @@ BeamDataAna.fitMuonsAndElectronLGPeaks()
 
 #using all the available particles measure the beam momentum with bins of 0.1, calculates the systematic error
 #using many throws of the covariance matrix, see TN section III. C. 3, this is slow. 
-BeamDataAna.measureMomentumUsingTOF(0.1)
+#BeamDataAna.measureMomentumUsingTOF(0.1)
 
 #Make n= bins equally populated in terms of the Trigger scintillator 10 wholeWaveformIntPE charge and check the resolution of the time of flight there which should follow a 1/sqrt(TScharge) logic, work in progress, this is not needed anymore but if you want to compare the plots with the TN I leave this here
 #BeamDataAna.measureElTOFresolutionFunctionOfTScharge(10)

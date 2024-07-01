@@ -107,26 +107,26 @@
 
 		"comment" : "lower boundary for the window integration, now that the timing is aligned we can have a  smaller integration window to get rid of the scintilaltion light in ACTs, different channels have a different integration window length",
 
-		"window_lower_bound" : [-16, -16, -16, -16, -16, -16, -16, -16,
+		"window2_lower_bound" : [-16, -16, -16, -16, -16, -16, -16, -16,
 								-5, -5, -5, -5, -5, -5, -5, -5,
 								-16, -16, -16, 0, 0, 0, 0, 0,
 								0, 0, 0, 0, 0, 0, 0, 0],
 
-		"window_upper_bound" : [45, 45, 45, 45, 45, 45, 45, 45,
+		"window2_upper_bound" : [45, 45, 45, 45, 45, 45, 45, 45,
 								15, 15, 15, 15, 15, 15, 15, 15,
 								45, 45, 75, 0, 0, 0, 0, 0,
 								0, 0, 0, 0, 0, 0, 0, 0],
 
 		"comment" : "lower boundary for the second window integration, these should be about 200ns for the TS and 240ns for the lead glass so we can remove events with two particles without hitting the second bunch wich occurs 330ns after the first one, see TN for more information. The window can be reduced for ACTs to investigate the timing of the scintillation light and how it can be mitigated. ",
 
-		"window2_lower_bound" : [-5, -5, -5, -5, -5, -5, -5, -5,
+		"window_lower_bound" : [-5, -5, -5, -5, -5, -5, -5, -5,
 								-50, -50, -50, -50, -50, -50, -50, -50,
-								-16, -16, -50, 0, 0, 0, 0, 0,
+								-16, -16, -16, 0, 0, 0, 0, 0,
 								0, 0, 0, 0, 0, 0, 0, 0],
 
-		"window2_upper_bound" : [25, 25, 25, 25, 25, 25, 25, 25,
+		"window_upper_bound" : [25, 25, 25, 25, 25, 25, 25, 25,
 								150, 150, 150, 150, 150, 150, 150, 150,
-								45, 45, 190, 0, 0, 0, 0, 0,
+								45, 45, 75, 0, 0, 0, 0, 0,
 								0, 0, 0, 0, 0, 0, 0, 0],
 
 		"comment": "To correctly caluclate the expected arrival time of particles we need to take into account their traveling time from the reference detector to to detector we are looking at (in units of meter)",

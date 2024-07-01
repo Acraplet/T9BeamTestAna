@@ -32,8 +32,8 @@
         "nCoincidenceSelectionValue" : 1,
 
         "comment" : "Decide if we want to use the energy deposited in the trigger scintillators to select good events",
-        "TStotalChargeSelectionBool" : false,
-        "TStotalChargeSelectionValue" : 800,
+        "TStotalChargeSelectionBool" : true,
+        "TSwindow2totalChargeSelectionValue" : 700,
 
 
         "comment": "needs to be added onto the class file",

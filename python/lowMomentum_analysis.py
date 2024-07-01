@@ -11,6 +11,7 @@ from scipy.optimize import curve_fit
 from collections import OrderedDict
 import scipy.integrate as integrate
 import os.path
+from scipy.integrate import quad
 
 import csv
 
@@ -207,7 +208,7 @@ class LowMomentumAnalysis:
                 self.particleNamesList = ["electron", "muon", "pion"]
                 
         else:
-            self.particleNamesList = ["electron", "proton"]
+            self.particleNamesList = ["proton", "electron"]
 
 
         self.outputFileName = config["outputFileName"]
@@ -310,13 +311,52 @@ class LowMomentumAnalysis:
                 #make a weighted sum of the corresponding data points
                 stoppingPower = (psp["Total_st_pw"][i+1] - psp["Total_st_pw"][i])/ (psp["Kinetic_energy"][i+1] - psp["Kinetic_energy"][i]) * (kinetic_E - psp["Kinetic_energy"][i]) + psp["Total_st_pw"][i]
                 break
+
         
+    
         stoppingPower = stoppingPower * TS_thickness * TS_density
         errorStoppingPower = stoppingPower * estimated_error_frac
 
         print(f"The stopping power for {particle} at {self.runMomentum} in {TS_thickness}cm of plastic scintillator is %.2f +/- %.2f MeV."%(stoppingPower, errorStoppingPower))
 
-        return stoppingPower, errorStoppingPower
+        ################ mylar window
+
+        Mylar_thickness = 0.025 #cm
+        Mylar_density = 1.4 #from G4 
+
+
+        if particle == "electron" or particle == "muon" or particle == "pion":
+            print("Beta * gamma = %.1f, for %s"%(beta * gamma, particle))
+            NIST_dataset = "../include/electronStoppingPowerMylar.csv"
+        elif particle == "proton" or particle == "deuterium":
+            NIST_dataset = "../include/protonStoppingPowerMylar.csv"
+        
+        else:
+            #do not know how to handle deuterium yet
+            return 0,0
+
+
+        with open(NIST_dataset, mode = 'r') as file:
+            psp = pd.read_csv(file) #psp = proton stopping power
+        
+        for i in range(0, len(psp)-1):
+            #start at 1 header removal
+            psp["Kinetic_energy"][i] = float(psp["Kinetic_energy"][i])
+            psp["Total_st_pw"][i+1] = float(psp["Total_st_pw"][i+1])
+            #find the point in the table corresponding to the momentum
+            #needs to be ordered
+            if kinetic_E >= psp["Kinetic_energy"][i] and kinetic_E < psp["Kinetic_energy"][i+1]:
+                #make a weighted sum of the corresponding data points
+                stoppingPowerMylar = (psp["Total_st_pw"][i+1] - psp["Total_st_pw"][i])/ (psp["Kinetic_energy"][i+1] - psp["Kinetic_energy"][i]) * (kinetic_E - psp["Kinetic_energy"][i]) + psp["Total_st_pw"][i]
+                break
+
+        stoppingPowerMylar = stoppingPowerMylar * Mylar_thickness * Mylar_density
+        errorStoppingPowerMylar = stoppingPowerMylar * estimated_error_frac
+
+        print(f"The stopping power for {particle} at {self.runMomentum} in {Mylar_thickness}cm of Mylar is %.2f +/- %.2f MeV."%(stoppingPowerMylar, errorStoppingPowerMylar))
+
+
+        return stoppingPower + stoppingPowerMylar, np.sqrt(errorStoppingPower**2 + errorStoppingPowerMylar**2)
 
 
 
@@ -710,6 +750,8 @@ class LowMomentumAnalysis:
             raise Exception("The matchedHit0_TOF branch is not available, make sure you are using the coincidence in your pre-processing of the data so that the TOF measurement is accurate ")
             
         TOF_array = self.getColumnDataFrameDetector("matchedHit0_TOF", 0, particleName) 
+
+        print("Particle", particleName, )
         nBins = int((np.ceil(TOF_array.max() - np.floor(TOF_array.min())))/binWidth)
 
         fig_particle, ax_particle = plt.subplots(1, 1, figsize = (16, 9))
@@ -737,7 +779,9 @@ class LowMomentumAnalysis:
 
         
         p_lost, p_lost_error  = self.correctParticleTSdEdx(particleName)
+        
         p_pred = p_pred + p_lost
+        
 
         n_events_inPeak = integrate.quad(gaussian, 0, 50, args = (amplitude, mean, std))
 
@@ -767,7 +811,13 @@ class LowMomentumAnalysis:
         print(f"Predicted momentum for {particleName} is {p_pred} MeV/c, true is {self.runMomentum} MeV/c.")
 
         x = np.linspace(bins[0], bins[-1], 1000)
-        ax_particle.plot(x, gaussian(x, *params), '--', label = '# %s in fitted peak %.1f \n (%.1f percent of all events)\nTOF = %.2f +/- %.2f ns\nMomentum: %.1f +/- %.1f(total) MeV/c'%(particleName, n_events_inPeak, (n_events_inPeak/self.totalNumberOfEvents) * 100, mean, std, p_pred, p_error_tot))
+
+        if particleName != "electron":
+            ax_particle.plot(x, gaussian(x, *params), '--', label = '# %s in fitted peak %.1f \n (%.1f percent of all events)\nTOF = %.2f +/- %.2f ns\nMomentum: %.1f +/- %.1f(total) MeV/c'%(particleName, n_events_inPeak, (n_events_inPeak/self.totalNumberOfEvents) * 100, mean, std, p_pred, p_error_tot))
+        
+        else:
+            ax_particle.plot(x, gaussian(x, *params), '--', label = '# %s in fitted peak %.1f \n (%.1f percent of all events)\nTOF = %.2f +/- %.2f ns\nMomentum lost to 2 TS: %.1f +/- %.1f(total) MeV/c'%(particleName, n_events_inPeak, (n_events_inPeak/self.totalNumberOfEvents) * 100, mean, std, p_lost * 2, p_lost_error * 2))
+
 
         if ax != None:
             if particleName != 'electron':
@@ -1386,22 +1436,40 @@ class LowMomentumAnalysis:
         
         
 
-    def findOptimalMuElCuts(self, quality_metric = "p2e"):
+    def findOptimalPiMuElCuts(self, quality_metric = "p2e", runOptimalSelection = False):
         """This function is designed to find the optimal cut line in ACT1 and sumDowsntream ACTs between the muons and electrons, based on the lead glass distribution"""
         
-        #decide the number of points we want to search
-        nTests = 7
-        nTests_fine = 7
-        coarse_bounds = 0.5 
-        fine_bounds = 0.2 #+/-10% of the best fitted coarse value
-        bestI, A_values, B_values, H_values, L_values,  mupi_pur_values, mupi_eff_values,electron_pur_values, electron_eff_values = self.scanOverACTLinearAB(self.ACTlinearA, self.ACTlinearB, self.horizontal_el, self.ACTLowerCut, coarse_bounds, nTests, quality_metric)
+        if self.isLowMomentum: 
+            #decide the number of points we want to search
+            nTests = 7
+            nTests_fine = 7
+            coarse_bounds = 0.5 
+            fine_bounds = 0.2 #+/-10% of the best fitted coarse value
+            bestI, A_values, B_values, H_values, L_values,  mupi_pur_values, mupi_eff_values,electron_pur_values, electron_eff_values = self.scanOverACTLinearAB(self.ACTlinearA, self.ACTlinearB, self.horizontal_el, self.ACTLowerCut, coarse_bounds, nTests, quality_metric)
 
-        #might be useful to catch extremums.. will see 
-        #if A_values[bestI] == max(A_values) or A_values[bestI] == min(A_values) or :
+            #might be useful to catch extremums.. will see 
+            #if A_values[bestI] == max(A_values) or A_values[bestI] == min(A_values) or :
 
-        bestI_fine, A_values_fine, B_values_fine, H_values_fine, L_values_fine, mupi_pur_values_fine, mupi_eff_values_fine,electron_pur_values_fine, electron_eff_values_fine = self.scanOverACTLinearAB(A_values[bestI], B_values[bestI], H_values[bestI], L_values[bestI], fine_bounds, nTests_fine, quality_metric)
+            bestI_fine, A_values_fine, B_values_fine, H_values_fine, L_values_fine, mupi_pur_values_fine, mupi_eff_values_fine,electron_pur_values_fine, electron_eff_values_fine = self.scanOverACTLinearAB(A_values[bestI], B_values[bestI], H_values[bestI], L_values[bestI], fine_bounds, nTests_fine, quality_metric)
 
-        #below the plotting of the values
+
+            if runOptimalSelection:
+                #update the pion/muon cut, using true
+                self.piMuBorderACT = self.plotMuonsAndPionsACTseparation(True)
+
+                self.saving_folder_path_pdf = self.saving_folder_path_pdf + "_Optimal"
+                self.saving_folder_path_png = self.saving_folder_path_png + "_Optimal"
+                
+                os.makedirs("../%s"%self.saving_folder_path_png, exist_ok=True)
+                os.makedirs("../%s"%self.saving_folder_path_pdf, exist_ok=True)
+                self.horizontal_el = H_values_fine[bestI_fine]
+                self.ACTLinearA = A_values_fine[bestI_fine]
+                self.ACTLinearB = B_values_fine[bestI_fine]
+                self.ACTLower = L_values_fine[bestI_fine]
+
+                self.makeAllParticleSelection()
+
+            
 
     
     def addBranchToAllDetectors(self, new_branch_name, value, particle = None):
@@ -1569,12 +1637,16 @@ class LowMomentumAnalysis:
             plt.savefig("../%s/SelectionACTs_Run%i.png"%(self.saving_folder_path_png, self.runNumber))
             plt.savefig("../%s/SelectionsACTs_Run%i.pdf"%( self.saving_folder_path_pdf, self.runNumber))
 
-    def makeMuPiESelectionUsingCuts(self,):
+    def makeMuPiESelectionUsingCuts(self, coarse_A, coarse_B, coarse_H, coarse_L, is_genuine_mupi, is_genuine_electron):
         #do the input values as first ones
-        coarse_A = self.ACTlinearA
-        coarse_B = self.ACTlinearB
-        coarse_H = self.horizontal_el
-        coarse_L = self.ACTLowerCut
+        slowEvents= self.makeNewDataFrameFromSelection(self.arrayData, self.arrayData[0]["matchedHit0_TOF"] < self.protonsTOFCut)
+        # coarse_A = self.ACTlinearA
+        # coarse_B = self.ACTlinearB
+        # coarse_H = self.horizontal_el
+        # coarse_L = self.ACTLowerCut
+
+        LGid = self.channelNames.index("PbGlass")
+
         is_above_diag = slowEvents[LGid]["sumDownstreamACTs"] > (slowEvents[LGid]["sumACT1"] * coarse_A + coarse_B)   
         
         is_left =  slowEvents[LGid]["sumACT1"] < (coarse_H-coarse_B)/(coarse_A) 
@@ -1587,49 +1659,63 @@ class LowMomentumAnalysis:
 
         is_below_diag = slowEvents[LGid]["sumDownstreamACTs"] < (slowEvents[LGid]["sumACT1"] * coarse_A + coarse_B)
         is_below_hori = slowEvents[LGid]["sumDownstreamACTs"] < coarse_H
-        isAboveMin = slowEvents[LGid]["sumDownstreamACTs"] > start_L_value
+        isAboveMin = slowEvents[LGid]["sumDownstreamACTs"] > coarse_L
         is_selected_mupi = is_below_diag | is_below_hori
         is_selected_mupi = is_selected_mupi & isAboveMin
         mupi_pur_start, mupi_eff_start, electron_pur_start, electron_eff_start, nMuPi_start, nE_start = self.calculateMuPiAndElPurityEfficiency(is_selected_mupi, is_selected_electron, is_genuine_mupi, is_genuine_electron)
 
+        return mupi_pur_start, mupi_eff_start, electron_pur_start, electron_eff_start, nMuPi_start, nE_start, is_selected_electron, is_selected_mupi
+
     def plotSelectionScan(self, start_A_value, start_B_value, start_H_value, start_L_value, A_values, B_values, hori_values, lower_values,  mupi_pur_values, mupi_eff_values, nMuPi_values, nE_values, bestI, bestIpe, bestIp2e, is_genuine_mupi, is_genuine_electron, electronLGcut, mupiLGcut):
-        xmin, xmax = 0, 20
-        ymin, ymax = 0, max(max(B_values) * 1.1, max(hori_values) * 1.1)
+        xmin, xmax = -0.2, 20
+        ymin, ymax = -2, max(max(B_values) * 1.3, max(hori_values) * 1.3)
         
         
-        fig, ax = self.plot2DHistFromBranches(0, "sumACT1", 0, "sumDownstreamACTs", "(PE)", "(PE)", "Initially A: %.2f, B: %.2f, H: %.2f, L: %.2f, LG cut: %.1f" %(start_A_value, start_B_value, start_H_value, start_L_value, self.weirdElectronLGcut), True, [500, 300], [[xmin, xmax], [ymin, ymax]], False)
+        fig, ax = self.plot2DHistFromBranches(0, "sumACT1", 0, "sumDownstreamACTs", "(PE)", "(PE)", "Initially A: %.2f, B: %.2f, H: %.2f, L: %.2f, LG e cut: %.2f, LG muPi cut: %.2f" %(start_A_value, start_B_value, start_H_value, start_L_value, electronLGcut, mupiLGcut), True, [500, 300], [[xmin, xmax], [ymin, ymax]], False)
         
         xrange = np.linspace(xmin, xmax, 100)
 
         muonElcut = np.where(start_A_value * xrange + start_B_value > self.horizontal_el, start_A_value * xrange + start_B_value, self.horizontal_el)
 
         ax.plot(xrange, self.ACTLowerCut + xrange * 0, 'k-', linewidth = 2)
+        
         slowEvents= self.makeNewDataFrameFromSelection(self.arrayData, self.arrayData[0]["matchedHit0_TOF"] < self.protonsTOFCut)
     
-        #define genuine electron and mu/pi events
+        # #define genuine electron and mu/pi events
         LGid = self.channelNames.index("PbGlass")
 
-        #do the input values as first ones
-        coarse_A = self.ACTlinearA
-        coarse_B = self.ACTlinearB
-        coarse_H = self.horizontal_el
-        coarse_L = self.ACTLowerCut
-        is_above_diag = slowEvents[LGid]["sumDownstreamACTs"] > (slowEvents[LGid]["sumACT1"] * coarse_A + coarse_B)   
+        # #do the input values as first ones
+        # coarse_A = self.ACTlinearA
+        # coarse_B = self.ACTlinearB
+        # coarse_H = self.horizontal_el
+        # coarse_L = self.ACTLowerCut
+        # is_above_diag = slowEvents[LGid]["sumDownstreamACTs"] > (slowEvents[LGid]["sumACT1"] * coarse_A + coarse_B)   
         
-        is_left =  slowEvents[LGid]["sumACT1"] < (coarse_H-coarse_B)/(coarse_A) 
-        is_above_hori = slowEvents[LGid]["sumDownstreamACTs"] > coarse_H
-        is_right =  slowEvents[LGid]["sumACT1"] > (coarse_H-coarse_B)/(coarse_A) 
-        is_selected_left = is_above_diag & is_left
-        is_selected_right = is_above_hori & is_right
-        is_selected_electron = is_selected_left | is_selected_right 
+        # is_left =  slowEvents[LGid]["sumACT1"] < (coarse_H-coarse_B)/(coarse_A) 
+        # is_above_hori = slowEvents[LGid]["sumDownstreamACTs"] > coarse_H
+        # is_right =  slowEvents[LGid]["sumACT1"] > (coarse_H-coarse_B)/(coarse_A) 
+        # is_selected_left = is_above_diag & is_left
+        # is_selected_right = is_above_hori & is_right
+        # is_selected_electron = is_selected_left | is_selected_right 
 
 
-        is_below_diag = slowEvents[LGid]["sumDownstreamACTs"] < (slowEvents[LGid]["sumACT1"] * coarse_A + coarse_B)
-        is_below_hori = slowEvents[LGid]["sumDownstreamACTs"] < coarse_H
-        isAboveMin = slowEvents[LGid]["sumDownstreamACTs"] > start_L_value
-        is_selected_mupi = is_below_diag | is_below_hori
-        is_selected_mupi = is_selected_mupi & isAboveMin
-        mupi_pur_start, mupi_eff_start, electron_pur_start, electron_eff_start, nMuPi_start, nE_start = self.calculateMuPiAndElPurityEfficiency(is_selected_mupi, is_selected_electron, is_genuine_mupi, is_genuine_electron)
+        # is_below_diag = slowEvents[LGid]["sumDownstreamACTs"] < (slowEvents[LGid]["sumACT1"] * coarse_A + coarse_B)
+        # is_below_hori = slowEvents[LGid]["sumDownstreamACTs"] < coarse_H
+        # isAboveMin = slowEvents[LGid]["sumDownstreamACTs"] > start_L_value
+        # is_selected_mupi = is_below_diag | is_below_hori
+        # is_selected_mupi = is_selected_mupi & isAboveMin
+        # mupi_pur_start, mupi_eff_start, electron_pur_start, electron_eff_start, nMuPi_start, nE_start = self.calculateMuPiAndElPurityEfficiency(is_selected_mupi, is_selected_electron, is_genuine_mupi, is_genuine_electron)
+
+
+        ######### start with config only ########
+
+        # coarse_A = self.ACTlinearA
+        # coarse_B = self.ACTlinearB
+        # coarse_H = self.horizontal_el
+        # coarse_L = self.ACTLowerCut
+
+        mupi_pur_start, mupi_eff_start, electron_pur_start, electron_eff_start, nMuPi_start, nE_start, is_selected_electron, is_selected_mupi = self.makeMuPiESelectionUsingCuts(self.ACTlinearA, self.ACTlinearB, self.horizontal_el, self.ACTLowerCut, is_genuine_mupi, is_genuine_electron)
+
 
         ax.plot(xrange, muonElcut, 'k-', label = 'mupi/el separation: from config \nA: %.2f B: %.2f H: %.2f L:%.2f\n# selected mupi: %i, e: %i\nmupi pur. = %.2f%% eff. = %.2f%%'%(self.ACTlinearA, self.ACTlinearB, self.horizontal_el,  self.ACTLowerCut, nMuPi_start, nE_start, mupi_pur_start * 100, mupi_eff_start * 100), linewidth = 2)
 
@@ -1697,101 +1783,326 @@ class LowMomentumAnalysis:
         for i in range(20):
             plt.close()
 
-        #############################################################
-        fig, ax = plt.subplots(1, 1, figsize = (16, 9))
-        LG_all = slowEvents[LGid]["matchedHit0_WindowIntPE"]
-        nBins = 200
-        binWidth = (max(LG_all)-min(LG_all)) / nBins
-        bins_all = int((max(LG_all)-min(LG_all)) / binWidth)
-        counts, bins, _ = ax.hist(LG_all, bins = bins_all, histtype="stepfilled", 
-                color="lightgray", 
-                label = "All slow particles: %i (%.2f %% of total)"%(len(LG_all), len(LG_all)/len(self.getArrayData()[LGid]["matchedHit0_WindowIntPE"])* 100))
+        indices_metric = [0, bestI, bestIpe, bestIp2e]
+        metric_names = ["Default, from config", "Maximizing only purity", r"Maximizing  purity $\times$ efficiency", r"Maximizing purity$^2 \times$ efficiency", "Lead glass particle identification"]
 
-        #returns the gaussian fit to the electron and muon distributions from the original cut value, we need to propagate the bins for the fit params to make sense
-        electron_muon_LG_gaussian_params = self.fitMuonsAndElectronLGPeaks(bins)
-        x_range = np.linspace(min(LG_all), max(LG_all), 400)
-        ax.plot(x_range, gaussian(x_range, *electron_muon_LG_gaussian_params[0]), "b--", label = 'Fitted electron peak\nA= %.1e mean = %.2f std = %.2f'%(electron_muon_LG_gaussian_params[0][0], electron_muon_LG_gaussian_params[0][1], electron_muon_LG_gaussian_params[0][2]))
-        ax.plot(x_range, gaussian(x_range, *electron_muon_LG_gaussian_params[1]), "g--", label = 'Fitted muon peak\nA= %.1e mean = %.2f std = %.2f'%(electron_muon_LG_gaussian_params[1][0], electron_muon_LG_gaussian_params[1][1], electron_muon_LG_gaussian_params[1][2]))
-        ax.axvline(electronLGcut, color = "red", label = "electron LG cut: %.1f \n%i genuine electrons "%(electronLGcut, sum(is_genuine_electron)))
-        ax.axvline(mupiLGcut, color = "black", label = "mu and pi LG cut: %.1f \n%i genuine muons and pions "%(mupiLGcut, sum(is_genuine_mupi)))
+        for m, metric in enumerate(["default", "p", "pe", "p2e", "justLG"]):
+            isJustLG = False
+            if metric == "justLG":
+                isJustLG = True
 
-        ax.set_xlabel("Lead Glass WindowIntPE", fontsize = 18)
-        ax.set_ylabel("Number of events", fontsize = 18)
-        ax.tick_params(axis='both', which='major', labelsize=15)
+            elif metric == "default":
+                A, B, H, L = self.ACTlinearA, self.ACTlinearB, self.horizontal_el, self.ACTLowerCut
+                mupi_pur_start, mupi_eff_start, electron_pur_start, electron_eff_start, nMuPi_start, nE_start, is_selected_electron, is_selected_mupi = self.makeMuPiESelectionUsingCuts(self.ACTlinearA, self.ACTlinearB, self.horizontal_el, self.ACTLowerCut, is_genuine_mupi, is_genuine_electron)
+            
+            else:
+                A, B, H, L = A_values[indices_metric[m]], B_values[indices_metric[m]], hori_values[indices_metric[m]], lower_values[indices_metric[m]]
+                mupi_pur_start, mupi_eff_start, electron_pur_start, electron_eff_start, nMuPi_start, nE_start, is_selected_electron, is_selected_mupi = self.makeMuPiESelectionUsingCuts(A_values[indices_metric[m]], B_values[indices_metric[m]], hori_values[indices_metric[m]], lower_values[indices_metric[m]], is_genuine_mupi, is_genuine_electron) 
 
-        muPiLG = slowEvents[LGid]["matchedHit0_WindowIntPE"][is_selected_mupi]
-        electronLG = slowEvents[LGid]["matchedHit0_WindowIntPE"][is_selected_electron]
-        nBinsMuPiLG = int((max(muPiLG)-min(muPiLG)) / binWidth)
-        nBinsELG = int((max(electronLG)-min(electronLG)) / binWidth)
-        colors = ["green", "blue"]
+            #############################################################
+            fig, ax = plt.subplots(1, 1, figsize = (16, 9))
+            LG_all = slowEvents[LGid]["matchedHit0_WindowIntPE"]
+            nBins = 200
+            binWidth = (max(LG_all)-min(LG_all)) / nBins
+            bins_all = int((max(LG_all)-min(LG_all)) / binWidth)
+            counts, bins, _ = ax.hist(LG_all, bins = bins_all, histtype="stepfilled", 
+                    color="lightgray", 
+                    label = "All slow particles: %i (%.2f %% of total)"%(len(LG_all), len(LG_all)/len(self.getArrayData()[LGid]["matchedHit0_WindowIntPE"])* 100))
+
+            #returns the gaussian fit to the electron and muon distributions from the original cut value, we need to propagate the bins for the fit params to make sense
+            electron_muon_LG_gaussian_params = self.fitMuonsAndElectronLGPeaks(bins, False)
+
+            x_range = np.linspace(min(LG_all), max(LG_all), 400)
+            ax.plot(x_range, gaussian(x_range, *electron_muon_LG_gaussian_params[0]), "b--", label = 'Fitted electron peak\nA= %.1e mean = %.2f std = %.2f'%(electron_muon_LG_gaussian_params[0][0], electron_muon_LG_gaussian_params[0][1], electron_muon_LG_gaussian_params[0][2]))
+            ax.plot(x_range, gaussian(x_range, *electron_muon_LG_gaussian_params[1]), "g--", label = 'Fitted muon peak\nA= %.1e mean = %.2f std = %.2f'%(electron_muon_LG_gaussian_params[1][0], electron_muon_LG_gaussian_params[1][1], electron_muon_LG_gaussian_params[1][2]))
+            ax.axvline(electronLGcut, color = "red", label = "electron LG cut: %.1f \n%i genuine electrons "%(electronLGcut, sum(is_genuine_electron)))
+
+            # Annotate with an arrow pointing right for the genuine electrons
+            ax.annotate(
+                '', xy=(electronLGcut+1, len(slowEvents[LGid]["matchedHit0_WindowIntPE"] * 0.07)), xycoords='data',  # Pointing at the top of the vertical line
+                xytext=(electronLGcut, len(slowEvents[LGid]["matchedHit0_WindowIntPE"] * 0.07)), textcoords='data',  # Pointing to the right, yes this is confusing but see figure
+                arrowprops=dict(arrowstyle='->', color='red', lw = 5)
+            )
+
+            ax.axvline(mupiLGcut, color = "black", label = "mu and pi LG cut: %.1f \n%i genuine muons and pions "%(mupiLGcut, sum(is_genuine_mupi)))
+
+
+            ax.annotate(
+                '', xy=(mupiLGcut, len(slowEvents[LGid]["matchedHit0_WindowIntPE"] * 0.07)), xycoords='data',  # Pointing at the top of the vertical line
+                xytext=(mupiLGcut-1, len(slowEvents[LGid]["matchedHit0_WindowIntPE"] * 0.07)), textcoords='data',  # Pointing to the left
+                arrowprops=dict(arrowstyle='<-', color='black', lw = 5)
+            )
+
+            ax.set_xlabel("Lead Glass WindowIntPE", fontsize = 18)
+            ax.set_ylabel("Number of events", fontsize = 18)
+            ax.tick_params(axis='both', which='major', labelsize=15)
+
+
+            if not(isJustLG):
+                muPiLG = slowEvents[LGid]["matchedHit0_WindowIntPE"][is_selected_mupi]
+                electronLG = slowEvents[LGid]["matchedHit0_WindowIntPE"][is_selected_electron]
+                nBinsMuPiLG = int((max(muPiLG)-min(muPiLG)) / binWidth)
+                nBinsELG = int((max(electronLG)-min(electronLG)) / binWidth)
+                colors = ["green", "blue"]
+                
+                ax.hist([muPiLG, electronLG], bins, 
+                        histtype='step', color = colors, stacked=False, 
+                        label = ["Selected muons and pions: %i\n(%.3f %% of slow events)\npurity: %.2f%%, efficiciency: %.2f%%"%(len(muPiLG), len(muPiLG)/len(slowEvents[LGid]["matchedHit0_WindowIntPE"]) * 100, mupi_pur_start * 100, mupi_eff_start * 100),
+                        "Selected electrons: %i\n(%.3f %% of slow events)"%(len(electronLG), len(electronLG)/len(slowEvents[LGid]["matchedHit0_WindowIntPE"]) * 100)])
+
+               
+                ax.set_title("Selection cuts: A: %.2f B: %.2f H: %.2f L: %.2f"%(A, B, H, L), fontsize = 12)
+            ax.legend(fontsize = 15)
+            ax.grid()
+            ax.set_xlim(min(LG_all), max(LG_all))
+                
+            fig.suptitle('WCTE Beamtest - Run %i, p = %i MeV/c n = %s \n %s'%(self.runNumber, self.runMomentum, self.runRefractiveIndex, metric_names[m]), fontsize=18, weight ='bold')
+            ax.set_yscale("log")
+            ax.set_ylim(0.5, len(slowEvents[LGid]["matchedHit0_WindowIntPE"]) * 1.1)
+
+            fig.savefig("../%s/MuPi_E_LGseparation_%s_startA%.2f_startB%.2f_startH%.2f_startL%.2f_Run%i.png"%(self.saving_folder_path_png, metric, start_A_value, start_B_value, start_H_value, start_L_value, self.runNumber))
         
-        ax.hist([muPiLG, electronLG], bins, 
-                histtype='step', color = colors, stacked=False, 
-                label = ["Selected muons and pions: %i\n(%.3f %% of slow events)\npurity: %.2f, efficiciency: %.2f"%(len(muPiLG), len(muPiLG)/len(slowEvents[LGid]["matchedHit0_WindowIntPE"]) * 100, mupi_pur_start * 100, mupi_eff_start * 100),
-                "Selected electrons: %i\n(%.3f %% of slow events)"%(len(electronLG), len(electronLG)/len(slowEvents[LGid]["matchedHit0_WindowIntPE"]) * 100)])
+            fig.savefig("../%s/MuPi_E_LGseparation_%s_startA%.2f_startB%.2f_startH%.2f_startL%.2f_Run%i.pdf"%(self.saving_folder_path_pdf, metric, start_A_value, start_B_value, start_H_value, start_L_value, self.runNumber))
 
-        ax.legend(fontsize = 15)
-        ax.grid()
-        ax.set_xlim(min(LG_all), max(LG_all))
+            # plt.show()
+
+            #########################################################
+
+    def plotMuonsAndPionsACTseparation(self):
+        #original cut value, we need to propagate the bins for the fit params to make sense
+
+            
+
+            # if five_sigma_mu > five_sigma_pi:
+            #     piACTcut =  five_sigma_pi
+            #     muACTcut = five_sigma_mu
+            
+            # elif four_sigma_mu > four_sigma_pi:
+            #     piACTcut =  four_sigma_pi
+            #     muACTcut = four_sigma_mu
+            
+            # elif three_sigma_mu > three_sigma_pi:
+            #     piACTcut =  three_sigma_pi
+            #     muACTcut = three_sigma_mu
+
+            # else:
+            #     weighted_mean_distance = ((mu_params[1] - mu_params[2]) * mu_params[0] + ( + pi_params[2] + pi_params[1]) * pi_params[0]) / (pi_params[0] + mu_params[0])
+                
+            #     piACTcut =  weighted_mean_distance # self.weirdElectronLGcut
+            #     muACTcut = weighted_mean_distance # self.weirdElectronLGcut 
+
+            
+            self.isNotElectron = list(~self.isElectron)
+
+            print(len(self.isNotElectron))
+            
+            #slowEvents= self.makeNewDataFrameFromSelection(self.arrayData, self.arrayData[0]["matchedHit0_TOF"] < self.protonsTOFCut)
+            fig, ax = plt.subplots(1, 1, figsize = (16, 9))
+
+            ACT_all = self.arrayData[0]
+            print(ACT_all)
+            ACT_all = ACT_all[self.isNotElectron]
+            print(ACT_all)
+            slowEvents = ACT_all[ACT_all["matchedHit0_TOF"]< self.protonsTOFCut] 
+            ACT_all = slowEvents["sumDownstreamACTs"]
+            
+            # slowEvents[0]["sumDownstreamACTs"]
+            # ACT_all = ACT_all
+
+            nBins = 200
+            binWidth = (max(ACT_all)-min(ACT_all)) / nBins
+            bins_all = int((max(ACT_all)-min(ACT_all)) / binWidth)
+
+            counts, bins, _ = ax.hist(ACT_all, bins = bins_all, histtype="stepfilled", 
+                    color="lightgray", 
+                    label = "All non-electron slow particles: %i (%.2f %% of total)"%(len(ACT_all), len(ACT_all)/len(self.getArrayData()[0]["matchedHit0_WindowIntPE"])* 100))
+            
+            ax.hist([self.pionArray[0]["sumDownstreamACTs"], self.muonArray[0]["sumDownstreamACTs"]], alpha = 0.3, bins = bins, histtype="stepfilled", stacked = True, 
+                    color=["red", "green"], 
+                    label = ["Config-file identified pions: %i (%.2f %% of total)"%(len(self.pionArray[0]["sumDownstreamACTs"]), len(self.pionArray[0]["sumDownstreamACTs"])/len(self.getArrayData()[0]["matchedHit0_WindowIntPE"])* 100),  "Config-file identified muons: %i (%.2f %% of total)"%(len(self.muonArray[0]["sumDownstreamACTs"]), len(self.muonArray[0]["sumDownstreamACTs"])/len(self.getArrayData()[0]["matchedHit0_WindowIntPE"])* 100)])
+
+
+            #pion_muon_ACT_gaussian_params = self.fitMuonsAndPionsACTPeaks(100, False)
+
+            pion_muon_ACT_gaussian_params = self.fitMuonsAndPionsACTPeaks(bins)
+            pi_params = pion_muon_ACT_gaussian_params[0]
+            mu_params = pion_muon_ACT_gaussian_params[1]
+
+            nPoints = 30
+            steps = (mu_params[1]-pi_params[1])/nPoints
+            previous_metric = 0
+
+            figQuality, (axQualityPurityMuon, axQualityPurityPion) = plt.subplots(1, 2, figsize = (16, 9), tight_layout=True)
+            axQualityEfficiencyPion = axQualityPurityPion.twinx() 
+            axQualityEfficiencyMuon = axQualityPurityMuon.twinx() 
+
+            mu_pur_array = []
+            pi_pur_array = []
+            mu_eff_array = []
+            pi_eff_array = []
+            cutPosition = []
+
+            for i in range(nPoints):
+                test_cut = pi_params[1] + i * steps
+                
+                
+                nTotalMuons = quad(gaussian, 0, 1000, args = (mu_params[0], mu_params[1], mu_params[2]))[0] * (bins[1]-bins[0])
+                nTotalPions =  quad(gaussian, 0, 1000, args = (pi_params[0], pi_params[1], pi_params[2]))[0] * (bins[1]-bins[0])
+                
+                
+                nGenuineMuonsInMuonSel =  quad(gaussian, test_cut, 1000, args = (mu_params[0], mu_params[1], mu_params[2]))[0] * (bins[1]-bins[0])
+                nGenuinePionsInMuonSel =  quad(gaussian, test_cut, 1000, args = (pi_params[0], pi_params[1], pi_params[2]))[0] * (bins[1]-bins[0])
+                
+                nGenuinePionsInPionSel = quad(gaussian, 0, test_cut, args = (pi_params[0], pi_params[1], pi_params[2]))[0] * (bins[1]-bins[0])
+                nGenuineMuonsInPionSel = quad(gaussian, 0, test_cut, args = (mu_params[0], mu_params[1], mu_params[2]))[0] * (bins[1]-bins[0])
+
+                muon_purity = nGenuineMuonsInMuonSel/(nGenuineMuonsInMuonSel+nGenuinePionsInMuonSel)
+
+                muon_efficiency = nGenuineMuonsInMuonSel/nTotalMuons
+
+                pion_purity = nGenuinePionsInPionSel/(nGenuineMuonsInPionSel+nGenuinePionsInPionSel)
+
+                pion_efficiency = nGenuinePionsInPionSel/nTotalPions
+
+                mu_pur_array.append(muon_purity)
+                pi_pur_array.append(pion_purity)
+                mu_eff_array.append(muon_efficiency)
+                pi_eff_array.append(pion_efficiency)
+                cutPosition.append(test_cut)
+
+                if muon_purity * pion_purity > previous_metric:
+                    muon_purity_final = muon_purity
+                    muon_efficiency_final = muon_efficiency
+                    pion_purity_final = pion_purity
+                    pion_efficiency_final = pion_efficiency
+                    
+                    test_cut_best = test_cut
+                    previous_metric = muon_purity * pion_purity
+                
+
+            muonPurity, muonEfficiency, pionPurity, pionEfficiency = muon_purity_final, muon_efficiency_final, pion_purity_final, pion_efficiency_final
+
+            muACTcut = test_cut_best
+            axQualityPurityMuon.set_title("Muons", fontsize = 15, weight = "bold")
+            axQualityPurityPion.set_title("Pions", fontsize = 15, weight = "bold")
+
+            axQualityPurityMuon.plot(cutPosition, mu_pur_array, color = 'green', marker = '^') 
+            axQualityPurityPion.plot(cutPosition, pi_pur_array, color = 'green', marker = '^') 
+
+            axQualityPurityMuon.set_ylim(0.4, 1.01)
+            axQualityEfficiencyMuon.set_ylim(0.4, 1.01)
+            axQualityPurityPion.set_ylim(0.4, 1.01)
+            axQualityEfficiencyPion.set_ylim(0.4, 1.01)
+            
+            axQualityEfficiencyMuon.plot(cutPosition, mu_eff_array, color = 'red', marker = 'o') 
+            axQualityEfficiencyPion.plot(cutPosition, pi_eff_array, color = 'red', marker = 'o') 
+
         
-        fig.suptitle('WCTE Beamtest - Run %i, p = %i MeV/c n = %s \n Default config'%(self.runNumber, self.runMomentum, self.runRefractiveIndex), fontsize=18, weight ='bold')
-        ax.set_yscale("log")
-        ax.set_ylim(0.5, len(slowEvents[LGid]["matchedHit0_WindowIntPE"]) * 1.1)
+            axQualityEfficiencyMuon.set_ylabel('Efficiency', color = 'red', fontsize = 16)
+            axQualityEfficiencyPion.set_ylabel('Efficiency', color = 'red', fontsize = 16)
 
-        fig.savefig("../%s/MuPi_E_LGseparation_config_startA%.2f_startB%.2f_startH%.2f_startL%.2f_Run%i.png"%(self.saving_folder_path_png, start_A_value, start_B_value, start_H_value, start_L_value, self.runNumber))
-       
-        fig.savefig("../%s/MuPi_E_LGseparation_config_startA%.2f_startB%.2f_startH%.2f_startL%.2f_Run%i.pdf"%(self.saving_folder_path_pdf, start_A_value, start_B_value, start_H_value, start_L_value, self.runNumber))
+            axQualityPurityMuon.set_ylabel('Purity', color = 'green', fontsize = 16)
+            axQualityPurityPion.set_ylabel('Purity', color = 'green', fontsize = 16)
 
-        plt.show()
+            axQualityPurityMuon.grid()
+            axQualityPurityPion.grid()
 
-        #########################################################
+            axQualityPurityMuon.tick_params(axis ='y', labelcolor = 'green')
+            axQualityPurityPion.tick_params(axis ='y', labelcolor = 'green')
 
-        #############################################################
-        fig, ax = plt.subplots(1, 1, figsize = (16, 9))
-        LG_all = slowEvents[LGid]["matchedHit0_WindowIntPE"]
-        nBins = 200
-        binWidth = (max(LG_all)-min(LG_all)) / nBins
-        bins_all = int((max(LG_all)-min(LG_all)) / binWidth)
-        counts, bins, _ = ax.hist(LG_all, bins = bins_all, histtype="stepfilled", 
-                color="lightgray", 
-                label = "All slow particles: %i (%.2f %% of total)"%(len(LG_all), len(LG_all)/len(self.getArrayData()[LGid]["matchedHit0_WindowIntPE"])* 100))
+            axQualityEfficiencyMuon.tick_params(axis ='y', labelcolor = 'red')
+            axQualityEfficiencyPion.tick_params(axis ='y', labelcolor = 'red')
 
-        #returns the gaussian fit to the electron and muon distributions from the original cut value, we need to propagate the bins for the fit params to make sense
-        electron_muon_LG_gaussian_params = self.fitMuonsAndElectronLGPeaks(bins)
-        x_range = np.linspace(min(LG_all), max(LG_all), 400)
-        ax.plot(x_range, gaussian(x_range, *electron_muon_LG_gaussian_params[0]), "b--", label = 'Fitted electron peak\nA= %.1e mean = %.2f std = %.2f'%(electron_muon_LG_gaussian_params[0][0], electron_muon_LG_gaussian_params[0][1], electron_muon_LG_gaussian_params[0][2]))
-        ax.plot(x_range, gaussian(x_range, *electron_muon_LG_gaussian_params[1]), "g--", label = 'Fitted muon peak\nA= %.1e mean = %.2f std = %.2f'%(electron_muon_LG_gaussian_params[1][0], electron_muon_LG_gaussian_params[1][1], electron_muon_LG_gaussian_params[1][2]))
-        ax.axvline(electronLGcut, color = "red", label = "electron LG cut: %.1f \n%i genuine electrons "%(electronLGcut, sum(is_genuine_electron)))
-        ax.axvline(mupiLGcut, color = "black", label = "mu and pi LG cut: %.1f \n%i genuine muons and pions "%(mupiLGcut, sum(is_genuine_mupi)))
+            axQualityPurityMuon.axvline(muACTcut, color = 'black', label= "Cut line chosen: %.2f PE \n Muon purity = %.2f, efficiency = %.2f"%(muACTcut, muonPurity * 100, muonEfficiency * 100))
+            axQualityPurityPion.axvline(muACTcut, color = 'black', label= "Cut line chosen: %.2f PE \n Pion purity = %.2f, efficiency = %.2f"%(muACTcut, pionPurity * 100, pionEfficiency * 100))
 
-        ax.set_xlabel("Lead Glass WindowIntPE", fontsize = 18)
-        ax.set_ylabel("Number of events", fontsize = 18)
-        ax.tick_params(axis='both', which='major', labelsize=15)
+            axQualityPurityMuon.legend(fontsize = 16)
+            axQualityPurityPion.legend(fontsize = 16)
+            #axQualityEfficiencyMuon.legend(fontsize = 16)
+            
+            axQualityPurityPion.set_xlabel("Cut position in sumDownstreamACTs (PE)", fontsize = 16)
+            axQualityPurityMuon.set_xlabel("Cut position in sumDownstreamACTs (PE)", fontsize = 16)
 
-        muPiLG = slowEvents[LGid]["matchedHit0_WindowIntPE"][is_selected_mupi]
-        electronLG = slowEvents[LGid]["matchedHit0_WindowIntPE"][is_selected_electron]
-        nBinsMuPiLG = int((max(muPiLG)-min(muPiLG)) / binWidth)
-        nBinsELG = int((max(electronLG)-min(electronLG)) / binWidth)
-        colors = ["green", "blue"]
+
+            
+
+            figQuality.suptitle('WCTE Beamtest - Run %i, p = %i MeV/c n = %s'%(self.runNumber, self.runMomentum, self.runRefractiveIndex), fontsize=18, weight ='bold')
+
+            figQuality.savefig("../%s/Mu_Pi_ACTseparationQuality_Run%i.png"%(self.saving_folder_path_png, self.runNumber))
+            figQuality.savefig("../%s/Mu_Pi_ACTseparationQuality_Run%i.pdf"%(self.saving_folder_path_pdf, self.runNumber))
+
+
+            
+            
+
+            x_range = np.linspace(min(ACT_all), max(ACT_all), 400)
+
+            ax.axvline(muACTcut, color = "black", label = "Optimal pi/mu ACT cut: %.2f PE"%(muACTcut))
+
+
+            ax.plot(x_range, gaussian(x_range, *pion_muon_ACT_gaussian_params[0]), "r--", label = 'Fitted pion peak\nA= %.1e mean = %.2f PE std = %.2f PE \n Purity = %.2f%% Efficiency = %.2f%%'%(pion_muon_ACT_gaussian_params[0][0], pion_muon_ACT_gaussian_params[0][1], pion_muon_ACT_gaussian_params[0][2], pionPurity * 100, pionEfficiency * 100))
+            ax.plot(x_range, gaussian(x_range, *pion_muon_ACT_gaussian_params[1]), "g--", label = 'Fitted muon peak\nA= %.1e mean = %.2f PE std = %.2f PE\n Purity = %.2f%% Efficiency = %.2f%%'%(pion_muon_ACT_gaussian_params[1][0], pion_muon_ACT_gaussian_params[1][1], pion_muon_ACT_gaussian_params[1][2], muonPurity * 100, muonEfficiency * 100))
+            
+            
+            #ax.axvline(electronLGcut, color = "red", label = "electron LG cut: %.1f \n%i genuine electrons "%(electronLGcut, sum(is_genuine_electron)))
+
+            # Annotate with an arrow pointing right for the genuine electrons
+            # ax.annotate(
+            #     '', xy=(electronLGcut+1, len(slowEvents[LGid]["matchedHit0_WindowIntPE"] * 0.07)), xycoords='data',  # Pointing at the top of the vertical line
+            #     xytext=(electronLGcut, len(slowEvents[LGid]["matchedHit0_WindowIntPE"] * 0.07)), textcoords='data',  # Pointing to the right, yes this is confusing but see figure
+            #     arrowprops=dict(arrowstyle='->', color='red', lw = 5)
+            # )
+
+            
+
+            # ax.annotate(
+            #     '', xy=(mupiLGcut, len(slowEvents[LGid]["matchedHit0_WindowIntPE"] * 0.07)), xycoords='data',  # Pointing at the top of the vertical line
+            #     xytext=(mupiLGcut-1, len(slowEvents[LGid]["matchedHit0_WindowIntPE"] * 0.07)), textcoords='data',  # Pointing to the left
+            #     arrowprops=dict(arrowstyle='<-', color='black', lw = 5)
+            # )
+
+            ax.set_xlabel("sum of dowstream ACTs", fontsize = 18)
+            ax.set_ylabel("Number of events", fontsize = 18)
+            ax.tick_params(axis='both', which='major', labelsize=15)
+
+
+            # if not(isJustLG):
+            #     muPiLG = slowEvents[LGid]["matchedHit0_WindowIntPE"][is_selected_mupi]
+            #     electronLG = slowEvents[LGid]["matchedHit0_WindowIntPE"][is_selected_electron]
+            #     nBinsMuPiLG = int((max(muPiLG)-min(muPiLG)) / binWidth)
+            #     nBinsELG = int((max(electronLG)-min(electronLG)) / binWidth)
+            #     colors = ["green", "blue"]
+                
+            #     ax.hist([muPiLG, electronLG], bins, 
+            #             histtype='step', color = colors, stacked=False, 
+            #             label = ["Selected muons and pions: %i\n(%.3f %% of slow events)\npurity: %.2f%%, efficiciency: %.2f%%"%(len(muPiLG), len(muPiLG)/len(slowEvents[LGid]["matchedHit0_WindowIntPE"]) * 100, mupi_pur_start * 100, mupi_eff_start * 100),
+            #             "Selected electrons: %i\n(%.3f %% of slow events)"%(len(electronLG), len(electronLG)/len(slowEvents[LGid]["matchedHit0_WindowIntPE"]) * 100)])
+
+               
+            #     ax.set_title("Selection cuts: A: %.2f B: %.2f H: %.2f L: %.2f"%(A, B, H, L), fontsize = 12)
+            ax.legend(fontsize = 15)
+            ax.grid()
+            ax.set_xlim(min(ACT_all), max(ACT_all))
+                
+            fig.suptitle('WCTE Beamtest - Run %i, p = %i MeV/c n = %s'%(self.runNumber, self.runMomentum, self.runRefractiveIndex), fontsize=18, weight ='bold')
+            #we do not want log just yet
+            
+            ax.set_ylim(0, max(pi_params[0] * 1.1, mu_params[0] * 1.1))
+
+            fig.savefig("../%s/Mu_Pi_ACTseparation_Run%i.png"%(self.saving_folder_path_png, self.runNumber))
+            fig.savefig("../%s/Mu_Pi_ACTseparation_Run%i.pdf"%(self.saving_folder_path_pdf, self.runNumber))
+
+            ax.set_yscale("log")
+            ax.set_ylim(0.5, len(ACT_all) * 1.1)
+            fig.savefig("../%s/Mu_Pi_ACTseparationLOG_Run%i.png"%(self.saving_folder_path_png, self.runNumber))
+            fig.savefig("../%s/Mu_Pi_ACTseparationLOG_Run%i.pdf"%(self.saving_folder_path_pdf, self.runNumber))
+
         
-        ax.hist([muPiLG, electronLG], bins, 
-                histtype='step', color = colors, stacked=False, 
-                label = ["Selected muons and pions: %i\n(%.3f %% of slow events)\npurity: %.2f, efficiciency: %.2f"%(len(muPiLG), len(muPiLG)/len(slowEvents[LGid]["matchedHit0_WindowIntPE"]) * 100, mupi_pur_start * 100, mupi_eff_start * 100),
-                "Selected electrons: %i\n(%.3f %% of slow events)"%(len(electronLG), len(electronLG)/len(slowEvents[LGid]["matchedHit0_WindowIntPE"]) * 100)])
-
-        ax.legend(fontsize = 15)
-        ax.grid()
-        ax.set_xlim(min(LG_all), max(LG_all))
+            return muACTcut
         
-        fig.suptitle('WCTE Beamtest - Run %i, p = %i MeV/c n = %s \nMaximizing purity^2 * efficiency'%(self.runNumber, self.runMomentum, self.runRefractiveIndex), fontsize=18, weight ='bold')
-        ax.set_yscale("log")
-        ax.set_ylim(0.5, len(slowEvents[LGid]["matchedHit0_WindowIntPE"]) * 1.1)
+            # fig.savefig("../%s/MuPi_E_LGseparation_%s_startA%.2f_startB%.2f_startH%.2f_startL%.2f_Run%i.pdf"%(self.saving_folder_path_pdf, metric, start_A_value, start_B_value, start_H_value, start_L_value, self.runNumber))
 
-        fig.savefig("../%s/MuPi_E_LGseparation_p2e_startA%.2f_startB%.2f_startH%.2f_startL%.2f_Run%i.png"%(self.saving_folder_path_png, start_A_value, start_B_value, start_H_value, start_L_value, self.runNumber))
-       
-        fig.savefig("../%s/MuPi_E_LGseparation_p2e_startA%.2f_startB%.2f_startH%.2f_startL%.2f_Run%i.pdf"%(self.saving_folder_path_pdf, start_A_value, start_B_value, start_H_value, start_L_value, self.runNumber))
-
-        plt.show()
+            # plt.show()
 
 
     def plotSelectionWindow2ACT1sumDownstreamACT(self, ymax = 100):
@@ -2025,7 +2336,7 @@ class LowMomentumAnalysis:
              print(f"In the config file, checking the coincidence is set to {self.nCoincidenceSelectionBool}, we are therefore not processing the change", end="", flush=True)
             #  self.nCoincidenceSelectionPassed = self.arrayData[0]["DigitimingOffset"]!= -9998
 
-    def fitMuonsAndElectronLGPeaks(self, bins_values = 100):
+    def fitMuonsAndElectronLGPeaks(self, bins_values = 100, savefigs = True):
         """FIt and plot a Guassian distribution to the energy deposited in the lead glass for electrons and  muons - LM only"""
         leadGlassID = self.channelNames.index("PbGlass")
         if self.isLowMomentum:
@@ -2048,9 +2359,7 @@ class LowMomentumAnalysis:
                     electron_leadGlass = population[branch]
                     particle = particle_list[p]
                     counts, bins, _ = plt.hist(electron_leadGlass, bins = bins_values, alpha = 0.75, label = "%s-like: %i events"%(particle, len(electron_leadGlass)))
-                    print("COUNTS AND BINS:", counts, bins)
                     params, covariance = fitGaussian(counts, bins)
-                    print("%s peak mean: %.3f std: %.3f"%(particle, params[1], params[2]))
                     plt.plot(np.linspace(bins[0], bins[-1], 100), gaussian(np.linspace(bins[0], bins[-1], 100), *params), 'k--', label = 'Mean = %.3f V std = %.3f V'%(params[1], params[2]))
                     plt.grid()
                     plt.legend(fontsize = 19)
@@ -2061,9 +2370,10 @@ class LowMomentumAnalysis:
 
                     plt.tick_params(axis='both', which='major', labelsize=15)
 
-                    plt.savefig("../%s/%s_fitted_Run%i.pdf"%(self.saving_folder_path_pdf, "%s_%s"%(particle, branch), self.runNumber))
+                    if savefigs:
+                        plt.savefig("../%s/%s_fitted_Run%i.pdf"%(self.saving_folder_path_pdf, "%s_%s"%(particle, branch), self.runNumber))
 
-                    plt.savefig("../%s/%s_fitted_Run%i.png"%(self.saving_folder_path_png, "%s_%s"%(particle, branch), self.runNumber))
+                        plt.savefig("../%s/%s_fitted_Run%i.png"%(self.saving_folder_path_png, "%s_%s"%(particle, branch), self.runNumber))
                     if branch == "matchedHit0_WindowIntPE":
                         all_params.append(params)
             
@@ -2072,6 +2382,48 @@ class LowMomentumAnalysis:
 
         for i in range(20):
             plt.close()
+
+    def fitMuonsAndPionsACTPeaks(self, bins_values = 100, savefigs = True):
+        """FIt and plot a Guassian distribution to the energy deposited in the lead glass for electrons and  muons - LM only"""
+        leadGlassID = self.channelNames.index("ACT2L")
+        if self.isLowMomentum:
+            particle_list = ["pion", "muon"]
+            if self.pionArray == None:
+                self.makeAllParticleSelection()
+
+            population_list = [self.pionArray[leadGlassID], self.muonArray[leadGlassID]]
+            all_params = []
+
+            if "sumDownstreamACTsWindow2" in self.getBranchList(leadGlassID):
+                branches = ["sumDownstreamACTs", "sumDownstreamACTsWindow2"]
+            else:
+                branches = ["sumDownstreamACTs"]
+
+            for p, population in enumerate(population_list):
+                for branch in branches:
+                    plt.figure(figsize = [16, 9])
+                    electron_leadGlass = population[branch]
+                    particle = particle_list[p]
+                    counts, bins, _ = plt.hist(electron_leadGlass, bins = bins_values, alpha = 0.75, label = "%s-like: %i events"%(particle, len(electron_leadGlass)))
+                    params, covariance = fitGaussian(counts, bins)
+                    plt.plot(np.linspace(bins[0], bins[-1], 100), gaussian(np.linspace(bins[0], bins[-1], 100), *params), 'k--', label = 'Mean = %.3f PE std = %.3f PE'%(params[1], params[2]))
+                    plt.grid()
+                    plt.legend(fontsize = 19)
+                    plt.xlabel(branch, fontsize = 18)
+                    plt.ylabel("Number of events", fontsize = 18)
+
+                    plt.title('WCTE Beamtest - Run %i, p = %i MeV/c n = %s'%(self.runNumber, self.runMomentum, self.runRefractiveIndex), fontsize=18, weight ='bold')
+
+                    plt.tick_params(axis='both', which='major', labelsize=15)
+
+                    if savefigs:
+                        plt.savefig("../%s/%s_fitted_Run%i.pdf"%(self.saving_folder_path_pdf, "%s_%s"%(particle, branch), self.runNumber))
+
+                        plt.savefig("../%s/%s_fitted_Run%i.png"%(self.saving_folder_path_png, "%s_%s"%(particle, branch), self.runNumber))
+                    if branch == "sumDownstreamACTs":
+                        all_params.append(params)
+            
+            return all_params
 
         
 
@@ -2096,8 +2448,16 @@ class LowMomentumAnalysis:
         if self.thereIsSecondWindow:
             if "sumTSwindow2" not in self.getBranchList(0):
                 self.makeSumTSwindow2()
-            depositsNotTooMuchEnergy = self.getSelectionBasedOnCondition(0, "sumTSwindow2", "<=", self.TSwindow2totalChargeSelectionValue)
+
+            if self.TSwindow2totalChargeSelectionValue == None:
+                #if we do not have a selection cut, do not apply it
+                depositsNotTooMuchEnergy = True
+                
+            else:
+                depositsNotTooMuchEnergy = self.getSelectionBasedOnCondition(0, "sumTSwindow2", "<=", self.TSwindow2totalChargeSelectionValue)
+            
             isFast = self.getSelectionBasedOnCondition(0, "matchedHit0_TOF", ">=", self.protonsTOFCut)
+            
             self.TSwindow2totalChargeSelectionPassed = depositsNotTooMuchEnergy | isFast
 
             self.applyCut(self.TSwindow2totalChargeSelectionPassed)
