@@ -1,6 +1,6 @@
 #This is a code that does all of the pre-processing required to go from a base root file to the final analysable code , you can call it with multiple run inputs
 
-timingRange="final2"
+timingRange="final"
 
 for run in $@
 do
