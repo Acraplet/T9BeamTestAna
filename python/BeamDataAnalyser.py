@@ -71,7 +71,7 @@ if BeamDataAna.WindowBoundsAreAvailable:
 BeamDataAna.makeAllParticleSelection()
 
 #This needs to be run after the inital particle selection, it finds the optimal cut line for different particles and re-run the selection, saving particles to the folder_optimal 
-BeamDataAna.findOptimalPiMuElCuts(True)
+BeamDataAna.findOptimalPiMuElCuts("p2e", True)
 
 BeamDataAna.plotBranchHistForAllParticles(0, "matchedHit0_TOF", 5, True)
 

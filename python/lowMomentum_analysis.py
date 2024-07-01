@@ -1366,11 +1366,14 @@ class LowMomentumAnalysis:
             #chosen metric: muon/pion purity
             bestI_chosen =  bestI
 
-        if metric == "pe":
+        elif metric == "pe":
             #chosen metric purity * efficiency for (mu or pi)
             bestI_chosen =  bestIpe
             
-        if metric == "p2e":
+        elif metric == "p2e":
+            bestI_chosen =  bestIp2e
+
+        else:
             bestI_chosen =  bestIp2e
             
         
