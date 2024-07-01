@@ -1458,7 +1458,7 @@ class LowMomentumAnalysis:
 
             if runOptimalSelection:
                 #update the pion/muon cut, using true
-                self.piMuBorderACT = self.plotMuonsAndPionsACTseparation(True)
+                self.piMuBorderACT = self.plotMuonsAndPionsACTseparation()
 
                 self.saving_folder_path_pdf = self.saving_folder_path_pdf + "_Optimal"
                 self.saving_folder_path_png = self.saving_folder_path_png + "_Optimal"
