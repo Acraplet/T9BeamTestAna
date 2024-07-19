@@ -1,0 +1,6263 @@
+Frontend name          :     feDT5730_00
+Event buffer size      :     21770000
+User max event size    :     10880000
+User max frag. size    :     52428800
+# of events per buffer :     2
+
+Connect to experiment...
+OK
+[feDT5730_00,ERROR] [midas.cxx:8184:bm_set_cache_size,ERROR] requested write cache size 100000000 on buffer "SYSTEM" is too big: buffer size is 33554432, write cache size will be 11184810 bytes
+Init hardware...
+begin of Init
+OpenDigitizer use link: 1
+OpenDigitizer ret: 0
+DT5730S handle: 0
+[feDT5730_00,INFO] successfully opened digitizer
+[feDT5730_00,INFO] Connected to CAEN Digitizer Model DT5730S
+ROC FPGA Release is 04.23 - Build 4B06
+AMC FPGA Release is 00.02 - Build 4922
+Serial Number is 14834
+end of Init
+OK
+Initializing digitizer for running
+Check values on DT5730S: 
+record length: 300
+pos-trigger size: 0
+Channel0 DC offset: 5000
+Channel1 DC offset: 5000
+Channel2 DC offset: 5000
+Channel3 DC offset: 5000
+Channel4 DC offset: 5000
+Channel5 DC offset: 5000
+Channel6 DC offset: 5000
+Channel7 DC offset: 5000
+Channel0 temperature: 74
+Channel1 temperature: 74
+Channel2 temperature: 72
+Channel3 temperature: 72
+Channel4 temperature: 66
+Channel5 temperature: 66
+Channel6 temperature: 61
+Channel7 temperature: 61
+Acquisition control settings = 0x0
+Trigger counting mode = 0x0
+Global trigger mask value = 0x40000000
+GPO enable mask = 0x40000000
+Allocated buffer size = 295216
+End of BOR
+Started run 626
+EOR
+Channel0 temperature: 74
+Channel1 temperature: 74
+Channel2 temperature: 72
+Channel3 temperature: 72
+Channel4 temperature: 66
+Channel5 temperature: 66
+Channel6 temperature: 61
+Channel7 temperature: 61
+Run stopped
+Initializing digitizer for running
+Check values on DT5730S: 
+record length: 300
+pos-trigger size: 0
+Channel0 DC offset: 5000
+Channel1 DC offset: 5000
+Channel2 DC offset: 5000
+Channel3 DC offset: 5000
+Channel4 DC offset: 5000
+Channel5 DC offset: 5000
+Channel6 DC offset: 5000
+Channel7 DC offset: 5000
+Channel0 temperature: 73
+Channel1 temperature: 73
+Channel2 temperature: 71
+Channel3 temperature: 71
+Channel4 temperature: 66
+Channel5 temperature: 66
+Channel6 temperature: 61
+Channel7 temperature: 61
+Acquisition control settings = 0x0
+Trigger counting mode = 0x0
+Global trigger mask value = 0x40000000
+GPO enable mask = 0x40000000
+End of BOR
+Started run 627
+EOR
+Channel0 temperature: 73
+Channel1 temperature: 73
+Channel2 temperature: 72
+Channel3 temperature: 72
+Channel4 temperature: 66
+Channel5 temperature: 66
+Channel6 temperature: 61
+Channel7 temperature: 61
+Run stopped
+Initializing digitizer for running
+Check values on DT5730S: 
+record length: 300
+pos-trigger size: 0
+Channel0 DC offset: 5000
+Channel1 DC offset: 5000
+Channel2 DC offset: 5000
+Channel3 DC offset: 5000
+Channel4 DC offset: 5000
+Channel5 DC offset: 5000
+Channel6 DC offset: 5000
+Channel7 DC offset: 5000
+Channel0 temperature: 74
+Channel1 temperature: 74
+Channel2 temperature: 72
+Channel3 temperature: 72
+Channel4 temperature: 66
+Channel5 temperature: 66
+Channel6 temperature: 62
+Channel7 temperature: 62
+Acquisition control settings = 0x0
+Trigger counting mode = 0x0
+Global trigger mask value = 0x40000000
+GPO enable mask = 0x40000000
+End of BOR
+Started run 628
+EOR
+Channel0 temperature: 74
+Channel1 temperature: 74
+Channel2 temperature: 72
+Channel3 temperature: 72
+Channel4 temperature: 67
+Channel5 temperature: 67
+Channel6 temperature: 62
+Channel7 temperature: 62
+Run stopped
+Initializing digitizer for running
+Check values on DT5730S: 
+record length: 300
+pos-trigger size: 0
+Channel0 DC offset: 5000
+Channel1 DC offset: 5000
+Channel2 DC offset: 5000
+Channel3 DC offset: 5000
+Channel4 DC offset: 5000
+Channel5 DC offset: 5000
+Channel6 DC offset: 5000
+Channel7 DC offset: 5000
+Channel0 temperature: 74
+Channel1 temperature: 74
+Channel2 temperature: 72
+Channel3 temperature: 72
+Channel4 temperature: 66
+Channel5 temperature: 66
+Channel6 temperature: 61
+Channel7 temperature: 61
+Acquisition control settings = 0x0
+Trigger counting mode = 0x0
+Global trigger mask value = 0x40000000
+GPO enable mask = 0x40000000
+End of BOR
+Started run 629
+EOR
+Channel0 temperature: 73
+Channel1 temperature: 73
+Channel2 temperature: 71
+Channel3 temperature: 71
+Channel4 temperature: 66
+Channel5 temperature: 66
+Channel6 temperature: 61
+Channel7 temperature: 61
+Run stopped
+Initializing digitizer for running
+Check values on DT5730S: 
+record length: 300
+pos-trigger size: 0
+Channel0 DC offset: 5000
+Channel1 DC offset: 5000
+Channel2 DC offset: 5000
+Channel3 DC offset: 5000
+Channel4 DC offset: 5000
+Channel5 DC offset: 5000
+Channel6 DC offset: 5000
+Channel7 DC offset: 5000
+Channel0 temperature: 73
+Channel1 temperature: 73
+Channel2 temperature: 71
+Channel3 temperature: 71
+Channel4 temperature: 66
+Channel5 temperature: 66
+Channel6 temperature: 61
+Channel7 temperature: 61
+Acquisition control settings = 0x0
+Trigger counting mode = 0x0
+Global trigger mask value = 0x40000000
+GPO enable mask = 0x40000000
+End of BOR
+Started run 630
+EOR
+Channel0 temperature: 74
+Channel1 temperature: 74
+Channel2 temperature: 72
+Channel3 temperature: 72
+Channel4 temperature: 66
+Channel5 temperature: 66
+Channel6 temperature: 61
+Channel7 temperature: 61
+Run stopped
+Initializing digitizer for running
+Check values on DT5730S: 
+record length: 300
+pos-trigger size: 0
+Channel0 DC offset: 5000
+Channel1 DC offset: 5000
+Channel2 DC offset: 5000
+Channel3 DC offset: 5000
+Channel4 DC offset: 5000
+Channel5 DC offset: 5000
+Channel6 DC offset: 5000
+Channel7 DC offset: 5000
+Channel0 temperature: 74
+Channel1 temperature: 74
+Channel2 temperature: 72
+Channel3 temperature: 72
+Channel4 temperature: 66
+Channel5 temperature: 66
+Channel6 temperature: 62
+Channel7 temperature: 62
+Acquisition control settings = 0x0
+Trigger counting mode = 0x0
+Global trigger mask value = 0x40000000
+GPO enable mask = 0x40000000
+End of BOR
+Started run 631
+EOR
+Channel0 temperature: 73
+Channel1 temperature: 73
+Channel2 temperature: 71
+Channel3 temperature: 71
+Channel4 temperature: 66
+Channel5 temperature: 66
+Channel6 temperature: 61
+Channel7 temperature: 61
+Run stopped
+Initializing digitizer for running
+Check values on DT5730S: 
+record length: 300
+pos-trigger size: 0
+Channel0 DC offset: 5000
+Channel1 DC offset: 5000
+Channel2 DC offset: 5000
+Channel3 DC offset: 5000
+Channel4 DC offset: 5000
+Channel5 DC offset: 5000
+Channel6 DC offset: 5000
+Channel7 DC offset: 5000
+Channel0 temperature: 73
+Channel1 temperature: 73
+Channel2 temperature: 71
+Channel3 temperature: 71
+Channel4 temperature: 66
+Channel5 temperature: 66
+Channel6 temperature: 61
+Channel7 temperature: 61
+Acquisition control settings = 0x0
+Trigger counting mode = 0x0
+Global trigger mask value = 0x40000000
+GPO enable mask = 0x40000000
+End of BOR
+Started run 632
+EOR
+Channel0 temperature: 74
+Channel1 temperature: 74
+Channel2 temperature: 71
+Channel3 temperature: 71
+Channel4 temperature: 66
+Channel5 temperature: 66
+Channel6 temperature: 61
+Channel7 temperature: 61
+Run stopped
+Initializing digitizer for running
+Check values on DT5730S: 
+record length: 300
+pos-trigger size: 0
+Channel0 DC offset: 5000
+Channel1 DC offset: 5000
+Channel2 DC offset: 5000
+Channel3 DC offset: 5000
+Channel4 DC offset: 5000
+Channel5 DC offset: 5000
+Channel6 DC offset: 5000
+Channel7 DC offset: 5000
+Channel0 temperature: 74
+Channel1 temperature: 74
+Channel2 temperature: 72
+Channel3 temperature: 72
+Channel4 temperature: 66
+Channel5 temperature: 66
+Channel6 temperature: 62
+Channel7 temperature: 62
+Acquisition control settings = 0x0
+Trigger counting mode = 0x0
+Global trigger mask value = 0x40000000
+GPO enable mask = 0x40000000
+End of BOR
+Started run 633
+EOR
+Channel0 temperature: 73
+Channel1 temperature: 73
+Channel2 temperature: 71
+Channel3 temperature: 71
+Channel4 temperature: 65
+Channel5 temperature: 65
+Channel6 temperature: 60
+Channel7 temperature: 60
+Run stopped
+Initializing digitizer for running
+Check values on DT5730S: 
+record length: 300
+pos-trigger size: 0
+Channel0 DC offset: 5000
+Channel1 DC offset: 5000
+Channel2 DC offset: 5000
+Channel3 DC offset: 5000
+Channel4 DC offset: 5000
+Channel5 DC offset: 5000
+Channel6 DC offset: 5000
+Channel7 DC offset: 5000
+Channel0 temperature: 73
+Channel1 temperature: 73
+Channel2 temperature: 71
+Channel3 temperature: 71
+Channel4 temperature: 66
+Channel5 temperature: 66
+Channel6 temperature: 61
+Channel7 temperature: 61
+Acquisition control settings = 0x0
+Trigger counting mode = 0x0
+Global trigger mask value = 0x40000000
+GPO enable mask = 0x40000000
+End of BOR
+Started run 634
+EOR
+Channel0 temperature: 73
+Channel1 temperature: 73
+Channel2 temperature: 72
+Channel3 temperature: 72
+Channel4 temperature: 66
+Channel5 temperature: 66
+Channel6 temperature: 61
+Channel7 temperature: 61
+Run stopped
+Initializing digitizer for running
+Check values on DT5730S: 
+record length: 300
+pos-trigger size: 0
+Channel0 DC offset: 5000
+Channel1 DC offset: 5000
+Channel2 DC offset: 5000
+Channel3 DC offset: 5000
+Channel4 DC offset: 5000
+Channel5 DC offset: 5000
+Channel6 DC offset: 5000
+Channel7 DC offset: 5000
+Channel0 temperature: 74
+Channel1 temperature: 74
+Channel2 temperature: 72
+Channel3 temperature: 72
+Channel4 temperature: 66
+Channel5 temperature: 66
+Channel6 temperature: 62
+Channel7 temperature: 62
+Acquisition control settings = 0x0
+Trigger counting mode = 0x0
+Global trigger mask value = 0x40000000
+GPO enable mask = 0x40000000
+End of BOR
+Started run 635
+EOR
+Channel0 temperature: 74
+Channel1 temperature: 74
+Channel2 temperature: 72
+Channel3 temperature: 72
+Channel4 temperature: 67
+Channel5 temperature: 67
+Channel6 temperature: 62
+Channel7 temperature: 62
+Run stopped
+Initializing digitizer for running
+Check values on DT5730S: 
+record length: 300
+pos-trigger size: 0
+Channel0 DC offset: 5000
+Channel1 DC offset: 5000
+Channel2 DC offset: 5000
+Channel3 DC offset: 5000
+Channel4 DC offset: 5000
+Channel5 DC offset: 5000
+Channel6 DC offset: 5000
+Channel7 DC offset: 5000
+Channel0 temperature: 74
+Channel1 temperature: 74
+Channel2 temperature: 71
+Channel3 temperature: 71
+Channel4 temperature: 66
+Channel5 temperature: 66
+Channel6 temperature: 61
+Channel7 temperature: 61
+Acquisition control settings = 0x0
+Trigger counting mode = 0x0
+Global trigger mask value = 0x40000000
+GPO enable mask = 0x40000000
+End of BOR
+Started run 636
+EOR
+Channel0 temperature: 73
+Channel1 temperature: 73
+Channel2 temperature: 71
+Channel3 temperature: 71
+Channel4 temperature: 66
+Channel5 temperature: 66
+Channel6 temperature: 61
+Channel7 temperature: 61
+Run stopped
+Initializing digitizer for running
+Check values on DT5730S: 
+record length: 300
+pos-trigger size: 0
+Channel0 DC offset: 5000
+Channel1 DC offset: 5000
+Channel2 DC offset: 5000
+Channel3 DC offset: 5000
+Channel4 DC offset: 5000
+Channel5 DC offset: 5000
+Channel6 DC offset: 5000
+Channel7 DC offset: 5000
+Channel0 temperature: 73
+Channel1 temperature: 73
+Channel2 temperature: 72
+Channel3 temperature: 72
+Channel4 temperature: 66
+Channel5 temperature: 66
+Channel6 temperature: 61
+Channel7 temperature: 61
+Acquisition control settings = 0x0
+Trigger counting mode = 0x0
+Global trigger mask value = 0x40000000
+GPO enable mask = 0x40000000
+End of BOR
+Started run 637
+EOR
+Channel0 temperature: 74
+Channel1 temperature: 74
+Channel2 temperature: 72
+Channel3 temperature: 72
+Channel4 temperature: 66
+Channel5 temperature: 66
+Channel6 temperature: 61
+Channel7 temperature: 61
+Run stopped
+Initializing digitizer for running
+Check values on DT5730S: 
+record length: 300
+pos-trigger size: 0
+Channel0 DC offset: 5000
+Channel1 DC offset: 5000
+Channel2 DC offset: 5000
+Channel3 DC offset: 5000
+Channel4 DC offset: 5000
+Channel5 DC offset: 5000
+Channel6 DC offset: 5000
+Channel7 DC offset: 5000
+Channel0 temperature: 74
+Channel1 temperature: 74
+Channel2 temperature: 72
+Channel3 temperature: 72
+Channel4 temperature: 66
+Channel5 temperature: 66
+Channel6 temperature: 61
+Channel7 temperature: 61
+Acquisition control settings = 0x0
+Trigger counting mode = 0x0
+Global trigger mask value = 0x40000000
+GPO enable mask = 0x40000000
+End of BOR
+Started run 638
+EOR
+Channel0 temperature: 73
+Channel1 temperature: 73
+Channel2 temperature: 71
+Channel3 temperature: 71
+Channel4 temperature: 66
+Channel5 temperature: 66
+Channel6 temperature: 61
+Channel7 temperature: 61
+Run stopped
+Initializing digitizer for running
+Check values on DT5730S: 
+record length: 300
+pos-trigger size: 0
+Channel0 DC offset: 5000
+Channel1 DC offset: 5000
+Channel2 DC offset: 5000
+Channel3 DC offset: 5000
+Channel4 DC offset: 5000
+Channel5 DC offset: 5000
+Channel6 DC offset: 5000
+Channel7 DC offset: 5000
+Channel0 temperature: 73
+Channel1 temperature: 73
+Channel2 temperature: 71
+Channel3 temperature: 71
+Channel4 temperature: 66
+Channel5 temperature: 66
+Channel6 temperature: 61
+Channel7 temperature: 61
+Acquisition control settings = 0x0
+Trigger counting mode = 0x0
+Global trigger mask value = 0x40000000
+GPO enable mask = 0x40000000
+End of BOR
+Started run 639
+EOR
+Channel0 temperature: 74
+Channel1 temperature: 74
+Channel2 temperature: 72
+Channel3 temperature: 72
+Channel4 temperature: 66
+Channel5 temperature: 66
+Channel6 temperature: 61
+Channel7 temperature: 61
+Run stopped
+Initializing digitizer for running
+Check values on DT5730S: 
+record length: 300
+pos-trigger size: 0
+Channel0 DC offset: 5000
+Channel1 DC offset: 5000
+Channel2 DC offset: 5000
+Channel3 DC offset: 5000
+Channel4 DC offset: 5000
+Channel5 DC offset: 5000
+Channel6 DC offset: 5000
+Channel7 DC offset: 5000
+Channel0 temperature: 74
+Channel1 temperature: 74
+Channel2 temperature: 72
+Channel3 temperature: 72
+Channel4 temperature: 66
+Channel5 temperature: 66
+Channel6 temperature: 61
+Channel7 temperature: 61
+Acquisition control settings = 0x0
+Trigger counting mode = 0x0
+Global trigger mask value = 0x40000000
+GPO enable mask = 0x40000000
+End of BOR
+Started run 640
+EOR
+Channel0 temperature: 74
+Channel1 temperature: 74
+Channel2 temperature: 72
+Channel3 temperature: 72
+Channel4 temperature: 66
+Channel5 temperature: 66
+Channel6 temperature: 61
+Channel7 temperature: 61
+Run stopped
+Initializing digitizer for running
+Check values on DT5730S: 
+record length: 300
+pos-trigger size: 0
+Channel0 DC offset: 5000
+Channel1 DC offset: 5000
+Channel2 DC offset: 5000
+Channel3 DC offset: 5000
+Channel4 DC offset: 5000
+Channel5 DC offset: 5000
+Channel6 DC offset: 5000
+Channel7 DC offset: 5000
+Channel0 temperature: 73
+Channel1 temperature: 73
+Channel2 temperature: 71
+Channel3 temperature: 71
+Channel4 temperature: 65
+Channel5 temperature: 65
+Channel6 temperature: 60
+Channel7 temperature: 60
+Acquisition control settings = 0x0
+Trigger counting mode = 0x0
+Global trigger mask value = 0x40000000
+GPO enable mask = 0x40000000
+End of BOR
+Started run 641
+EOR
+Channel0 temperature: 74
+Channel1 temperature: 74
+Channel2 temperature: 72
+Channel3 temperature: 72
+Channel4 temperature: 67
+Channel5 temperature: 67
+Channel6 temperature: 61
+Channel7 temperature: 61
+Run stopped
+Initializing digitizer for running
+Check values on DT5730S: 
+record length: 300
+pos-trigger size: 0
+Channel0 DC offset: 5000
+Channel1 DC offset: 5000
+Channel2 DC offset: 5000
+Channel3 DC offset: 5000
+Channel4 DC offset: 5000
+Channel5 DC offset: 5000
+Channel6 DC offset: 5000
+Channel7 DC offset: 5000
+Channel0 temperature: 73
+Channel1 temperature: 73
+Channel2 temperature: 72
+Channel3 temperature: 72
+Channel4 temperature: 66
+Channel5 temperature: 66
+Channel6 temperature: 61
+Channel7 temperature: 61
+Acquisition control settings = 0x0
+Trigger counting mode = 0x0
+Global trigger mask value = 0x40000000
+GPO enable mask = 0x40000000
+End of BOR
+Started run 642
+EOR
+Channel0 temperature: 74
+Channel1 temperature: 74
+Channel2 temperature: 72
+Channel3 temperature: 72
+Channel4 temperature: 66
+Channel5 temperature: 66
+Channel6 temperature: 61
+Channel7 temperature: 61
+Run stopped
+Initializing digitizer for running
+Check values on DT5730S: 
+record length: 300
+pos-trigger size: 0
+Channel0 DC offset: 5000
+Channel1 DC offset: 5000
+Channel2 DC offset: 5000
+Channel3 DC offset: 5000
+Channel4 DC offset: 5000
+Channel5 DC offset: 5000
+Channel6 DC offset: 5000
+Channel7 DC offset: 5000
+Channel0 temperature: 74
+Channel1 temperature: 74
+Channel2 temperature: 72
+Channel3 temperature: 72
+Channel4 temperature: 66
+Channel5 temperature: 66
+Channel6 temperature: 61
+Channel7 temperature: 61
+Acquisition control settings = 0x0
+Trigger counting mode = 0x0
+Global trigger mask value = 0x40000000
+GPO enable mask = 0x40000000
+End of BOR
+Started run 643
+EOR
+Channel0 temperature: 73
+Channel1 temperature: 73
+Channel2 temperature: 70
+Channel3 temperature: 70
+Channel4 temperature: 65
+Channel5 temperature: 65
+Channel6 temperature: 60
+Channel7 temperature: 60
+Run stopped
+Initializing digitizer for running
+Check values on DT5730S: 
+record length: 300
+pos-trigger size: 0
+Channel0 DC offset: 5000
+Channel1 DC offset: 5000
+Channel2 DC offset: 5000
+Channel3 DC offset: 5000
+Channel4 DC offset: 5000
+Channel5 DC offset: 5000
+Channel6 DC offset: 5000
+Channel7 DC offset: 5000
+Channel0 temperature: 73
+Channel1 temperature: 73
+Channel2 temperature: 71
+Channel3 temperature: 71
+Channel4 temperature: 66
+Channel5 temperature: 66
+Channel6 temperature: 61
+Channel7 temperature: 61
+Acquisition control settings = 0x0
+Trigger counting mode = 0x0
+Global trigger mask value = 0x40000000
+GPO enable mask = 0x40000000
+End of BOR
+Started run 644
+EOR
+Channel0 temperature: 73
+Channel1 temperature: 73
+Channel2 temperature: 71
+Channel3 temperature: 71
+Channel4 temperature: 66
+Channel5 temperature: 66
+Channel6 temperature: 61
+Channel7 temperature: 61
+Run stopped
+Initializing digitizer for running
+Check values on DT5730S: 
+record length: 300
+pos-trigger size: 0
+Channel0 DC offset: 5000
+Channel1 DC offset: 5000
+Channel2 DC offset: 5000
+Channel3 DC offset: 5000
+Channel4 DC offset: 5000
+Channel5 DC offset: 5000
+Channel6 DC offset: 5000
+Channel7 DC offset: 5000
+Channel0 temperature: 73
+Channel1 temperature: 73
+Channel2 temperature: 71
+Channel3 temperature: 71
+Channel4 temperature: 66
+Channel5 temperature: 66
+Channel6 temperature: 61
+Channel7 temperature: 61
+Acquisition control settings = 0x0
+Trigger counting mode = 0x0
+Global trigger mask value = 0x40000000
+GPO enable mask = 0x40000000
+End of BOR
+Started run 645
+EOR
+Channel0 temperature: 73
+Channel1 temperature: 73
+Channel2 temperature: 71
+Channel3 temperature: 71
+Channel4 temperature: 65
+Channel5 temperature: 65
+Channel6 temperature: 61
+Channel7 temperature: 61
+Run stopped
+Initializing digitizer for running
+Check values on DT5730S: 
+record length: 300
+pos-trigger size: 0
+Channel0 DC offset: 5000
+Channel1 DC offset: 5000
+Channel2 DC offset: 5000
+Channel3 DC offset: 5000
+Channel4 DC offset: 5000
+Channel5 DC offset: 5000
+Channel6 DC offset: 5000
+Channel7 DC offset: 5000
+Channel0 temperature: 73
+Channel1 temperature: 73
+Channel2 temperature: 71
+Channel3 temperature: 71
+Channel4 temperature: 66
+Channel5 temperature: 66
+Channel6 temperature: 61
+Channel7 temperature: 61
+Acquisition control settings = 0x0
+Trigger counting mode = 0x0
+Global trigger mask value = 0x40000000
+GPO enable mask = 0x40000000
+End of BOR
+Started run 646
+EOR
+Channel0 temperature: 73
+Channel1 temperature: 73
+Channel2 temperature: 71
+Channel3 temperature: 71
+Channel4 temperature: 66
+Channel5 temperature: 66
+Channel6 temperature: 61
+Channel7 temperature: 61
+Run stopped
+Initializing digitizer for running
+Check values on DT5730S: 
+record length: 300
+pos-trigger size: 0
+Channel0 DC offset: 5000
+Channel1 DC offset: 5000
+Channel2 DC offset: 5000
+Channel3 DC offset: 5000
+Channel4 DC offset: 5000
+Channel5 DC offset: 5000
+Channel6 DC offset: 5000
+Channel7 DC offset: 5000
+Channel0 temperature: 73
+Channel1 temperature: 73
+Channel2 temperature: 71
+Channel3 temperature: 71
+Channel4 temperature: 66
+Channel5 temperature: 66
+Channel6 temperature: 61
+Channel7 temperature: 61
+Acquisition control settings = 0x0
+Trigger counting mode = 0x0
+Global trigger mask value = 0x40000000
+GPO enable mask = 0x40000000
+End of BOR
+Started run 647
+EOR
+Channel0 temperature: 73
+Channel1 temperature: 73
+Channel2 temperature: 71
+Channel3 temperature: 71
+Channel4 temperature: 65
+Channel5 temperature: 65
+Channel6 temperature: 60
+Channel7 temperature: 60
+Run stopped
+Initializing digitizer for running
+Check values on DT5730S: 
+record length: 300
+pos-trigger size: 0
+Channel0 DC offset: 5000
+Channel1 DC offset: 5000
+Channel2 DC offset: 5000
+Channel3 DC offset: 5000
+Channel4 DC offset: 5000
+Channel5 DC offset: 5000
+Channel6 DC offset: 5000
+Channel7 DC offset: 5000
+Channel0 temperature: 73
+Channel1 temperature: 73
+Channel2 temperature: 71
+Channel3 temperature: 71
+Channel4 temperature: 66
+Channel5 temperature: 66
+Channel6 temperature: 61
+Channel7 temperature: 61
+Acquisition control settings = 0x0
+Trigger counting mode = 0x0
+Global trigger mask value = 0x40000000
+GPO enable mask = 0x40000000
+End of BOR
+Started run 648
+EOR
+Channel0 temperature: 72
+Channel1 temperature: 72
+Channel2 temperature: 70
+Channel3 temperature: 70
+Channel4 temperature: 65
+Channel5 temperature: 65
+Channel6 temperature: 60
+Channel7 temperature: 60
+Run stopped
+Initializing digitizer for running
+Check values on DT5730S: 
+record length: 300
+pos-trigger size: 0
+Channel0 DC offset: 5000
+Channel1 DC offset: 5000
+Channel2 DC offset: 5000
+Channel3 DC offset: 5000
+Channel4 DC offset: 5000
+Channel5 DC offset: 5000
+Channel6 DC offset: 5000
+Channel7 DC offset: 5000
+Channel0 temperature: 73
+Channel1 temperature: 73
+Channel2 temperature: 71
+Channel3 temperature: 71
+Channel4 temperature: 66
+Channel5 temperature: 66
+Channel6 temperature: 61
+Channel7 temperature: 61
+Acquisition control settings = 0x0
+Trigger counting mode = 0x0
+Global trigger mask value = 0x40000000
+GPO enable mask = 0x40000000
+End of BOR
+Started run 649
+EOR
+Channel0 temperature: 72
+Channel1 temperature: 72
+Channel2 temperature: 70
+Channel3 temperature: 70
+Channel4 temperature: 64
+Channel5 temperature: 64
+Channel6 temperature: 60
+Channel7 temperature: 60
+Run stopped
+Initializing digitizer for running
+Check values on DT5730S: 
+record length: 300
+pos-trigger size: 0
+Channel0 DC offset: 5000
+Channel1 DC offset: 5000
+Channel2 DC offset: 5000
+Channel3 DC offset: 5000
+Channel4 DC offset: 5000
+Channel5 DC offset: 5000
+Channel6 DC offset: 5000
+Channel7 DC offset: 5000
+Channel0 temperature: 73
+Channel1 temperature: 73
+Channel2 temperature: 71
+Channel3 temperature: 71
+Channel4 temperature: 65
+Channel5 temperature: 65
+Channel6 temperature: 61
+Channel7 temperature: 61
+Acquisition control settings = 0x0
+Trigger counting mode = 0x0
+Global trigger mask value = 0x40000000
+GPO enable mask = 0x40000000
+End of BOR
+Started run 650
+EOR
+Channel0 temperature: 73
+Channel1 temperature: 73
+Channel2 temperature: 70
+Channel3 temperature: 70
+Channel4 temperature: 65
+Channel5 temperature: 65
+Channel6 temperature: 60
+Channel7 temperature: 60
+Run stopped
+Initializing digitizer for running
+Check values on DT5730S: 
+record length: 300
+pos-trigger size: 0
+Channel0 DC offset: 5000
+Channel1 DC offset: 5000
+Channel2 DC offset: 5000
+Channel3 DC offset: 5000
+Channel4 DC offset: 5000
+Channel5 DC offset: 5000
+Channel6 DC offset: 5000
+Channel7 DC offset: 5000
+Channel0 temperature: 73
+Channel1 temperature: 73
+Channel2 temperature: 71
+Channel3 temperature: 71
+Channel4 temperature: 66
+Channel5 temperature: 66
+Channel6 temperature: 61
+Channel7 temperature: 61
+Acquisition control settings = 0x0
+Trigger counting mode = 0x0
+Global trigger mask value = 0x40000000
+GPO enable mask = 0x40000000
+End of BOR
+Started run 651
+EOR
+Channel0 temperature: 73
+Channel1 temperature: 73
+Channel2 temperature: 71
+Channel3 temperature: 71
+Channel4 temperature: 66
+Channel5 temperature: 66
+Channel6 temperature: 61
+Channel7 temperature: 61
+Run stopped
+Initializing digitizer for running
+Check values on DT5730S: 
+record length: 300
+pos-trigger size: 0
+Channel0 DC offset: 5000
+Channel1 DC offset: 5000
+Channel2 DC offset: 5000
+Channel3 DC offset: 5000
+Channel4 DC offset: 5000
+Channel5 DC offset: 5000
+Channel6 DC offset: 5000
+Channel7 DC offset: 5000
+Channel0 temperature: 73
+Channel1 temperature: 73
+Channel2 temperature: 71
+Channel3 temperature: 71
+Channel4 temperature: 65
+Channel5 temperature: 65
+Channel6 temperature: 61
+Channel7 temperature: 61
+Acquisition control settings = 0x0
+Trigger counting mode = 0x0
+Global trigger mask value = 0x40000000
+GPO enable mask = 0x40000000
+End of BOR
+Started run 652
+EOR
+Channel0 temperature: 73
+Channel1 temperature: 73
+Channel2 temperature: 71
+Channel3 temperature: 71
+Channel4 temperature: 66
+Channel5 temperature: 66
+Channel6 temperature: 61
+Channel7 temperature: 61
+Run stopped
+Initializing digitizer for running
+Check values on DT5730S: 
+record length: 300
+pos-trigger size: 0
+Channel0 DC offset: 5000
+Channel1 DC offset: 5000
+Channel2 DC offset: 5000
+Channel3 DC offset: 5000
+Channel4 DC offset: 5000
+Channel5 DC offset: 5000
+Channel6 DC offset: 5000
+Channel7 DC offset: 5000
+Channel0 temperature: 73
+Channel1 temperature: 73
+Channel2 temperature: 71
+Channel3 temperature: 71
+Channel4 temperature: 66
+Channel5 temperature: 66
+Channel6 temperature: 61
+Channel7 temperature: 61
+Acquisition control settings = 0x0
+Trigger counting mode = 0x0
+Global trigger mask value = 0x40000000
+GPO enable mask = 0x40000000
+End of BOR
+Started run 653
+EOR
+Channel0 temperature: 73
+Channel1 temperature: 73
+Channel2 temperature: 71
+Channel3 temperature: 71
+Channel4 temperature: 65
+Channel5 temperature: 65
+Channel6 temperature: 60
+Channel7 temperature: 60
+Run stopped
+Initializing digitizer for running
+Check values on DT5730S: 
+record length: 300
+pos-trigger size: 0
+Channel0 DC offset: 5000
+Channel1 DC offset: 5000
+Channel2 DC offset: 5000
+Channel3 DC offset: 5000
+Channel4 DC offset: 5000
+Channel5 DC offset: 5000
+Channel6 DC offset: 5000
+Channel7 DC offset: 5000
+Channel0 temperature: 73
+Channel1 temperature: 73
+Channel2 temperature: 71
+Channel3 temperature: 71
+Channel4 temperature: 65
+Channel5 temperature: 65
+Channel6 temperature: 60
+Channel7 temperature: 60
+Acquisition control settings = 0x0
+Trigger counting mode = 0x0
+Global trigger mask value = 0x40000000
+GPO enable mask = 0x40000000
+End of BOR
+Started run 654
+Frontend name          :     feDT5730_00
+Event buffer size      :     21770000
+User max event size    :     10880000
+User max frag. size    :     52428800
+# of events per buffer :     2
+
+Connect to experiment...
+OK
+[feDT5730_00,ERROR] [midas.cxx:8184:bm_set_cache_size,ERROR] requested write cache size 100000000 on buffer "SYSTEM" is too big: buffer size is 33554432, write cache size will be 11184810 bytes
+Init hardware...
+begin of Init
+OpenDigitizer use link: 1
+OpenDigitizer ret: 0
+DT5730S handle: 0
+[feDT5730_00,INFO] successfully opened digitizer
+[feDT5730_00,INFO] Connected to CAEN Digitizer Model DT5730S
+ROC FPGA Release is 04.23 - Build 4B06
+AMC FPGA Release is 00.02 - Build 4922
+Serial Number is 14834
+end of Init
+OK
+Initializing digitizer for running
+Check values on DT5730S: 
+Acquisition control settings = 0x0
+Trigger counting mode = 0x0
+Record length: 300
+Post-trigger size: 0
+Channel0 DC offset: 5000
+Channel1 DC offset: 5000
+Channel2 DC offset: 5000
+Channel3 DC offset: 5000
+Channel4 DC offset: 5000
+Channel5 DC offset: 5000
+Channel6 DC offset: 5000
+Channel7 DC offset: 5000
+Channel0 temperature: 73
+Channel1 temperature: 73
+Channel2 temperature: 71
+Channel3 temperature: 71
+Channel4 temperature: 65
+Channel5 temperature: 65
+Channel6 temperature: 60
+Channel7 temperature: 60
+Number of buffers per channel = 0xa
+Global trigger mask value = 0x40000000
+GPO enable mask = 0x40000000
+Allocated buffer size (bytes) = 295216
+End of BOR
+Started run 655
+EOR
+Channel0 temperature: 73
+Channel1 temperature: 73
+Channel2 temperature: 71
+Channel3 temperature: 71
+Channel4 temperature: 66
+Channel5 temperature: 66
+Channel6 temperature: 61
+Channel7 temperature: 61
+Run stopped
+Initializing digitizer for running
+Check values on DT5730S: 
+Acquisition control settings = 0x0
+Trigger counting mode = 0x0
+Record length: 300
+Post-trigger size: 0
+Channel0 DC offset: 5000
+Channel1 DC offset: 5000
+Channel2 DC offset: 5000
+Channel3 DC offset: 5000
+Channel4 DC offset: 5000
+Channel5 DC offset: 5000
+Channel6 DC offset: 5000
+Channel7 DC offset: 5000
+Channel0 temperature: 74
+Channel1 temperature: 74
+Channel2 temperature: 72
+Channel3 temperature: 72
+Channel4 temperature: 66
+Channel5 temperature: 66
+Channel6 temperature: 61
+Channel7 temperature: 61
+Number of buffers per channel = 0xa
+Global trigger mask value = 0x40000000
+GPO enable mask = 0x40000000
+Freeing previously allocated readout buffer
+Allocated buffer size (bytes) = 295216
+End of BOR
+Started run 656
+EOR
+Channel0 temperature: 73
+Channel1 temperature: 73
+Channel2 temperature: 71
+Channel3 temperature: 71
+Channel4 temperature: 66
+Channel5 temperature: 66
+Channel6 temperature: 61
+Channel7 temperature: 61
+Run stopped
+Initializing digitizer for running
+Check values on DT5730S: 
+Acquisition control settings = 0x0
+Trigger counting mode = 0x0
+Record length: 300
+Post-trigger size: 0
+Channel0 DC offset: 5000
+Channel1 DC offset: 5000
+Channel2 DC offset: 5000
+Channel3 DC offset: 5000
+Channel4 DC offset: 5000
+Channel5 DC offset: 5000
+Channel6 DC offset: 5000
+Channel7 DC offset: 5000
+Channel0 temperature: 74
+Channel1 temperature: 74
+Channel2 temperature: 71
+Channel3 temperature: 71
+Channel4 temperature: 66
+Channel5 temperature: 66
+Channel6 temperature: 61
+Channel7 temperature: 61
+Number of buffers per channel = 0xa
+Global trigger mask value = 0x40000000
+GPO enable mask = 0x40000000
+Freeing previously allocated readout buffer
+Allocated buffer size (bytes) = 295216
+End of BOR
+Started run 657
+EOR
+Channel0 temperature: 73
+Channel1 temperature: 73
+Channel2 temperature: 71
+Channel3 temperature: 71
+Channel4 temperature: 65
+Channel5 temperature: 65
+Channel6 temperature: 61
+Channel7 temperature: 61
+Run stopped
+Initializing digitizer for running
+Check values on DT5730S: 
+Acquisition control settings = 0x0
+Trigger counting mode = 0x0
+Record length: 300
+Post-trigger size: 0
+Channel0 DC offset: 5000
+Channel1 DC offset: 5000
+Channel2 DC offset: 5000
+Channel3 DC offset: 5000
+Channel4 DC offset: 5000
+Channel5 DC offset: 5000
+Channel6 DC offset: 5000
+Channel7 DC offset: 5000
+Channel0 temperature: 73
+Channel1 temperature: 73
+Channel2 temperature: 71
+Channel3 temperature: 71
+Channel4 temperature: 66
+Channel5 temperature: 66
+Channel6 temperature: 61
+Channel7 temperature: 61
+Number of buffers per channel = 0xa
+Global trigger mask value = 0x40000000
+GPO enable mask = 0x40000000
+Freeing previously allocated readout buffer
+Allocated buffer size (bytes) = 295216
+End of BOR
+Started run 658
+EOR
+Channel0 temperature: 74
+Channel1 temperature: 74
+Channel2 temperature: 71
+Channel3 temperature: 71
+Channel4 temperature: 66
+Channel5 temperature: 66
+Channel6 temperature: 61
+Channel7 temperature: 61
+Run stopped
+Initializing digitizer for running
+Check values on DT5730S: 
+Acquisition control settings = 0x0
+Trigger counting mode = 0x0
+Record length: 300
+Post-trigger size: 0
+Channel0 DC offset: 5000
+Channel1 DC offset: 5000
+Channel2 DC offset: 5000
+Channel3 DC offset: 5000
+Channel4 DC offset: 5000
+Channel5 DC offset: 5000
+Channel6 DC offset: 5000
+Channel7 DC offset: 5000
+Channel0 temperature: 73
+Channel1 temperature: 73
+Channel2 temperature: 71
+Channel3 temperature: 71
+Channel4 temperature: 66
+Channel5 temperature: 66
+Channel6 temperature: 61
+Channel7 temperature: 61
+Number of buffers per channel = 0xa
+Global trigger mask value = 0x40000000
+GPO enable mask = 0x40000000
+Freeing previously allocated readout buffer
+Allocated buffer size (bytes) = 295216
+End of BOR
+Started run 659
+EOR
+Channel0 temperature: 74
+Channel1 temperature: 74
+Channel2 temperature: 71
+Channel3 temperature: 71
+Channel4 temperature: 66
+Channel5 temperature: 66
+Channel6 temperature: 61
+Channel7 temperature: 61
+Run stopped
+Initializing digitizer for running
+Check values on DT5730S: 
+Acquisition control settings = 0x0
+Trigger counting mode = 0x0
+Record length: 300
+Post-trigger size: 0
+Channel0 DC offset: 5000
+Channel1 DC offset: 5000
+Channel2 DC offset: 5000
+Channel3 DC offset: 5000
+Channel4 DC offset: 5000
+Channel5 DC offset: 5000
+Channel6 DC offset: 5000
+Channel7 DC offset: 5000
+Channel0 temperature: 74
+Channel1 temperature: 74
+Channel2 temperature: 72
+Channel3 temperature: 72
+Channel4 temperature: 66
+Channel5 temperature: 66
+Channel6 temperature: 61
+Channel7 temperature: 61
+Number of buffers per channel = 0xa
+Global trigger mask value = 0x40000000
+GPO enable mask = 0x40000000
+Freeing previously allocated readout buffer
+Allocated buffer size (bytes) = 295216
+End of BOR
+Started run 660
+EOR
+Channel0 temperature: 73
+Channel1 temperature: 73
+Channel2 temperature: 71
+Channel3 temperature: 71
+Channel4 temperature: 66
+Channel5 temperature: 66
+Channel6 temperature: 61
+Channel7 temperature: 61
+Run stopped
+Initializing digitizer for running
+Check values on DT5730S: 
+Acquisition control settings = 0x0
+Trigger counting mode = 0x0
+Record length: 300
+Post-trigger size: 0
+Channel0 DC offset: 5000
+Channel1 DC offset: 5000
+Channel2 DC offset: 5000
+Channel3 DC offset: 5000
+Channel4 DC offset: 5000
+Channel5 DC offset: 5000
+Channel6 DC offset: 5000
+Channel7 DC offset: 5000
+Channel0 temperature: 73
+Channel1 temperature: 73
+Channel2 temperature: 71
+Channel3 temperature: 71
+Channel4 temperature: 65
+Channel5 temperature: 65
+Channel6 temperature: 61
+Channel7 temperature: 61
+Number of buffers per channel = 0xa
+Global trigger mask value = 0x40000000
+GPO enable mask = 0x40000000
+Freeing previously allocated readout buffer
+Allocated buffer size (bytes) = 295216
+End of BOR
+Started run 661
+EOR
+Channel0 temperature: 72
+Channel1 temperature: 72
+Channel2 temperature: 70
+Channel3 temperature: 70
+Channel4 temperature: 64
+Channel5 temperature: 64
+Channel6 temperature: 60
+Channel7 temperature: 60
+Run stopped
+Initializing digitizer for running
+Check values on DT5730S: 
+Acquisition control settings = 0x0
+Trigger counting mode = 0x0
+Record length: 300
+Post-trigger size: 0
+Channel0 DC offset: 5000
+Channel1 DC offset: 5000
+Channel2 DC offset: 5000
+Channel3 DC offset: 5000
+Channel4 DC offset: 5000
+Channel5 DC offset: 5000
+Channel6 DC offset: 5000
+Channel7 DC offset: 5000
+Channel0 temperature: 73
+Channel1 temperature: 73
+Channel2 temperature: 71
+Channel3 temperature: 71
+Channel4 temperature: 65
+Channel5 temperature: 65
+Channel6 temperature: 60
+Channel7 temperature: 60
+Number of buffers per channel = 0xa
+Global trigger mask value = 0x40000000
+GPO enable mask = 0x40000000
+Freeing previously allocated readout buffer
+Allocated buffer size (bytes) = 295216
+End of BOR
+Started run 662
+EOR
+Channel0 temperature: 73
+Channel1 temperature: 73
+Channel2 temperature: 71
+Channel3 temperature: 71
+Channel4 temperature: 66
+Channel5 temperature: 66
+Channel6 temperature: 61
+Channel7 temperature: 61
+Run stopped
+Initializing digitizer for running
+Check values on DT5730S: 
+Acquisition control settings = 0x0
+Trigger counting mode = 0x0
+Record length: 300
+Post-trigger size: 0
+Channel0 DC offset: 5000
+Channel1 DC offset: 5000
+Channel2 DC offset: 5000
+Channel3 DC offset: 5000
+Channel4 DC offset: 5000
+Channel5 DC offset: 5000
+Channel6 DC offset: 5000
+Channel7 DC offset: 5000
+Channel0 temperature: 73
+Channel1 temperature: 73
+Channel2 temperature: 71
+Channel3 temperature: 71
+Channel4 temperature: 65
+Channel5 temperature: 65
+Channel6 temperature: 61
+Channel7 temperature: 61
+Number of buffers per channel = 0xa
+Global trigger mask value = 0x40000000
+GPO enable mask = 0x40000000
+Freeing previously allocated readout buffer
+Allocated buffer size (bytes) = 295216
+End of BOR
+Started run 663
+EOR
+Channel0 temperature: 73
+Channel1 temperature: 73
+Channel2 temperature: 70
+Channel3 temperature: 70
+Channel4 temperature: 65
+Channel5 temperature: 65
+Channel6 temperature: 60
+Channel7 temperature: 60
+Run stopped
+Initializing digitizer for running
+Check values on DT5730S: 
+Acquisition control settings = 0x0
+Trigger counting mode = 0x0
+Record length: 300
+Post-trigger size: 0
+Channel0 DC offset: 5000
+Channel1 DC offset: 5000
+Channel2 DC offset: 5000
+Channel3 DC offset: 5000
+Channel4 DC offset: 5000
+Channel5 DC offset: 5000
+Channel6 DC offset: 5000
+Channel7 DC offset: 5000
+Channel0 temperature: 72
+Channel1 temperature: 72
+Channel2 temperature: 69
+Channel3 temperature: 69
+Channel4 temperature: 64
+Channel5 temperature: 64
+Channel6 temperature: 59
+Channel7 temperature: 59
+Number of buffers per channel = 0xa
+Global trigger mask value = 0x40000000
+GPO enable mask = 0x40000000
+Freeing previously allocated readout buffer
+Allocated buffer size (bytes) = 295216
+End of BOR
+Started run 664
+EOR
+Channel0 temperature: 73
+Channel1 temperature: 73
+Channel2 temperature: 71
+Channel3 temperature: 71
+Channel4 temperature: 66
+Channel5 temperature: 66
+Channel6 temperature: 61
+Channel7 temperature: 61
+Run stopped
+Initializing digitizer for running
+Check values on DT5730S: 
+Acquisition control settings = 0x0
+Trigger counting mode = 0x0
+Record length: 300
+Post-trigger size: 0
+Channel0 DC offset: 5000
+Channel1 DC offset: 5000
+Channel2 DC offset: 5000
+Channel3 DC offset: 5000
+Channel4 DC offset: 5000
+Channel5 DC offset: 5000
+Channel6 DC offset: 5000
+Channel7 DC offset: 5000
+Channel0 temperature: 73
+Channel1 temperature: 73
+Channel2 temperature: 71
+Channel3 temperature: 71
+Channel4 temperature: 66
+Channel5 temperature: 66
+Channel6 temperature: 61
+Channel7 temperature: 61
+Number of buffers per channel = 0xa
+Global trigger mask value = 0x40000000
+GPO enable mask = 0x40000000
+Freeing previously allocated readout buffer
+Allocated buffer size (bytes) = 295216
+End of BOR
+Started run 665
+EOR
+Channel0 temperature: 72
+Channel1 temperature: 72
+Channel2 temperature: 70
+Channel3 temperature: 70
+Channel4 temperature: 65
+Channel5 temperature: 65
+Channel6 temperature: 60
+Channel7 temperature: 60
+Run stopped
+Initializing digitizer for running
+Check values on DT5730S: 
+Acquisition control settings = 0x0
+Trigger counting mode = 0x0
+Record length: 300
+Post-trigger size: 0
+Channel0 DC offset: 5000
+Channel1 DC offset: 5000
+Channel2 DC offset: 5000
+Channel3 DC offset: 5000
+Channel4 DC offset: 5000
+Channel5 DC offset: 5000
+Channel6 DC offset: 5000
+Channel7 DC offset: 5000
+Channel0 temperature: 73
+Channel1 temperature: 73
+Channel2 temperature: 71
+Channel3 temperature: 71
+Channel4 temperature: 65
+Channel5 temperature: 65
+Channel6 temperature: 60
+Channel7 temperature: 60
+Number of buffers per channel = 0xa
+Global trigger mask value = 0x40000000
+GPO enable mask = 0x40000000
+Freeing previously allocated readout buffer
+Allocated buffer size (bytes) = 295216
+End of BOR
+Started run 666
+EOR
+Channel0 temperature: 73
+Channel1 temperature: 73
+Channel2 temperature: 71
+Channel3 temperature: 71
+Channel4 temperature: 65
+Channel5 temperature: 65
+Channel6 temperature: 60
+Channel7 temperature: 60
+Run stopped
+Initializing digitizer for running
+Check values on DT5730S: 
+Acquisition control settings = 0x0
+Trigger counting mode = 0x0
+Record length: 300
+Post-trigger size: 0
+Channel0 DC offset: 5000
+Channel1 DC offset: 5000
+Channel2 DC offset: 5000
+Channel3 DC offset: 5000
+Channel4 DC offset: 5000
+Channel5 DC offset: 5000
+Channel6 DC offset: 5000
+Channel7 DC offset: 5000
+Channel0 temperature: 71
+Channel1 temperature: 71
+Channel2 temperature: 69
+Channel3 temperature: 69
+Channel4 temperature: 64
+Channel5 temperature: 64
+Channel6 temperature: 59
+Channel7 temperature: 59
+Number of buffers per channel = 0xa
+Global trigger mask value = 0x40000000
+GPO enable mask = 0x40000000
+Freeing previously allocated readout buffer
+Allocated buffer size (bytes) = 295216
+End of BOR
+Started run 667
+EOR
+Channel0 temperature: 72
+Channel1 temperature: 72
+Channel2 temperature: 70
+Channel3 temperature: 70
+Channel4 temperature: 65
+Channel5 temperature: 65
+Channel6 temperature: 60
+Channel7 temperature: 60
+Run stopped
+Initializing digitizer for running
+Check values on DT5730S: 
+Acquisition control settings = 0x0
+Trigger counting mode = 0x0
+Record length: 300
+Post-trigger size: 0
+Channel0 DC offset: 5000
+Channel1 DC offset: 5000
+Channel2 DC offset: 5000
+Channel3 DC offset: 5000
+Channel4 DC offset: 5000
+Channel5 DC offset: 5000
+Channel6 DC offset: 5000
+Channel7 DC offset: 5000
+Channel0 temperature: 72
+Channel1 temperature: 72
+Channel2 temperature: 70
+Channel3 temperature: 70
+Channel4 temperature: 64
+Channel5 temperature: 64
+Channel6 temperature: 60
+Channel7 temperature: 60
+Number of buffers per channel = 0xa
+Global trigger mask value = 0x40000000
+GPO enable mask = 0x40000000
+Freeing previously allocated readout buffer
+Allocated buffer size (bytes) = 295216
+End of BOR
+Started run 668
+EOR
+Channel0 temperature: 72
+Channel1 temperature: 72
+Channel2 temperature: 70
+Channel3 temperature: 70
+Channel4 temperature: 65
+Channel5 temperature: 65
+Channel6 temperature: 60
+Channel7 temperature: 60
+Run stopped
+Initializing digitizer for running
+Check values on DT5730S: 
+Acquisition control settings = 0x0
+Trigger counting mode = 0x0
+Record length: 300
+Post-trigger size: 0
+Channel0 DC offset: 5000
+Channel1 DC offset: 5000
+Channel2 DC offset: 5000
+Channel3 DC offset: 5000
+Channel4 DC offset: 5000
+Channel5 DC offset: 5000
+Channel6 DC offset: 5000
+Channel7 DC offset: 5000
+Channel0 temperature: 72
+Channel1 temperature: 72
+Channel2 temperature: 70
+Channel3 temperature: 70
+Channel4 temperature: 65
+Channel5 temperature: 65
+Channel6 temperature: 60
+Channel7 temperature: 60
+Number of buffers per channel = 0xa
+Global trigger mask value = 0x40000000
+GPO enable mask = 0x40000000
+Freeing previously allocated readout buffer
+Allocated buffer size (bytes) = 295216
+End of BOR
+Started run 669
+EOR
+Channel0 temperature: 72
+Channel1 temperature: 72
+Channel2 temperature: 70
+Channel3 temperature: 70
+Channel4 temperature: 64
+Channel5 temperature: 64
+Channel6 temperature: 59
+Channel7 temperature: 59
+Run stopped
+Initializing digitizer for running
+Check values on DT5730S: 
+Acquisition control settings = 0x0
+Trigger counting mode = 0x0
+Record length: 300
+Post-trigger size: 0
+Channel0 DC offset: 5000
+Channel1 DC offset: 5000
+Channel2 DC offset: 5000
+Channel3 DC offset: 5000
+Channel4 DC offset: 5000
+Channel5 DC offset: 5000
+Channel6 DC offset: 5000
+Channel7 DC offset: 5000
+Channel0 temperature: 72
+Channel1 temperature: 72
+Channel2 temperature: 69
+Channel3 temperature: 69
+Channel4 temperature: 64
+Channel5 temperature: 64
+Channel6 temperature: 59
+Channel7 temperature: 59
+Number of buffers per channel = 0xa
+Global trigger mask value = 0x40000000
+GPO enable mask = 0x40000000
+Freeing previously allocated readout buffer
+Allocated buffer size (bytes) = 295216
+End of BOR
+Started run 670
+EOR
+Channel0 temperature: 72
+Channel1 temperature: 72
+Channel2 temperature: 70
+Channel3 temperature: 70
+Channel4 temperature: 65
+Channel5 temperature: 65
+Channel6 temperature: 60
+Channel7 temperature: 60
+Run stopped
+Initializing digitizer for running
+Check values on DT5730S: 
+Acquisition control settings = 0x0
+Trigger counting mode = 0x0
+Record length: 300
+Post-trigger size: 0
+Channel0 DC offset: 5000
+Channel1 DC offset: 5000
+Channel2 DC offset: 5000
+Channel3 DC offset: 5000
+Channel4 DC offset: 5000
+Channel5 DC offset: 5000
+Channel6 DC offset: 5000
+Channel7 DC offset: 5000
+Channel0 temperature: 72
+Channel1 temperature: 72
+Channel2 temperature: 70
+Channel3 temperature: 70
+Channel4 temperature: 65
+Channel5 temperature: 65
+Channel6 temperature: 60
+Channel7 temperature: 60
+Number of buffers per channel = 0xa
+Global trigger mask value = 0x40000000
+GPO enable mask = 0x40000000
+Freeing previously allocated readout buffer
+Allocated buffer size (bytes) = 295216
+End of BOR
+Started run 671
+EOR
+Channel0 temperature: 72
+Channel1 temperature: 72
+Channel2 temperature: 69
+Channel3 temperature: 69
+Channel4 temperature: 64
+Channel5 temperature: 64
+Channel6 temperature: 59
+Channel7 temperature: 59
+Run stopped
+Initializing digitizer for running
+Check values on DT5730S: 
+Acquisition control settings = 0x0
+Trigger counting mode = 0x0
+Record length: 300
+Post-trigger size: 0
+Channel0 DC offset: 5000
+Channel1 DC offset: 5000
+Channel2 DC offset: 5000
+Channel3 DC offset: 5000
+Channel4 DC offset: 5000
+Channel5 DC offset: 5000
+Channel6 DC offset: 5000
+Channel7 DC offset: 5000
+Channel0 temperature: 71
+Channel1 temperature: 71
+Channel2 temperature: 69
+Channel3 temperature: 69
+Channel4 temperature: 64
+Channel5 temperature: 64
+Channel6 temperature: 59
+Channel7 temperature: 59
+Number of buffers per channel = 0xa
+Global trigger mask value = 0x40000000
+GPO enable mask = 0x40000000
+Freeing previously allocated readout buffer
+Allocated buffer size (bytes) = 295216
+End of BOR
+Started run 672
+EOR
+Channel0 temperature: 72
+Channel1 temperature: 72
+Channel2 temperature: 70
+Channel3 temperature: 70
+Channel4 temperature: 64
+Channel5 temperature: 64
+Channel6 temperature: 60
+Channel7 temperature: 60
+Run stopped
+Initializing digitizer for running
+Check values on DT5730S: 
+Acquisition control settings = 0x0
+Trigger counting mode = 0x0
+Record length: 300
+Post-trigger size: 0
+Channel0 DC offset: 5000
+Channel1 DC offset: 5000
+Channel2 DC offset: 5000
+Channel3 DC offset: 5000
+Channel4 DC offset: 5000
+Channel5 DC offset: 5000
+Channel6 DC offset: 5000
+Channel7 DC offset: 5000
+Channel0 temperature: 72
+Channel1 temperature: 72
+Channel2 temperature: 70
+Channel3 temperature: 70
+Channel4 temperature: 64
+Channel5 temperature: 64
+Channel6 temperature: 59
+Channel7 temperature: 59
+Number of buffers per channel = 0xa
+Global trigger mask value = 0x40000000
+GPO enable mask = 0x40000000
+Freeing previously allocated readout buffer
+Allocated buffer size (bytes) = 295216
+End of BOR
+Started run 673
+EOR
+Channel0 temperature: 72
+Channel1 temperature: 72
+Channel2 temperature: 70
+Channel3 temperature: 70
+Channel4 temperature: 65
+Channel5 temperature: 65
+Channel6 temperature: 60
+Channel7 temperature: 60
+Run stopped
+Initializing digitizer for running
+Check values on DT5730S: 
+Acquisition control settings = 0x0
+Trigger counting mode = 0x0
+Record length: 300
+Post-trigger size: 0
+Channel0 DC offset: 5000
+Channel1 DC offset: 5000
+Channel2 DC offset: 5000
+Channel3 DC offset: 5000
+Channel4 DC offset: 5000
+Channel5 DC offset: 5000
+Channel6 DC offset: 5000
+Channel7 DC offset: 5000
+Channel0 temperature: 72
+Channel1 temperature: 72
+Channel2 temperature: 70
+Channel3 temperature: 70
+Channel4 temperature: 65
+Channel5 temperature: 65
+Channel6 temperature: 60
+Channel7 temperature: 60
+Number of buffers per channel = 0xa
+Global trigger mask value = 0x40000000
+GPO enable mask = 0x40000000
+Freeing previously allocated readout buffer
+Allocated buffer size (bytes) = 295216
+End of BOR
+Started run 674
+EOR
+Channel0 temperature: 73
+Channel1 temperature: 73
+Channel2 temperature: 71
+Channel3 temperature: 71
+Channel4 temperature: 66
+Channel5 temperature: 66
+Channel6 temperature: 61
+Channel7 temperature: 61
+Run stopped
+Initializing digitizer for running
+Check values on DT5730S: 
+Acquisition control settings = 0x0
+Trigger counting mode = 0x0
+Record length: 300
+Post-trigger size: 0
+Channel0 DC offset: 5000
+Channel1 DC offset: 5000
+Channel2 DC offset: 5000
+Channel3 DC offset: 5000
+Channel4 DC offset: 5000
+Channel5 DC offset: 5000
+Channel6 DC offset: 5000
+Channel7 DC offset: 5000
+Channel0 temperature: 73
+Channel1 temperature: 73
+Channel2 temperature: 71
+Channel3 temperature: 71
+Channel4 temperature: 65
+Channel5 temperature: 65
+Channel6 temperature: 61
+Channel7 temperature: 61
+Number of buffers per channel = 0xa
+Global trigger mask value = 0x40000000
+GPO enable mask = 0x40000000
+Freeing previously allocated readout buffer
+Allocated buffer size (bytes) = 295216
+End of BOR
+Started run 675
+EOR
+Channel0 temperature: 73
+Channel1 temperature: 73
+Channel2 temperature: 71
+Channel3 temperature: 71
+Channel4 temperature: 65
+Channel5 temperature: 65
+Channel6 temperature: 61
+Channel7 temperature: 61
+Run stopped
+Initializing digitizer for running
+Check values on DT5730S: 
+Acquisition control settings = 0x0
+Trigger counting mode = 0x0
+Record length: 300
+Post-trigger size: 0
+Channel0 DC offset: 5000
+Channel1 DC offset: 5000
+Channel2 DC offset: 5000
+Channel3 DC offset: 5000
+Channel4 DC offset: 5000
+Channel5 DC offset: 5000
+Channel6 DC offset: 5000
+Channel7 DC offset: 5000
+Channel0 temperature: 73
+Channel1 temperature: 73
+Channel2 temperature: 70
+Channel3 temperature: 70
+Channel4 temperature: 65
+Channel5 temperature: 65
+Channel6 temperature: 60
+Channel7 temperature: 60
+Number of buffers per channel = 0xa
+Global trigger mask value = 0x40000000
+GPO enable mask = 0x40000000
+Freeing previously allocated readout buffer
+Allocated buffer size (bytes) = 295216
+End of BOR
+Started run 676
+EOR
+Channel0 temperature: 73
+Channel1 temperature: 73
+Channel2 temperature: 71
+Channel3 temperature: 71
+Channel4 temperature: 65
+Channel5 temperature: 65
+Channel6 temperature: 61
+Channel7 temperature: 61
+Run stopped
+Initializing digitizer for running
+Check values on DT5730S: 
+Acquisition control settings = 0x0
+Trigger counting mode = 0x0
+Record length: 300
+Post-trigger size: 0
+Channel0 DC offset: 5000
+Channel1 DC offset: 5000
+Channel2 DC offset: 5000
+Channel3 DC offset: 5000
+Channel4 DC offset: 5000
+Channel5 DC offset: 5000
+Channel6 DC offset: 5000
+Channel7 DC offset: 5000
+Channel0 temperature: 73
+Channel1 temperature: 73
+Channel2 temperature: 71
+Channel3 temperature: 71
+Channel4 temperature: 66
+Channel5 temperature: 66
+Channel6 temperature: 61
+Channel7 temperature: 61
+Number of buffers per channel = 0xa
+Global trigger mask value = 0x40000000
+GPO enable mask = 0x40000000
+Freeing previously allocated readout buffer
+Allocated buffer size (bytes) = 295216
+End of BOR
+Started run 677
+EOR
+Channel0 temperature: 73
+Channel1 temperature: 73
+Channel2 temperature: 71
+Channel3 temperature: 71
+Channel4 temperature: 65
+Channel5 temperature: 65
+Channel6 temperature: 60
+Channel7 temperature: 60
+Run stopped
+Initializing digitizer for running
+Check values on DT5730S: 
+Acquisition control settings = 0x0
+Trigger counting mode = 0x0
+Record length: 300
+Post-trigger size: 0
+Channel0 DC offset: 5000
+Channel1 DC offset: 5000
+Channel2 DC offset: 5000
+Channel3 DC offset: 5000
+Channel4 DC offset: 5000
+Channel5 DC offset: 5000
+Channel6 DC offset: 5000
+Channel7 DC offset: 5000
+Channel0 temperature: 73
+Channel1 temperature: 73
+Channel2 temperature: 71
+Channel3 temperature: 71
+Channel4 temperature: 66
+Channel5 temperature: 66
+Channel6 temperature: 61
+Channel7 temperature: 61
+Number of buffers per channel = 0xa
+Global trigger mask value = 0x40000000
+GPO enable mask = 0x40000000
+Freeing previously allocated readout buffer
+Allocated buffer size (bytes) = 295216
+End of BOR
+Started run 678
+EOR
+Channel0 temperature: 73
+Channel1 temperature: 73
+Channel2 temperature: 71
+Channel3 temperature: 71
+Channel4 temperature: 66
+Channel5 temperature: 66
+Channel6 temperature: 61
+Channel7 temperature: 61
+Run stopped
+Initializing digitizer for running
+Check values on DT5730S: 
+Acquisition control settings = 0x0
+Trigger counting mode = 0x0
+Record length: 300
+Post-trigger size: 0
+Channel0 DC offset: 5000
+Channel1 DC offset: 5000
+Channel2 DC offset: 5000
+Channel3 DC offset: 5000
+Channel4 DC offset: 5000
+Channel5 DC offset: 5000
+Channel6 DC offset: 5000
+Channel7 DC offset: 5000
+Channel0 temperature: 73
+Channel1 temperature: 73
+Channel2 temperature: 71
+Channel3 temperature: 71
+Channel4 temperature: 66
+Channel5 temperature: 66
+Channel6 temperature: 61
+Channel7 temperature: 61
+Number of buffers per channel = 0xa
+Global trigger mask value = 0x40000000
+GPO enable mask = 0x40000000
+Freeing previously allocated readout buffer
+Allocated buffer size (bytes) = 295216
+End of BOR
+Started run 679
+EOR
+Channel0 temperature: 73
+Channel1 temperature: 73
+Channel2 temperature: 71
+Channel3 temperature: 71
+Channel4 temperature: 66
+Channel5 temperature: 66
+Channel6 temperature: 61
+Channel7 temperature: 61
+Run stopped
+Initializing digitizer for running
+Check values on DT5730S: 
+Acquisition control settings = 0x0
+Trigger counting mode = 0x0
+Record length: 300
+Post-trigger size: 0
+Channel0 DC offset: 5000
+Channel1 DC offset: 5000
+Channel2 DC offset: 5000
+Channel3 DC offset: 5000
+Channel4 DC offset: 5000
+Channel5 DC offset: 5000
+Channel6 DC offset: 5000
+Channel7 DC offset: 5000
+Channel0 temperature: 73
+Channel1 temperature: 73
+Channel2 temperature: 71
+Channel3 temperature: 71
+Channel4 temperature: 65
+Channel5 temperature: 65
+Channel6 temperature: 61
+Channel7 temperature: 61
+Number of buffers per channel = 0xa
+Global trigger mask value = 0x40000000
+GPO enable mask = 0x40000000
+Freeing previously allocated readout buffer
+Allocated buffer size (bytes) = 295216
+End of BOR
+Started run 680
+EOR
+Channel0 temperature: 73
+Channel1 temperature: 73
+Channel2 temperature: 70
+Channel3 temperature: 70
+Channel4 temperature: 65
+Channel5 temperature: 65
+Channel6 temperature: 60
+Channel7 temperature: 60
+Run stopped
+Initializing digitizer for running
+Check values on DT5730S: 
+Acquisition control settings = 0x0
+Trigger counting mode = 0x0
+Record length: 300
+Post-trigger size: 0
+Channel0 DC offset: 5000
+Channel1 DC offset: 5000
+Channel2 DC offset: 5000
+Channel3 DC offset: 5000
+Channel4 DC offset: 5000
+Channel5 DC offset: 5000
+Channel6 DC offset: 5000
+Channel7 DC offset: 5000
+Channel0 temperature: 73
+Channel1 temperature: 73
+Channel2 temperature: 71
+Channel3 temperature: 71
+Channel4 temperature: 65
+Channel5 temperature: 65
+Channel6 temperature: 60
+Channel7 temperature: 60
+Number of buffers per channel = 0xa
+Global trigger mask value = 0x40000000
+GPO enable mask = 0x40000000
+Freeing previously allocated readout buffer
+Allocated buffer size (bytes) = 295216
+End of BOR
+Started run 681
+EOR
+Channel0 temperature: 72
+Channel1 temperature: 72
+Channel2 temperature: 70
+Channel3 temperature: 70
+Channel4 temperature: 65
+Channel5 temperature: 65
+Channel6 temperature: 60
+Channel7 temperature: 60
+Run stopped
+Initializing digitizer for running
+Check values on DT5730S: 
+Acquisition control settings = 0x0
+Trigger counting mode = 0x0
+Record length: 300
+Post-trigger size: 0
+Channel0 DC offset: 5000
+Channel1 DC offset: 5000
+Channel2 DC offset: 5000
+Channel3 DC offset: 5000
+Channel4 DC offset: 5000
+Channel5 DC offset: 5000
+Channel6 DC offset: 5000
+Channel7 DC offset: 5000
+Channel0 temperature: 72
+Channel1 temperature: 72
+Channel2 temperature: 70
+Channel3 temperature: 70
+Channel4 temperature: 65
+Channel5 temperature: 65
+Channel6 temperature: 60
+Channel7 temperature: 60
+Number of buffers per channel = 0xa
+Global trigger mask value = 0x40000000
+GPO enable mask = 0x40000000
+Freeing previously allocated readout buffer
+Allocated buffer size (bytes) = 295216
+End of BOR
+Started run 682
+EOR
+Channel0 temperature: 73
+Channel1 temperature: 73
+Channel2 temperature: 71
+Channel3 temperature: 71
+Channel4 temperature: 65
+Channel5 temperature: 65
+Channel6 temperature: 60
+Channel7 temperature: 60
+Run stopped
+Initializing digitizer for running
+Check values on DT5730S: 
+Acquisition control settings = 0x0
+Trigger counting mode = 0x0
+Record length: 300
+Post-trigger size: 0
+Channel0 DC offset: 5000
+Channel1 DC offset: 5000
+Channel2 DC offset: 5000
+Channel3 DC offset: 5000
+Channel4 DC offset: 5000
+Channel5 DC offset: 5000
+Channel6 DC offset: 5000
+Channel7 DC offset: 5000
+Channel0 temperature: 73
+Channel1 temperature: 73
+Channel2 temperature: 71
+Channel3 temperature: 71
+Channel4 temperature: 65
+Channel5 temperature: 65
+Channel6 temperature: 60
+Channel7 temperature: 60
+Number of buffers per channel = 0xa
+Global trigger mask value = 0x40000000
+GPO enable mask = 0x40000000
+Freeing previously allocated readout buffer
+Allocated buffer size (bytes) = 295216
+End of BOR
+Started run 683
+EOR
+Channel0 temperature: 73
+Channel1 temperature: 73
+Channel2 temperature: 71
+Channel3 temperature: 71
+Channel4 temperature: 65
+Channel5 temperature: 65
+Channel6 temperature: 61
+Channel7 temperature: 61
+Run stopped
+Initializing digitizer for running
+Check values on DT5730S: 
+Acquisition control settings = 0x0
+Trigger counting mode = 0x0
+Record length: 300
+Post-trigger size: 0
+Channel0 DC offset: 5000
+Channel1 DC offset: 5000
+Channel2 DC offset: 5000
+Channel3 DC offset: 5000
+Channel4 DC offset: 5000
+Channel5 DC offset: 5000
+Channel6 DC offset: 5000
+Channel7 DC offset: 5000
+Channel0 temperature: 73
+Channel1 temperature: 73
+Channel2 temperature: 71
+Channel3 temperature: 71
+Channel4 temperature: 65
+Channel5 temperature: 65
+Channel6 temperature: 60
+Channel7 temperature: 60
+Number of buffers per channel = 0xa
+Global trigger mask value = 0x40000000
+GPO enable mask = 0x40000000
+Freeing previously allocated readout buffer
+Allocated buffer size (bytes) = 295216
+End of BOR
+Started run 684
+EOR
+Channel0 temperature: 73
+Channel1 temperature: 73
+Channel2 temperature: 71
+Channel3 temperature: 71
+Channel4 temperature: 66
+Channel5 temperature: 66
+Channel6 temperature: 61
+Channel7 temperature: 61
+Run stopped
+Initializing digitizer for running
+Check values on DT5730S: 
+Acquisition control settings = 0x0
+Trigger counting mode = 0x0
+Record length: 300
+Post-trigger size: 0
+Channel0 DC offset: 5000
+Channel1 DC offset: 5000
+Channel2 DC offset: 5000
+Channel3 DC offset: 5000
+Channel4 DC offset: 5000
+Channel5 DC offset: 5000
+Channel6 DC offset: 5000
+Channel7 DC offset: 5000
+Channel0 temperature: 73
+Channel1 temperature: 73
+Channel2 temperature: 71
+Channel3 temperature: 71
+Channel4 temperature: 65
+Channel5 temperature: 65
+Channel6 temperature: 60
+Channel7 temperature: 60
+Number of buffers per channel = 0xa
+Global trigger mask value = 0x40000000
+GPO enable mask = 0x40000000
+Freeing previously allocated readout buffer
+Allocated buffer size (bytes) = 295216
+End of BOR
+Started run 685
+EOR
+Channel0 temperature: 73
+Channel1 temperature: 73
+Channel2 temperature: 71
+Channel3 temperature: 71
+Channel4 temperature: 65
+Channel5 temperature: 65
+Channel6 temperature: 60
+Channel7 temperature: 60
+Run stopped
+Initializing digitizer for running
+Check values on DT5730S: 
+Acquisition control settings = 0x0
+Trigger counting mode = 0x0
+Record length: 300
+Post-trigger size: 0
+Channel0 DC offset: 5000
+Channel1 DC offset: 5000
+Channel2 DC offset: 5000
+Channel3 DC offset: 5000
+Channel4 DC offset: 5000
+Channel5 DC offset: 5000
+Channel6 DC offset: 5000
+Channel7 DC offset: 5000
+Channel0 temperature: 73
+Channel1 temperature: 73
+Channel2 temperature: 71
+Channel3 temperature: 71
+Channel4 temperature: 65
+Channel5 temperature: 65
+Channel6 temperature: 61
+Channel7 temperature: 61
+Number of buffers per channel = 0xa
+Global trigger mask value = 0x40000000
+GPO enable mask = 0x40000000
+Freeing previously allocated readout buffer
+Allocated buffer size (bytes) = 295216
+End of BOR
+Started run 686
+EOR
+Channel0 temperature: 73
+Channel1 temperature: 73
+Channel2 temperature: 70
+Channel3 temperature: 70
+Channel4 temperature: 65
+Channel5 temperature: 65
+Channel6 temperature: 60
+Channel7 temperature: 60
+Run stopped
+Initializing digitizer for running
+Check values on DT5730S: 
+Acquisition control settings = 0x0
+Trigger counting mode = 0x0
+Record length: 300
+Post-trigger size: 0
+Channel0 DC offset: 5000
+Channel1 DC offset: 5000
+Channel2 DC offset: 5000
+Channel3 DC offset: 5000
+Channel4 DC offset: 5000
+Channel5 DC offset: 5000
+Channel6 DC offset: 5000
+Channel7 DC offset: 5000
+Channel0 temperature: 73
+Channel1 temperature: 73
+Channel2 temperature: 70
+Channel3 temperature: 70
+Channel4 temperature: 65
+Channel5 temperature: 65
+Channel6 temperature: 60
+Channel7 temperature: 60
+Number of buffers per channel = 0xa
+Global trigger mask value = 0x40000000
+GPO enable mask = 0x40000000
+Freeing previously allocated readout buffer
+Allocated buffer size (bytes) = 295216
+End of BOR
+Started run 687
+EOR
+Channel0 temperature: 73
+Channel1 temperature: 73
+Channel2 temperature: 70
+Channel3 temperature: 70
+Channel4 temperature: 65
+Channel5 temperature: 65
+Channel6 temperature: 60
+Channel7 temperature: 60
+Run stopped
+Initializing digitizer for running
+Check values on DT5730S: 
+Acquisition control settings = 0x0
+Trigger counting mode = 0x0
+Record length: 300
+Post-trigger size: 0
+Channel0 DC offset: 5000
+Channel1 DC offset: 5000
+Channel2 DC offset: 5000
+Channel3 DC offset: 5000
+Channel4 DC offset: 5000
+Channel5 DC offset: 5000
+Channel6 DC offset: 5000
+Channel7 DC offset: 5000
+Channel0 temperature: 73
+Channel1 temperature: 73
+Channel2 temperature: 71
+Channel3 temperature: 71
+Channel4 temperature: 65
+Channel5 temperature: 65
+Channel6 temperature: 61
+Channel7 temperature: 61
+Number of buffers per channel = 0xa
+Global trigger mask value = 0x40000000
+GPO enable mask = 0x40000000
+Freeing previously allocated readout buffer
+Allocated buffer size (bytes) = 295216
+End of BOR
+Started run 688
+EOR
+Channel0 temperature: 73
+Channel1 temperature: 73
+Channel2 temperature: 71
+Channel3 temperature: 71
+Channel4 temperature: 65
+Channel5 temperature: 65
+Channel6 temperature: 60
+Channel7 temperature: 60
+Run stopped
+Initializing digitizer for running
+Check values on DT5730S: 
+Acquisition control settings = 0x0
+Trigger counting mode = 0x0
+Record length: 300
+Post-trigger size: 0
+Channel0 DC offset: 5000
+Channel1 DC offset: 5000
+Channel2 DC offset: 5000
+Channel3 DC offset: 5000
+Channel4 DC offset: 5000
+Channel5 DC offset: 5000
+Channel6 DC offset: 5000
+Channel7 DC offset: 5000
+Channel0 temperature: 73
+Channel1 temperature: 73
+Channel2 temperature: 70
+Channel3 temperature: 70
+Channel4 temperature: 65
+Channel5 temperature: 65
+Channel6 temperature: 60
+Channel7 temperature: 60
+Number of buffers per channel = 0xa
+Global trigger mask value = 0x40000000
+GPO enable mask = 0x40000000
+Freeing previously allocated readout buffer
+Allocated buffer size (bytes) = 295216
+End of BOR
+Started run 689
+EOR
+Channel0 temperature: 72
+Channel1 temperature: 72
+Channel2 temperature: 70
+Channel3 temperature: 70
+Channel4 temperature: 65
+Channel5 temperature: 65
+Channel6 temperature: 60
+Channel7 temperature: 60
+Run stopped
+Initializing digitizer for running
+Check values on DT5730S: 
+Acquisition control settings = 0x0
+Trigger counting mode = 0x0
+Record length: 300
+Post-trigger size: 0
+Channel0 DC offset: 5000
+Channel1 DC offset: 5000
+Channel2 DC offset: 5000
+Channel3 DC offset: 5000
+Channel4 DC offset: 5000
+Channel5 DC offset: 5000
+Channel6 DC offset: 5000
+Channel7 DC offset: 5000
+Channel0 temperature: 72
+Channel1 temperature: 72
+Channel2 temperature: 70
+Channel3 temperature: 70
+Channel4 temperature: 65
+Channel5 temperature: 65
+Channel6 temperature: 60
+Channel7 temperature: 60
+Number of buffers per channel = 0xa
+Global trigger mask value = 0x40000000
+GPO enable mask = 0x40000000
+Freeing previously allocated readout buffer
+Allocated buffer size (bytes) = 295216
+End of BOR
+Started run 690
+EOR
+Channel0 temperature: 72
+Channel1 temperature: 72
+Channel2 temperature: 70
+Channel3 temperature: 70
+Channel4 temperature: 65
+Channel5 temperature: 65
+Channel6 temperature: 60
+Channel7 temperature: 60
+Run stopped
+Initializing digitizer for running
+Check values on DT5730S: 
+Acquisition control settings = 0x0
+Trigger counting mode = 0x0
+Record length: 300
+Post-trigger size: 0
+Channel0 DC offset: 5000
+Channel1 DC offset: 5000
+Channel2 DC offset: 5000
+Channel3 DC offset: 5000
+Channel4 DC offset: 5000
+Channel5 DC offset: 5000
+Channel6 DC offset: 5000
+Channel7 DC offset: 5000
+Channel0 temperature: 72
+Channel1 temperature: 72
+Channel2 temperature: 70
+Channel3 temperature: 70
+Channel4 temperature: 65
+Channel5 temperature: 65
+Channel6 temperature: 60
+Channel7 temperature: 60
+Number of buffers per channel = 0xa
+Global trigger mask value = 0x40000000
+GPO enable mask = 0x40000000
+Freeing previously allocated readout buffer
+Allocated buffer size (bytes) = 295216
+End of BOR
+Started run 691
+EOR
+Channel0 temperature: 72
+Channel1 temperature: 72
+Channel2 temperature: 70
+Channel3 temperature: 70
+Channel4 temperature: 65
+Channel5 temperature: 65
+Channel6 temperature: 60
+Channel7 temperature: 60
+Run stopped
+Initializing digitizer for running
+Check values on DT5730S: 
+Acquisition control settings = 0x0
+Trigger counting mode = 0x0
+Record length: 300
+Post-trigger size: 0
+Channel0 DC offset: 5000
+Channel1 DC offset: 5000
+Channel2 DC offset: 5000
+Channel3 DC offset: 5000
+Channel4 DC offset: 5000
+Channel5 DC offset: 5000
+Channel6 DC offset: 5000
+Channel7 DC offset: 5000
+Channel0 temperature: 72
+Channel1 temperature: 72
+Channel2 temperature: 70
+Channel3 temperature: 70
+Channel4 temperature: 65
+Channel5 temperature: 65
+Channel6 temperature: 60
+Channel7 temperature: 60
+Number of buffers per channel = 0xa
+Global trigger mask value = 0x40000000
+GPO enable mask = 0x40000000
+Freeing previously allocated readout buffer
+Allocated buffer size (bytes) = 295216
+End of BOR
+Started run 692
+EOR
+Channel0 temperature: 72
+Channel1 temperature: 72
+Channel2 temperature: 70
+Channel3 temperature: 70
+Channel4 temperature: 65
+Channel5 temperature: 65
+Channel6 temperature: 60
+Channel7 temperature: 60
+Run stopped
+Initializing digitizer for running
+Check values on DT5730S: 
+Acquisition control settings = 0x0
+Trigger counting mode = 0x0
+Record length: 300
+Post-trigger size: 0
+Channel0 DC offset: 5000
+Channel1 DC offset: 5000
+Channel2 DC offset: 5000
+Channel3 DC offset: 5000
+Channel4 DC offset: 5000
+Channel5 DC offset: 5000
+Channel6 DC offset: 5000
+Channel7 DC offset: 5000
+Channel0 temperature: 73
+Channel1 temperature: 73
+Channel2 temperature: 70
+Channel3 temperature: 70
+Channel4 temperature: 65
+Channel5 temperature: 65
+Channel6 temperature: 60
+Channel7 temperature: 60
+Number of buffers per channel = 0xa
+Global trigger mask value = 0x40000000
+GPO enable mask = 0x40000000
+Freeing previously allocated readout buffer
+Allocated buffer size (bytes) = 295216
+End of BOR
+Started run 693
+EOR
+Channel0 temperature: 72
+Channel1 temperature: 72
+Channel2 temperature: 70
+Channel3 temperature: 70
+Channel4 temperature: 65
+Channel5 temperature: 65
+Channel6 temperature: 60
+Channel7 temperature: 60
+Run stopped
+Initializing digitizer for running
+Check values on DT5730S: 
+Acquisition control settings = 0x0
+Trigger counting mode = 0x0
+Record length: 300
+Post-trigger size: 0
+Channel0 DC offset: 5000
+Channel1 DC offset: 5000
+Channel2 DC offset: 5000
+Channel3 DC offset: 5000
+Channel4 DC offset: 5000
+Channel5 DC offset: 5000
+Channel6 DC offset: 5000
+Channel7 DC offset: 5000
+Channel0 temperature: 72
+Channel1 temperature: 72
+Channel2 temperature: 70
+Channel3 temperature: 70
+Channel4 temperature: 64
+Channel5 temperature: 64
+Channel6 temperature: 59
+Channel7 temperature: 59
+Number of buffers per channel = 0xa
+Global trigger mask value = 0x40000000
+GPO enable mask = 0x40000000
+Freeing previously allocated readout buffer
+Allocated buffer size (bytes) = 295216
+End of BOR
+Started run 694
+EOR
+Channel0 temperature: 72
+Channel1 temperature: 72
+Channel2 temperature: 70
+Channel3 temperature: 70
+Channel4 temperature: 65
+Channel5 temperature: 65
+Channel6 temperature: 60
+Channel7 temperature: 60
+Run stopped
+Initializing digitizer for running
+Check values on DT5730S: 
+Acquisition control settings = 0x0
+Trigger counting mode = 0x0
+Record length: 300
+Post-trigger size: 0
+Channel0 DC offset: 5000
+Channel1 DC offset: 5000
+Channel2 DC offset: 5000
+Channel3 DC offset: 5000
+Channel4 DC offset: 5000
+Channel5 DC offset: 5000
+Channel6 DC offset: 5000
+Channel7 DC offset: 5000
+Channel0 temperature: 71
+Channel1 temperature: 71
+Channel2 temperature: 69
+Channel3 temperature: 69
+Channel4 temperature: 64
+Channel5 temperature: 64
+Channel6 temperature: 59
+Channel7 temperature: 59
+Number of buffers per channel = 0xa
+Global trigger mask value = 0x40000000
+GPO enable mask = 0x40000000
+Freeing previously allocated readout buffer
+Allocated buffer size (bytes) = 295216
+End of BOR
+Started run 695
+EOR
+Channel0 temperature: 73
+Channel1 temperature: 73
+Channel2 temperature: 70
+Channel3 temperature: 70
+Channel4 temperature: 65
+Channel5 temperature: 65
+Channel6 temperature: 60
+Channel7 temperature: 60
+Run stopped
+Initializing digitizer for running
+Check values on DT5730S: 
+Acquisition control settings = 0x0
+Trigger counting mode = 0x0
+Record length: 300
+Post-trigger size: 0
+Channel0 DC offset: 5000
+Channel1 DC offset: 5000
+Channel2 DC offset: 5000
+Channel3 DC offset: 5000
+Channel4 DC offset: 5000
+Channel5 DC offset: 5000
+Channel6 DC offset: 5000
+Channel7 DC offset: 5000
+Channel0 temperature: 73
+Channel1 temperature: 73
+Channel2 temperature: 70
+Channel3 temperature: 70
+Channel4 temperature: 65
+Channel5 temperature: 65
+Channel6 temperature: 60
+Channel7 temperature: 60
+Number of buffers per channel = 0xa
+Global trigger mask value = 0x40000000
+GPO enable mask = 0x40000000
+Freeing previously allocated readout buffer
+Allocated buffer size (bytes) = 295216
+End of BOR
+Started run 696
+EOR
+Channel0 temperature: 72
+Channel1 temperature: 72
+Channel2 temperature: 70
+Channel3 temperature: 70
+Channel4 temperature: 64
+Channel5 temperature: 64
+Channel6 temperature: 59
+Channel7 temperature: 59
+Run stopped
+Initializing digitizer for running
+Check values on DT5730S: 
+Acquisition control settings = 0x0
+Trigger counting mode = 0x0
+Record length: 300
+Post-trigger size: 0
+Channel0 DC offset: 5000
+Channel1 DC offset: 5000
+Channel2 DC offset: 5000
+Channel3 DC offset: 5000
+Channel4 DC offset: 5000
+Channel5 DC offset: 5000
+Channel6 DC offset: 5000
+Channel7 DC offset: 5000
+Channel0 temperature: 72
+Channel1 temperature: 72
+Channel2 temperature: 70
+Channel3 temperature: 70
+Channel4 temperature: 64
+Channel5 temperature: 64
+Channel6 temperature: 60
+Channel7 temperature: 60
+Number of buffers per channel = 0xa
+Global trigger mask value = 0x40000000
+GPO enable mask = 0x40000000
+Freeing previously allocated readout buffer
+Allocated buffer size (bytes) = 295216
+End of BOR
+Started run 697
+EOR
+Channel0 temperature: 72
+Channel1 temperature: 72
+Channel2 temperature: 70
+Channel3 temperature: 70
+Channel4 temperature: 64
+Channel5 temperature: 64
+Channel6 temperature: 60
+Channel7 temperature: 60
+Run stopped
+Initializing digitizer for running
+Check values on DT5730S: 
+Acquisition control settings = 0x0
+Trigger counting mode = 0x0
+Record length: 300
+Post-trigger size: 0
+Channel0 DC offset: 5000
+Channel1 DC offset: 5000
+Channel2 DC offset: 5000
+Channel3 DC offset: 5000
+Channel4 DC offset: 5000
+Channel5 DC offset: 5000
+Channel6 DC offset: 5000
+Channel7 DC offset: 5000
+Channel0 temperature: 72
+Channel1 temperature: 72
+Channel2 temperature: 70
+Channel3 temperature: 70
+Channel4 temperature: 65
+Channel5 temperature: 65
+Channel6 temperature: 60
+Channel7 temperature: 60
+Number of buffers per channel = 0xa
+Global trigger mask value = 0x40000000
+GPO enable mask = 0x40000000
+Freeing previously allocated readout buffer
+Allocated buffer size (bytes) = 295216
+End of BOR
+Started run 698
+EOR
+Channel0 temperature: 73
+Channel1 temperature: 73
+Channel2 temperature: 71
+Channel3 temperature: 71
+Channel4 temperature: 65
+Channel5 temperature: 65
+Channel6 temperature: 61
+Channel7 temperature: 61
+Run stopped
+Initializing digitizer for running
+Check values on DT5730S: 
+Acquisition control settings = 0x0
+Trigger counting mode = 0x0
+Record length: 300
+Post-trigger size: 0
+Channel0 DC offset: 5000
+Channel1 DC offset: 5000
+Channel2 DC offset: 5000
+Channel3 DC offset: 5000
+Channel4 DC offset: 5000
+Channel5 DC offset: 5000
+Channel6 DC offset: 5000
+Channel7 DC offset: 5000
+Channel0 temperature: 73
+Channel1 temperature: 73
+Channel2 temperature: 71
+Channel3 temperature: 71
+Channel4 temperature: 65
+Channel5 temperature: 65
+Channel6 temperature: 61
+Channel7 temperature: 61
+Number of buffers per channel = 0xa
+Global trigger mask value = 0x40000000
+GPO enable mask = 0x40000000
+Freeing previously allocated readout buffer
+Allocated buffer size (bytes) = 295216
+End of BOR
+Started run 699
+EOR
+Channel0 temperature: 73
+Channel1 temperature: 73
+Channel2 temperature: 71
+Channel3 temperature: 71
+Channel4 temperature: 65
+Channel5 temperature: 65
+Channel6 temperature: 61
+Channel7 temperature: 61
+Run stopped
+Initializing digitizer for running
+Check values on DT5730S: 
+Acquisition control settings = 0x0
+Trigger counting mode = 0x0
+Record length: 300
+Post-trigger size: 0
+Channel0 DC offset: 5000
+Channel1 DC offset: 5000
+Channel2 DC offset: 5000
+Channel3 DC offset: 5000
+Channel4 DC offset: 5000
+Channel5 DC offset: 5000
+Channel6 DC offset: 5000
+Channel7 DC offset: 5000
+Channel0 temperature: 71
+Channel1 temperature: 71
+Channel2 temperature: 69
+Channel3 temperature: 69
+Channel4 temperature: 63
+Channel5 temperature: 63
+Channel6 temperature: 59
+Channel7 temperature: 59
+Number of buffers per channel = 0xa
+Global trigger mask value = 0x40000000
+GPO enable mask = 0x40000000
+Freeing previously allocated readout buffer
+Allocated buffer size (bytes) = 295216
+End of BOR
+Started run 700
+EOR
+Channel0 temperature: 72
+Channel1 temperature: 72
+Channel2 temperature: 70
+Channel3 temperature: 70
+Channel4 temperature: 65
+Channel5 temperature: 65
+Channel6 temperature: 60
+Channel7 temperature: 60
+Run stopped
+Initializing digitizer for running
+Check values on DT5730S: 
+Acquisition control settings = 0x0
+Trigger counting mode = 0x0
+Record length: 300
+Post-trigger size: 0
+Channel0 DC offset: 5000
+Channel1 DC offset: 5000
+Channel2 DC offset: 5000
+Channel3 DC offset: 5000
+Channel4 DC offset: 5000
+Channel5 DC offset: 5000
+Channel6 DC offset: 5000
+Channel7 DC offset: 5000
+Channel0 temperature: 72
+Channel1 temperature: 72
+Channel2 temperature: 70
+Channel3 temperature: 70
+Channel4 temperature: 65
+Channel5 temperature: 65
+Channel6 temperature: 60
+Channel7 temperature: 60
+Number of buffers per channel = 0xa
+Global trigger mask value = 0x40000000
+GPO enable mask = 0x40000000
+Freeing previously allocated readout buffer
+Allocated buffer size (bytes) = 295216
+End of BOR
+Started run 701
+EOR
+Channel0 temperature: 72
+Channel1 temperature: 72
+Channel2 temperature: 70
+Channel3 temperature: 70
+Channel4 temperature: 65
+Channel5 temperature: 65
+Channel6 temperature: 60
+Channel7 temperature: 60
+Run stopped
+Initializing digitizer for running
+Check values on DT5730S: 
+Acquisition control settings = 0x0
+Trigger counting mode = 0x0
+Record length: 300
+Post-trigger size: 0
+Channel0 DC offset: 5000
+Channel1 DC offset: 5000
+Channel2 DC offset: 5000
+Channel3 DC offset: 5000
+Channel4 DC offset: 5000
+Channel5 DC offset: 5000
+Channel6 DC offset: 5000
+Channel7 DC offset: 5000
+Channel0 temperature: 72
+Channel1 temperature: 72
+Channel2 temperature: 70
+Channel3 temperature: 70
+Channel4 temperature: 65
+Channel5 temperature: 65
+Channel6 temperature: 60
+Channel7 temperature: 60
+Number of buffers per channel = 0xa
+Global trigger mask value = 0x40000000
+GPO enable mask = 0x40000000
+Freeing previously allocated readout buffer
+Allocated buffer size (bytes) = 295216
+End of BOR
+Started run 702
+EOR
+Channel0 temperature: 73
+Channel1 temperature: 73
+Channel2 temperature: 71
+Channel3 temperature: 71
+Channel4 temperature: 65
+Channel5 temperature: 65
+Channel6 temperature: 60
+Channel7 temperature: 60
+Run stopped
+Initializing digitizer for running
+Check values on DT5730S: 
+Acquisition control settings = 0x0
+Trigger counting mode = 0x0
+Record length: 300
+Post-trigger size: 0
+Channel0 DC offset: 5000
+Channel1 DC offset: 5000
+Channel2 DC offset: 5000
+Channel3 DC offset: 5000
+Channel4 DC offset: 5000
+Channel5 DC offset: 5000
+Channel6 DC offset: 5000
+Channel7 DC offset: 5000
+Channel0 temperature: 73
+Channel1 temperature: 73
+Channel2 temperature: 71
+Channel3 temperature: 71
+Channel4 temperature: 65
+Channel5 temperature: 65
+Channel6 temperature: 60
+Channel7 temperature: 60
+Number of buffers per channel = 0xa
+Global trigger mask value = 0x40000000
+GPO enable mask = 0x40000000
+Freeing previously allocated readout buffer
+Allocated buffer size (bytes) = 295216
+End of BOR
+Started run 703
+EOR
+Channel0 temperature: 72
+Channel1 temperature: 72
+Channel2 temperature: 70
+Channel3 temperature: 70
+Channel4 temperature: 64
+Channel5 temperature: 64
+Channel6 temperature: 60
+Channel7 temperature: 60
+Run stopped
+Initializing digitizer for running
+Check values on DT5730S: 
+Acquisition control settings = 0x0
+Trigger counting mode = 0x0
+Record length: 300
+Post-trigger size: 0
+Channel0 DC offset: 5000
+Channel1 DC offset: 5000
+Channel2 DC offset: 5000
+Channel3 DC offset: 5000
+Channel4 DC offset: 5000
+Channel5 DC offset: 5000
+Channel6 DC offset: 5000
+Channel7 DC offset: 5000
+Channel0 temperature: 72
+Channel1 temperature: 72
+Channel2 temperature: 70
+Channel3 temperature: 70
+Channel4 temperature: 65
+Channel5 temperature: 65
+Channel6 temperature: 60
+Channel7 temperature: 60
+Number of buffers per channel = 0xa
+Global trigger mask value = 0x40000000
+GPO enable mask = 0x40000000
+Freeing previously allocated readout buffer
+Allocated buffer size (bytes) = 295216
+End of BOR
+Started run 704
+EOR
+Channel0 temperature: 72
+Channel1 temperature: 72
+Channel2 temperature: 70
+Channel3 temperature: 70
+Channel4 temperature: 65
+Channel5 temperature: 65
+Channel6 temperature: 60
+Channel7 temperature: 60
+Run stopped
+Initializing digitizer for running
+Check values on DT5730S: 
+Acquisition control settings = 0x0
+Trigger counting mode = 0x0
+Record length: 300
+Post-trigger size: 0
+Channel0 DC offset: 5000
+Channel1 DC offset: 5000
+Channel2 DC offset: 5000
+Channel3 DC offset: 5000
+Channel4 DC offset: 5000
+Channel5 DC offset: 5000
+Channel6 DC offset: 5000
+Channel7 DC offset: 5000
+Channel0 temperature: 72
+Channel1 temperature: 72
+Channel2 temperature: 70
+Channel3 temperature: 70
+Channel4 temperature: 65
+Channel5 temperature: 65
+Channel6 temperature: 60
+Channel7 temperature: 60
+Number of buffers per channel = 0xa
+Global trigger mask value = 0x40000000
+GPO enable mask = 0x40000000
+Freeing previously allocated readout buffer
+Allocated buffer size (bytes) = 295216
+End of BOR
+Started run 705
+EOR
+Channel0 temperature: 71
+Channel1 temperature: 71
+Channel2 temperature: 69
+Channel3 temperature: 69
+Channel4 temperature: 63
+Channel5 temperature: 63
+Channel6 temperature: 59
+Channel7 temperature: 59
+Run stopped
+Initializing digitizer for running
+Check values on DT5730S: 
+Acquisition control settings = 0x0
+Trigger counting mode = 0x0
+Record length: 300
+Post-trigger size: 0
+Channel0 DC offset: 5000
+Channel1 DC offset: 5000
+Channel2 DC offset: 5000
+Channel3 DC offset: 5000
+Channel4 DC offset: 5000
+Channel5 DC offset: 5000
+Channel6 DC offset: 5000
+Channel7 DC offset: 5000
+Channel0 temperature: 71
+Channel1 temperature: 71
+Channel2 temperature: 69
+Channel3 temperature: 69
+Channel4 temperature: 63
+Channel5 temperature: 63
+Channel6 temperature: 58
+Channel7 temperature: 58
+Number of buffers per channel = 0xa
+Global trigger mask value = 0x40000000
+GPO enable mask = 0x40000000
+Freeing previously allocated readout buffer
+Allocated buffer size (bytes) = 295216
+End of BOR
+Started run 706
+EOR
+Channel0 temperature: 72
+Channel1 temperature: 72
+Channel2 temperature: 70
+Channel3 temperature: 70
+Channel4 temperature: 64
+Channel5 temperature: 64
+Channel6 temperature: 60
+Channel7 temperature: 60
+Run stopped
+Initializing digitizer for running
+Check values on DT5730S: 
+Acquisition control settings = 0x0
+Trigger counting mode = 0x0
+Record length: 300
+Post-trigger size: 0
+Channel0 DC offset: 5000
+Channel1 DC offset: 5000
+Channel2 DC offset: 5000
+Channel3 DC offset: 5000
+Channel4 DC offset: 5000
+Channel5 DC offset: 5000
+Channel6 DC offset: 5000
+Channel7 DC offset: 5000
+Channel0 temperature: 72
+Channel1 temperature: 72
+Channel2 temperature: 70
+Channel3 temperature: 70
+Channel4 temperature: 64
+Channel5 temperature: 64
+Channel6 temperature: 60
+Channel7 temperature: 60
+Number of buffers per channel = 0xa
+Global trigger mask value = 0x40000000
+GPO enable mask = 0x40000000
+Freeing previously allocated readout buffer
+Allocated buffer size (bytes) = 295216
+End of BOR
+Started run 707
+EOR
+Channel0 temperature: 72
+Channel1 temperature: 72
+Channel2 temperature: 70
+Channel3 temperature: 70
+Channel4 temperature: 65
+Channel5 temperature: 65
+Channel6 temperature: 60
+Channel7 temperature: 60
+Run stopped
+Initializing digitizer for running
+Check values on DT5730S: 
+Acquisition control settings = 0x0
+Trigger counting mode = 0x0
+Record length: 300
+Post-trigger size: 0
+Channel0 DC offset: 5000
+Channel1 DC offset: 5000
+Channel2 DC offset: 5000
+Channel3 DC offset: 5000
+Channel4 DC offset: 5000
+Channel5 DC offset: 5000
+Channel6 DC offset: 5000
+Channel7 DC offset: 5000
+Channel0 temperature: 72
+Channel1 temperature: 72
+Channel2 temperature: 70
+Channel3 temperature: 70
+Channel4 temperature: 65
+Channel5 temperature: 65
+Channel6 temperature: 60
+Channel7 temperature: 60
+Number of buffers per channel = 0xa
+Global trigger mask value = 0x40000000
+GPO enable mask = 0x40000000
+Freeing previously allocated readout buffer
+Allocated buffer size (bytes) = 295216
+End of BOR
+Started run 708
+EOR
+Channel0 temperature: 72
+Channel1 temperature: 72
+Channel2 temperature: 70
+Channel3 temperature: 70
+Channel4 temperature: 64
+Channel5 temperature: 64
+Channel6 temperature: 59
+Channel7 temperature: 59
+Run stopped
+Initializing digitizer for running
+Check values on DT5730S: 
+Acquisition control settings = 0x0
+Trigger counting mode = 0x0
+Record length: 300
+Post-trigger size: 0
+Channel0 DC offset: 5000
+Channel1 DC offset: 5000
+Channel2 DC offset: 5000
+Channel3 DC offset: 5000
+Channel4 DC offset: 5000
+Channel5 DC offset: 5000
+Channel6 DC offset: 5000
+Channel7 DC offset: 5000
+Channel0 temperature: 71
+Channel1 temperature: 71
+Channel2 temperature: 69
+Channel3 temperature: 69
+Channel4 temperature: 63
+Channel5 temperature: 63
+Channel6 temperature: 59
+Channel7 temperature: 59
+Number of buffers per channel = 0xa
+Global trigger mask value = 0x40000000
+GPO enable mask = 0x40000000
+Freeing previously allocated readout buffer
+Allocated buffer size (bytes) = 295216
+End of BOR
+Started run 709
+EOR
+Channel0 temperature: 72
+Channel1 temperature: 72
+Channel2 temperature: 70
+Channel3 temperature: 70
+Channel4 temperature: 64
+Channel5 temperature: 64
+Channel6 temperature: 60
+Channel7 temperature: 60
+Run stopped
+Initializing digitizer for running
+Check values on DT5730S: 
+Acquisition control settings = 0x0
+Trigger counting mode = 0x0
+Record length: 300
+Post-trigger size: 0
+Channel0 DC offset: 5000
+Channel1 DC offset: 5000
+Channel2 DC offset: 5000
+Channel3 DC offset: 5000
+Channel4 DC offset: 5000
+Channel5 DC offset: 5000
+Channel6 DC offset: 5000
+Channel7 DC offset: 5000
+Channel0 temperature: 72
+Channel1 temperature: 72
+Channel2 temperature: 70
+Channel3 temperature: 70
+Channel4 temperature: 64
+Channel5 temperature: 64
+Channel6 temperature: 60
+Channel7 temperature: 60
+Number of buffers per channel = 0xa
+Global trigger mask value = 0x40000000
+GPO enable mask = 0x40000000
+Freeing previously allocated readout buffer
+Allocated buffer size (bytes) = 295216
+End of BOR
+Started run 710
+EOR
+Channel0 temperature: 71
+Channel1 temperature: 71
+Channel2 temperature: 69
+Channel3 temperature: 69
+Channel4 temperature: 64
+Channel5 temperature: 64
+Channel6 temperature: 59
+Channel7 temperature: 59
+Run stopped
+Initializing digitizer for running
+Check values on DT5730S: 
+Acquisition control settings = 0x0
+Trigger counting mode = 0x0
+Record length: 300
+Post-trigger size: 0
+Channel0 DC offset: 5000
+Channel1 DC offset: 5000
+Channel2 DC offset: 5000
+Channel3 DC offset: 5000
+Channel4 DC offset: 5000
+Channel5 DC offset: 5000
+Channel6 DC offset: 5000
+Channel7 DC offset: 5000
+Channel0 temperature: 72
+Channel1 temperature: 72
+Channel2 temperature: 70
+Channel3 temperature: 70
+Channel4 temperature: 64
+Channel5 temperature: 64
+Channel6 temperature: 60
+Channel7 temperature: 60
+Number of buffers per channel = 0xa
+Global trigger mask value = 0x40000000
+GPO enable mask = 0x40000000
+Freeing previously allocated readout buffer
+Allocated buffer size (bytes) = 295216
+End of BOR
+Started run 711
+EOR
+Channel0 temperature: 72
+Channel1 temperature: 72
+Channel2 temperature: 70
+Channel3 temperature: 70
+Channel4 temperature: 65
+Channel5 temperature: 65
+Channel6 temperature: 60
+Channel7 temperature: 60
+Run stopped
+Initializing digitizer for running
+Check values on DT5730S: 
+Acquisition control settings = 0x0
+Trigger counting mode = 0x0
+Record length: 300
+Post-trigger size: 0
+Channel0 DC offset: 5000
+Channel1 DC offset: 5000
+Channel2 DC offset: 5000
+Channel3 DC offset: 5000
+Channel4 DC offset: 5000
+Channel5 DC offset: 5000
+Channel6 DC offset: 5000
+Channel7 DC offset: 5000
+Channel0 temperature: 72
+Channel1 temperature: 72
+Channel2 temperature: 70
+Channel3 temperature: 70
+Channel4 temperature: 64
+Channel5 temperature: 64
+Channel6 temperature: 59
+Channel7 temperature: 59
+Number of buffers per channel = 0xa
+Global trigger mask value = 0x40000000
+GPO enable mask = 0x40000000
+Freeing previously allocated readout buffer
+Allocated buffer size (bytes) = 295216
+End of BOR
+Started run 712
+EOR
+Channel0 temperature: 73
+Channel1 temperature: 73
+Channel2 temperature: 71
+Channel3 temperature: 71
+Channel4 temperature: 65
+Channel5 temperature: 65
+Channel6 temperature: 61
+Channel7 temperature: 61
+Run stopped
+Initializing digitizer for running
+Check values on DT5730S: 
+Acquisition control settings = 0x0
+Trigger counting mode = 0x0
+Record length: 300
+Post-trigger size: 0
+Channel0 DC offset: 5000
+Channel1 DC offset: 5000
+Channel2 DC offset: 5000
+Channel3 DC offset: 5000
+Channel4 DC offset: 5000
+Channel5 DC offset: 5000
+Channel6 DC offset: 5000
+Channel7 DC offset: 5000
+Channel0 temperature: 72
+Channel1 temperature: 72
+Channel2 temperature: 69
+Channel3 temperature: 69
+Channel4 temperature: 64
+Channel5 temperature: 64
+Channel6 temperature: 59
+Channel7 temperature: 59
+Number of buffers per channel = 0xa
+Global trigger mask value = 0x40000000
+GPO enable mask = 0x40000000
+Freeing previously allocated readout buffer
+Allocated buffer size (bytes) = 295216
+End of BOR
+Started run 713
+EOR
+Channel0 temperature: 72
+Channel1 temperature: 72
+Channel2 temperature: 70
+Channel3 temperature: 70
+Channel4 temperature: 65
+Channel5 temperature: 65
+Channel6 temperature: 60
+Channel7 temperature: 60
+Run stopped
+Initializing digitizer for running
+Check values on DT5730S: 
+Acquisition control settings = 0x0
+Trigger counting mode = 0x0
+Record length: 300
+Post-trigger size: 0
+Channel0 DC offset: 5000
+Channel1 DC offset: 5000
+Channel2 DC offset: 5000
+Channel3 DC offset: 5000
+Channel4 DC offset: 5000
+Channel5 DC offset: 5000
+Channel6 DC offset: 5000
+Channel7 DC offset: 5000
+Channel0 temperature: 72
+Channel1 temperature: 72
+Channel2 temperature: 70
+Channel3 temperature: 70
+Channel4 temperature: 65
+Channel5 temperature: 65
+Channel6 temperature: 60
+Channel7 temperature: 60
+Number of buffers per channel = 0xa
+Global trigger mask value = 0x40000000
+GPO enable mask = 0x40000000
+Freeing previously allocated readout buffer
+Allocated buffer size (bytes) = 295216
+End of BOR
+Started run 714
+EOR
+Channel0 temperature: 72
+Channel1 temperature: 72
+Channel2 temperature: 70
+Channel3 temperature: 70
+Channel4 temperature: 64
+Channel5 temperature: 64
+Channel6 temperature: 60
+Channel7 temperature: 60
+Run stopped
+Initializing digitizer for running
+Check values on DT5730S: 
+Acquisition control settings = 0x0
+Trigger counting mode = 0x0
+Record length: 300
+Post-trigger size: 0
+Channel0 DC offset: 5000
+Channel1 DC offset: 5000
+Channel2 DC offset: 5000
+Channel3 DC offset: 5000
+Channel4 DC offset: 5000
+Channel5 DC offset: 5000
+Channel6 DC offset: 5000
+Channel7 DC offset: 5000
+Channel0 temperature: 72
+Channel1 temperature: 72
+Channel2 temperature: 70
+Channel3 temperature: 70
+Channel4 temperature: 64
+Channel5 temperature: 64
+Channel6 temperature: 60
+Channel7 temperature: 60
+Number of buffers per channel = 0xa
+Global trigger mask value = 0x40000000
+GPO enable mask = 0x40000000
+Freeing previously allocated readout buffer
+Allocated buffer size (bytes) = 295216
+End of BOR
+Started run 715
+EOR
+Channel0 temperature: 73
+Channel1 temperature: 73
+Channel2 temperature: 70
+Channel3 temperature: 70
+Channel4 temperature: 65
+Channel5 temperature: 65
+Channel6 temperature: 60
+Channel7 temperature: 60
+Run stopped
+Initializing digitizer for running
+Check values on DT5730S: 
+Acquisition control settings = 0x0
+Trigger counting mode = 0x0
+Record length: 300
+Post-trigger size: 0
+Channel0 DC offset: 5000
+Channel1 DC offset: 5000
+Channel2 DC offset: 5000
+Channel3 DC offset: 5000
+Channel4 DC offset: 5000
+Channel5 DC offset: 5000
+Channel6 DC offset: 5000
+Channel7 DC offset: 5000
+Channel0 temperature: 72
+Channel1 temperature: 72
+Channel2 temperature: 70
+Channel3 temperature: 70
+Channel4 temperature: 65
+Channel5 temperature: 65
+Channel6 temperature: 60
+Channel7 temperature: 60
+Number of buffers per channel = 0xa
+Global trigger mask value = 0x40000000
+GPO enable mask = 0x40000000
+Freeing previously allocated readout buffer
+Allocated buffer size (bytes) = 295216
+End of BOR
+Started run 716
+EOR
+Channel0 temperature: 72
+Channel1 temperature: 72
+Channel2 temperature: 70
+Channel3 temperature: 70
+Channel4 temperature: 65
+Channel5 temperature: 65
+Channel6 temperature: 60
+Channel7 temperature: 60
+Run stopped
+Initializing digitizer for running
+Check values on DT5730S: 
+Acquisition control settings = 0x0
+Trigger counting mode = 0x0
+Record length: 300
+Post-trigger size: 0
+Channel0 DC offset: 5000
+Channel1 DC offset: 5000
+Channel2 DC offset: 5000
+Channel3 DC offset: 5000
+Channel4 DC offset: 5000
+Channel5 DC offset: 5000
+Channel6 DC offset: 5000
+Channel7 DC offset: 5000
+Channel0 temperature: 72
+Channel1 temperature: 72
+Channel2 temperature: 70
+Channel3 temperature: 70
+Channel4 temperature: 64
+Channel5 temperature: 64
+Channel6 temperature: 60
+Channel7 temperature: 60
+Number of buffers per channel = 0xa
+Global trigger mask value = 0x40000000
+GPO enable mask = 0x40000000
+Freeing previously allocated readout buffer
+Allocated buffer size (bytes) = 295216
+End of BOR
+Started run 717
+EOR
+Channel0 temperature: 73
+Channel1 temperature: 73
+Channel2 temperature: 70
+Channel3 temperature: 70
+Channel4 temperature: 65
+Channel5 temperature: 65
+Channel6 temperature: 60
+Channel7 temperature: 60
+Run stopped
+Initializing digitizer for running
+Check values on DT5730S: 
+Acquisition control settings = 0x0
+Trigger counting mode = 0x0
+Record length: 300
+Post-trigger size: 0
+Channel0 DC offset: 5000
+Channel1 DC offset: 5000
+Channel2 DC offset: 5000
+Channel3 DC offset: 5000
+Channel4 DC offset: 5000
+Channel5 DC offset: 5000
+Channel6 DC offset: 5000
+Channel7 DC offset: 5000
+Channel0 temperature: 73
+Channel1 temperature: 73
+Channel2 temperature: 71
+Channel3 temperature: 71
+Channel4 temperature: 65
+Channel5 temperature: 65
+Channel6 temperature: 60
+Channel7 temperature: 60
+Number of buffers per channel = 0xa
+Global trigger mask value = 0x40000000
+GPO enable mask = 0x40000000
+Freeing previously allocated readout buffer
+Allocated buffer size (bytes) = 295216
+End of BOR
+Started run 718
+EOR
+Channel0 temperature: 73
+Channel1 temperature: 73
+Channel2 temperature: 71
+Channel3 temperature: 71
+Channel4 temperature: 66
+Channel5 temperature: 66
+Channel6 temperature: 61
+Channel7 temperature: 61
+Run stopped
+Initializing digitizer for running
+Check values on DT5730S: 
+Acquisition control settings = 0x0
+Trigger counting mode = 0x0
+Record length: 300
+Post-trigger size: 0
+Channel0 DC offset: 5000
+Channel1 DC offset: 5000
+Channel2 DC offset: 5000
+Channel3 DC offset: 5000
+Channel4 DC offset: 5000
+Channel5 DC offset: 5000
+Channel6 DC offset: 5000
+Channel7 DC offset: 5000
+Channel0 temperature: 73
+Channel1 temperature: 73
+Channel2 temperature: 71
+Channel3 temperature: 71
+Channel4 temperature: 65
+Channel5 temperature: 65
+Channel6 temperature: 61
+Channel7 temperature: 61
+Number of buffers per channel = 0xa
+Global trigger mask value = 0x40000000
+GPO enable mask = 0x40000000
+Freeing previously allocated readout buffer
+Allocated buffer size (bytes) = 295216
+End of BOR
+Started run 719
+EOR
+Channel0 temperature: 71
+Channel1 temperature: 71
+Channel2 temperature: 69
+Channel3 temperature: 69
+Channel4 temperature: 63
+Channel5 temperature: 63
+Channel6 temperature: 59
+Channel7 temperature: 59
+Run stopped
+Initializing digitizer for running
+Check values on DT5730S: 
+Acquisition control settings = 0x0
+Trigger counting mode = 0x0
+Record length: 300
+Post-trigger size: 0
+Channel0 DC offset: 5000
+Channel1 DC offset: 5000
+Channel2 DC offset: 5000
+Channel3 DC offset: 5000
+Channel4 DC offset: 5000
+Channel5 DC offset: 5000
+Channel6 DC offset: 5000
+Channel7 DC offset: 5000
+Channel0 temperature: 72
+Channel1 temperature: 72
+Channel2 temperature: 70
+Channel3 temperature: 70
+Channel4 temperature: 65
+Channel5 temperature: 65
+Channel6 temperature: 60
+Channel7 temperature: 60
+Number of buffers per channel = 0xa
+Global trigger mask value = 0x40000000
+GPO enable mask = 0x40000000
+Freeing previously allocated readout buffer
+Allocated buffer size (bytes) = 295216
+End of BOR
+Started run 720
+EOR
+Channel0 temperature: 72
+Channel1 temperature: 72
+Channel2 temperature: 69
+Channel3 temperature: 69
+Channel4 temperature: 64
+Channel5 temperature: 64
+Channel6 temperature: 59
+Channel7 temperature: 59
+Run stopped
+Initializing digitizer for running
+Check values on DT5730S: 
+Acquisition control settings = 0x0
+Trigger counting mode = 0x0
+Record length: 300
+Post-trigger size: 0
+Channel0 DC offset: 5000
+Channel1 DC offset: 5000
+Channel2 DC offset: 5000
+Channel3 DC offset: 5000
+Channel4 DC offset: 5000
+Channel5 DC offset: 5000
+Channel6 DC offset: 5000
+Channel7 DC offset: 5000
+Channel0 temperature: 72
+Channel1 temperature: 72
+Channel2 temperature: 70
+Channel3 temperature: 70
+Channel4 temperature: 64
+Channel5 temperature: 64
+Channel6 temperature: 60
+Channel7 temperature: 60
+Number of buffers per channel = 0xa
+Global trigger mask value = 0x40000000
+GPO enable mask = 0x40000000
+Freeing previously allocated readout buffer
+Allocated buffer size (bytes) = 295216
+End of BOR
+Started run 721
+EOR
+Channel0 temperature: 73
+Channel1 temperature: 73
+Channel2 temperature: 70
+Channel3 temperature: 70
+Channel4 temperature: 65
+Channel5 temperature: 65
+Channel6 temperature: 60
+Channel7 temperature: 60
+Run stopped
+Initializing digitizer for running
+Check values on DT5730S: 
+Acquisition control settings = 0x0
+Trigger counting mode = 0x0
+Record length: 300
+Post-trigger size: 0
+Channel0 DC offset: 5000
+Channel1 DC offset: 5000
+Channel2 DC offset: 5000
+Channel3 DC offset: 5000
+Channel4 DC offset: 5000
+Channel5 DC offset: 5000
+Channel6 DC offset: 5000
+Channel7 DC offset: 5000
+Channel0 temperature: 73
+Channel1 temperature: 73
+Channel2 temperature: 71
+Channel3 temperature: 71
+Channel4 temperature: 65
+Channel5 temperature: 65
+Channel6 temperature: 60
+Channel7 temperature: 60
+Number of buffers per channel = 0xa
+Global trigger mask value = 0x40000000
+GPO enable mask = 0x40000000
+Freeing previously allocated readout buffer
+Allocated buffer size (bytes) = 295216
+End of BOR
+Started run 722
+EOR
+Channel0 temperature: 73
+Channel1 temperature: 73
+Channel2 temperature: 71
+Channel3 temperature: 71
+Channel4 temperature: 65
+Channel5 temperature: 65
+Channel6 temperature: 60
+Channel7 temperature: 60
+Run stopped
+Initializing digitizer for running
+Check values on DT5730S: 
+Acquisition control settings = 0x0
+Trigger counting mode = 0x0
+Record length: 300
+Post-trigger size: 0
+Channel0 DC offset: 5000
+Channel1 DC offset: 5000
+Channel2 DC offset: 5000
+Channel3 DC offset: 5000
+Channel4 DC offset: 5000
+Channel5 DC offset: 5000
+Channel6 DC offset: 5000
+Channel7 DC offset: 5000
+Channel0 temperature: 73
+Channel1 temperature: 73
+Channel2 temperature: 71
+Channel3 temperature: 71
+Channel4 temperature: 65
+Channel5 temperature: 65
+Channel6 temperature: 61
+Channel7 temperature: 61
+Number of buffers per channel = 0xa
+Global trigger mask value = 0x40000000
+GPO enable mask = 0x40000000
+Freeing previously allocated readout buffer
+Allocated buffer size (bytes) = 295216
+End of BOR
+Started run 723
+EOR
+Channel0 temperature: 73
+Channel1 temperature: 73
+Channel2 temperature: 71
+Channel3 temperature: 71
+Channel4 temperature: 65
+Channel5 temperature: 65
+Channel6 temperature: 61
+Channel7 temperature: 61
+Run stopped
+Initializing digitizer for running
+Check values on DT5730S: 
+Acquisition control settings = 0x0
+Trigger counting mode = 0x0
+Record length: 300
+Post-trigger size: 0
+Channel0 DC offset: 5000
+Channel1 DC offset: 5000
+Channel2 DC offset: 5000
+Channel3 DC offset: 5000
+Channel4 DC offset: 5000
+Channel5 DC offset: 5000
+Channel6 DC offset: 5000
+Channel7 DC offset: 5000
+Channel0 temperature: 73
+Channel1 temperature: 73
+Channel2 temperature: 71
+Channel3 temperature: 71
+Channel4 temperature: 65
+Channel5 temperature: 65
+Channel6 temperature: 61
+Channel7 temperature: 61
+Number of buffers per channel = 0xa
+Global trigger mask value = 0x40000000
+GPO enable mask = 0x40000000
+Freeing previously allocated readout buffer
+Allocated buffer size (bytes) = 295216
+End of BOR
+Started run 724
+EOR
+Channel0 temperature: 73
+Channel1 temperature: 73
+Channel2 temperature: 71
+Channel3 temperature: 71
+Channel4 temperature: 66
+Channel5 temperature: 66
+Channel6 temperature: 61
+Channel7 temperature: 61
+Run stopped
+Initializing digitizer for running
+Check values on DT5730S: 
+Acquisition control settings = 0x0
+Trigger counting mode = 0x0
+Record length: 300
+Post-trigger size: 0
+Channel0 DC offset: 5000
+Channel1 DC offset: 5000
+Channel2 DC offset: 5000
+Channel3 DC offset: 5000
+Channel4 DC offset: 5000
+Channel5 DC offset: 5000
+Channel6 DC offset: 5000
+Channel7 DC offset: 5000
+Channel0 temperature: 73
+Channel1 temperature: 73
+Channel2 temperature: 71
+Channel3 temperature: 71
+Channel4 temperature: 66
+Channel5 temperature: 66
+Channel6 temperature: 61
+Channel7 temperature: 61
+Number of buffers per channel = 0xa
+Global trigger mask value = 0x40000000
+GPO enable mask = 0x40000000
+Freeing previously allocated readout buffer
+Allocated buffer size (bytes) = 295216
+End of BOR
+Started run 725
+EOR
+Channel0 temperature: 73
+Channel1 temperature: 73
+Channel2 temperature: 71
+Channel3 temperature: 71
+Channel4 temperature: 66
+Channel5 temperature: 66
+Channel6 temperature: 61
+Channel7 temperature: 61
+Run stopped
+Initializing digitizer for running
+Check values on DT5730S: 
+Acquisition control settings = 0x0
+Trigger counting mode = 0x0
+Record length: 300
+Post-trigger size: 0
+Channel0 DC offset: 5000
+Channel1 DC offset: 5000
+Channel2 DC offset: 5000
+Channel3 DC offset: 5000
+Channel4 DC offset: 5000
+Channel5 DC offset: 5000
+Channel6 DC offset: 5000
+Channel7 DC offset: 5000
+Channel0 temperature: 73
+Channel1 temperature: 73
+Channel2 temperature: 71
+Channel3 temperature: 71
+Channel4 temperature: 65
+Channel5 temperature: 65
+Channel6 temperature: 61
+Channel7 temperature: 61
+Number of buffers per channel = 0xa
+Global trigger mask value = 0x40000000
+GPO enable mask = 0x40000000
+Freeing previously allocated readout buffer
+Allocated buffer size (bytes) = 295216
+End of BOR
+Started run 726
+EOR
+Channel0 temperature: 73
+Channel1 temperature: 73
+Channel2 temperature: 71
+Channel3 temperature: 71
+Channel4 temperature: 65
+Channel5 temperature: 65
+Channel6 temperature: 60
+Channel7 temperature: 60
+Run stopped
+Initializing digitizer for running
+Check values on DT5730S: 
+Acquisition control settings = 0x0
+Trigger counting mode = 0x0
+Record length: 300
+Post-trigger size: 0
+Channel0 DC offset: 5000
+Channel1 DC offset: 5000
+Channel2 DC offset: 5000
+Channel3 DC offset: 5000
+Channel4 DC offset: 5000
+Channel5 DC offset: 5000
+Channel6 DC offset: 5000
+Channel7 DC offset: 5000
+Channel0 temperature: 72
+Channel1 temperature: 72
+Channel2 temperature: 70
+Channel3 temperature: 70
+Channel4 temperature: 65
+Channel5 temperature: 65
+Channel6 temperature: 60
+Channel7 temperature: 60
+Number of buffers per channel = 0xa
+Global trigger mask value = 0x40000000
+GPO enable mask = 0x40000000
+Freeing previously allocated readout buffer
+Allocated buffer size (bytes) = 295216
+End of BOR
+Started run 727
+EOR
+Channel0 temperature: 73
+Channel1 temperature: 73
+Channel2 temperature: 71
+Channel3 temperature: 71
+Channel4 temperature: 65
+Channel5 temperature: 65
+Channel6 temperature: 60
+Channel7 temperature: 60
+Run stopped
+Initializing digitizer for running
+Check values on DT5730S: 
+Acquisition control settings = 0x0
+Trigger counting mode = 0x0
+Record length: 300
+Post-trigger size: 0
+Channel0 DC offset: 5000
+Channel1 DC offset: 5000
+Channel2 DC offset: 5000
+Channel3 DC offset: 5000
+Channel4 DC offset: 5000
+Channel5 DC offset: 5000
+Channel6 DC offset: 5000
+Channel7 DC offset: 5000
+Channel0 temperature: 73
+Channel1 temperature: 73
+Channel2 temperature: 71
+Channel3 temperature: 71
+Channel4 temperature: 65
+Channel5 temperature: 65
+Channel6 temperature: 60
+Channel7 temperature: 60
+Number of buffers per channel = 0xa
+Global trigger mask value = 0x40000000
+GPO enable mask = 0x40000000
+Freeing previously allocated readout buffer
+Allocated buffer size (bytes) = 295216
+End of BOR
+Started run 728
+EOR
+Channel0 temperature: 73
+Channel1 temperature: 73
+Channel2 temperature: 71
+Channel3 temperature: 71
+Channel4 temperature: 65
+Channel5 temperature: 65
+Channel6 temperature: 61
+Channel7 temperature: 61
+Run stopped
+Initializing digitizer for running
+Check values on DT5730S: 
+Acquisition control settings = 0x0
+Trigger counting mode = 0x0
+Record length: 300
+Post-trigger size: 0
+Channel0 DC offset: 5000
+Channel1 DC offset: 5000
+Channel2 DC offset: 5000
+Channel3 DC offset: 5000
+Channel4 DC offset: 5000
+Channel5 DC offset: 5000
+Channel6 DC offset: 5000
+Channel7 DC offset: 5000
+Channel0 temperature: 73
+Channel1 temperature: 73
+Channel2 temperature: 71
+Channel3 temperature: 71
+Channel4 temperature: 65
+Channel5 temperature: 65
+Channel6 temperature: 60
+Channel7 temperature: 60
+Number of buffers per channel = 0xa
+Global trigger mask value = 0x40000000
+GPO enable mask = 0x40000000
+Freeing previously allocated readout buffer
+Allocated buffer size (bytes) = 295216
+End of BOR
+Started run 729
+EOR
+Channel0 temperature: 73
+Channel1 temperature: 73
+Channel2 temperature: 71
+Channel3 temperature: 71
+Channel4 temperature: 65
+Channel5 temperature: 65
+Channel6 temperature: 60
+Channel7 temperature: 60
+Run stopped
+Initializing digitizer for running
+Check values on DT5730S: 
+Acquisition control settings = 0x0
+Trigger counting mode = 0x0
+Record length: 300
+Post-trigger size: 0
+Channel0 DC offset: 5000
+Channel1 DC offset: 5000
+Channel2 DC offset: 5000
+Channel3 DC offset: 5000
+Channel4 DC offset: 5000
+Channel5 DC offset: 5000
+Channel6 DC offset: 5000
+Channel7 DC offset: 5000
+Channel0 temperature: 73
+Channel1 temperature: 73
+Channel2 temperature: 70
+Channel3 temperature: 70
+Channel4 temperature: 65
+Channel5 temperature: 65
+Channel6 temperature: 60
+Channel7 temperature: 60
+Number of buffers per channel = 0xa
+Global trigger mask value = 0x40000000
+GPO enable mask = 0x40000000
+Freeing previously allocated readout buffer
+Allocated buffer size (bytes) = 295216
+End of BOR
+Started run 730
+EOR
+Channel0 temperature: 73
+Channel1 temperature: 73
+Channel2 temperature: 70
+Channel3 temperature: 70
+Channel4 temperature: 65
+Channel5 temperature: 65
+Channel6 temperature: 60
+Channel7 temperature: 60
+Run stopped
+Initializing digitizer for running
+Check values on DT5730S: 
+Acquisition control settings = 0x0
+Trigger counting mode = 0x0
+Record length: 300
+Post-trigger size: 0
+Channel0 DC offset: 5000
+Channel1 DC offset: 5000
+Channel2 DC offset: 5000
+Channel3 DC offset: 5000
+Channel4 DC offset: 5000
+Channel5 DC offset: 5000
+Channel6 DC offset: 5000
+Channel7 DC offset: 5000
+Channel0 temperature: 73
+Channel1 temperature: 73
+Channel2 temperature: 70
+Channel3 temperature: 70
+Channel4 temperature: 65
+Channel5 temperature: 65
+Channel6 temperature: 60
+Channel7 temperature: 60
+Number of buffers per channel = 0xa
+Global trigger mask value = 0x40000000
+GPO enable mask = 0x40000000
+Freeing previously allocated readout buffer
+Allocated buffer size (bytes) = 295216
+End of BOR
+Started run 731
+EOR
+Channel0 temperature: 72
+Channel1 temperature: 72
+Channel2 temperature: 70
+Channel3 temperature: 70
+Channel4 temperature: 64
+Channel5 temperature: 64
+Channel6 temperature: 60
+Channel7 temperature: 60
+Run stopped
+Initializing digitizer for running
+Check values on DT5730S: 
+Acquisition control settings = 0x0
+Trigger counting mode = 0x0
+Record length: 300
+Post-trigger size: 0
+Channel0 DC offset: 5000
+Channel1 DC offset: 5000
+Channel2 DC offset: 5000
+Channel3 DC offset: 5000
+Channel4 DC offset: 5000
+Channel5 DC offset: 5000
+Channel6 DC offset: 5000
+Channel7 DC offset: 5000
+Channel0 temperature: 72
+Channel1 temperature: 72
+Channel2 temperature: 70
+Channel3 temperature: 70
+Channel4 temperature: 65
+Channel5 temperature: 65
+Channel6 temperature: 60
+Channel7 temperature: 60
+Number of buffers per channel = 0xa
+Global trigger mask value = 0x40000000
+GPO enable mask = 0x40000000
+Freeing previously allocated readout buffer
+Allocated buffer size (bytes) = 295216
+End of BOR
+Started run 732
+EOR
+Channel0 temperature: 73
+Channel1 temperature: 73
+Channel2 temperature: 70
+Channel3 temperature: 70
+Channel4 temperature: 65
+Channel5 temperature: 65
+Channel6 temperature: 60
+Channel7 temperature: 60
+Run stopped
+Initializing digitizer for running
+Check values on DT5730S: 
+Acquisition control settings = 0x0
+Trigger counting mode = 0x0
+Record length: 300
+Post-trigger size: 0
+Channel0 DC offset: 5000
+Channel1 DC offset: 5000
+Channel2 DC offset: 5000
+Channel3 DC offset: 5000
+Channel4 DC offset: 5000
+Channel5 DC offset: 5000
+Channel6 DC offset: 5000
+Channel7 DC offset: 5000
+Channel0 temperature: 73
+Channel1 temperature: 73
+Channel2 temperature: 70
+Channel3 temperature: 70
+Channel4 temperature: 65
+Channel5 temperature: 65
+Channel6 temperature: 60
+Channel7 temperature: 60
+Number of buffers per channel = 0xa
+Global trigger mask value = 0x40000000
+GPO enable mask = 0x40000000
+Freeing previously allocated readout buffer
+Allocated buffer size (bytes) = 295216
+End of BOR
+Started run 733
+EOR
+Channel0 temperature: 73
+Channel1 temperature: 73
+Channel2 temperature: 71
+Channel3 temperature: 71
+Channel4 temperature: 65
+Channel5 temperature: 65
+Channel6 temperature: 60
+Channel7 temperature: 60
+Run stopped
+Initializing digitizer for running
+Check values on DT5730S: 
+Acquisition control settings = 0x0
+Trigger counting mode = 0x0
+Record length: 300
+Post-trigger size: 0
+Channel0 DC offset: 5000
+Channel1 DC offset: 5000
+Channel2 DC offset: 5000
+Channel3 DC offset: 5000
+Channel4 DC offset: 5000
+Channel5 DC offset: 5000
+Channel6 DC offset: 5000
+Channel7 DC offset: 5000
+Channel0 temperature: 73
+Channel1 temperature: 73
+Channel2 temperature: 71
+Channel3 temperature: 71
+Channel4 temperature: 65
+Channel5 temperature: 65
+Channel6 temperature: 60
+Channel7 temperature: 60
+Number of buffers per channel = 0xa
+Global trigger mask value = 0x40000000
+GPO enable mask = 0x40000000
+Freeing previously allocated readout buffer
+Allocated buffer size (bytes) = 295216
+End of BOR
+Started run 734
+EOR
+Channel0 temperature: 72
+Channel1 temperature: 72
+Channel2 temperature: 70
+Channel3 temperature: 70
+Channel4 temperature: 65
+Channel5 temperature: 65
+Channel6 temperature: 60
+Channel7 temperature: 60
+Run stopped
+Initializing digitizer for running
+Check values on DT5730S: 
+Acquisition control settings = 0x0
+Trigger counting mode = 0x0
+Record length: 300
+Post-trigger size: 0
+Channel0 DC offset: 5000
+Channel1 DC offset: 5000
+Channel2 DC offset: 5000
+Channel3 DC offset: 5000
+Channel4 DC offset: 5000
+Channel5 DC offset: 5000
+Channel6 DC offset: 5000
+Channel7 DC offset: 5000
+Channel0 temperature: 72
+Channel1 temperature: 72
+Channel2 temperature: 70
+Channel3 temperature: 70
+Channel4 temperature: 65
+Channel5 temperature: 65
+Channel6 temperature: 60
+Channel7 temperature: 60
+Number of buffers per channel = 0xa
+Global trigger mask value = 0x40000000
+GPO enable mask = 0x40000000
+Freeing previously allocated readout buffer
+Allocated buffer size (bytes) = 295216
+End of BOR
+Started run 735
+EOR
+Channel0 temperature: 72
+Channel1 temperature: 72
+Channel2 temperature: 70
+Channel3 temperature: 70
+Channel4 temperature: 65
+Channel5 temperature: 65
+Channel6 temperature: 60
+Channel7 temperature: 60
+Run stopped
+Initializing digitizer for running
+Check values on DT5730S: 
+Acquisition control settings = 0x0
+Trigger counting mode = 0x0
+Record length: 300
+Post-trigger size: 0
+Channel0 DC offset: 5000
+Channel1 DC offset: 5000
+Channel2 DC offset: 5000
+Channel3 DC offset: 5000
+Channel4 DC offset: 5000
+Channel5 DC offset: 5000
+Channel6 DC offset: 5000
+Channel7 DC offset: 5000
+Channel0 temperature: 72
+Channel1 temperature: 72
+Channel2 temperature: 70
+Channel3 temperature: 70
+Channel4 temperature: 65
+Channel5 temperature: 65
+Channel6 temperature: 60
+Channel7 temperature: 60
+Number of buffers per channel = 0xa
+Global trigger mask value = 0x40000000
+GPO enable mask = 0x40000000
+Freeing previously allocated readout buffer
+Allocated buffer size (bytes) = 295216
+End of BOR
+Started run 736
+EOR
+Channel0 temperature: 72
+Channel1 temperature: 72
+Channel2 temperature: 70
+Channel3 temperature: 70
+Channel4 temperature: 64
+Channel5 temperature: 64
+Channel6 temperature: 59
+Channel7 temperature: 59
+Run stopped
+Initializing digitizer for running
+Check values on DT5730S: 
+Acquisition control settings = 0x0
+Trigger counting mode = 0x0
+Record length: 300
+Post-trigger size: 0
+Channel0 DC offset: 5000
+Channel1 DC offset: 5000
+Channel2 DC offset: 5000
+Channel3 DC offset: 5000
+Channel4 DC offset: 5000
+Channel5 DC offset: 5000
+Channel6 DC offset: 5000
+Channel7 DC offset: 5000
+Channel0 temperature: 72
+Channel1 temperature: 72
+Channel2 temperature: 69
+Channel3 temperature: 69
+Channel4 temperature: 64
+Channel5 temperature: 64
+Channel6 temperature: 59
+Channel7 temperature: 59
+Number of buffers per channel = 0xa
+Global trigger mask value = 0x40000000
+GPO enable mask = 0x40000000
+Freeing previously allocated readout buffer
+Allocated buffer size (bytes) = 295216
+End of BOR
+Started run 737
+EOR
+Channel0 temperature: 73
+Channel1 temperature: 73
+Channel2 temperature: 70
+Channel3 temperature: 70
+Channel4 temperature: 65
+Channel5 temperature: 65
+Channel6 temperature: 60
+Channel7 temperature: 60
+Run stopped
+Initializing digitizer for running
+Check values on DT5730S: 
+Acquisition control settings = 0x0
+Trigger counting mode = 0x0
+Record length: 300
+Post-trigger size: 0
+Channel0 DC offset: 5000
+Channel1 DC offset: 5000
+Channel2 DC offset: 5000
+Channel3 DC offset: 5000
+Channel4 DC offset: 5000
+Channel5 DC offset: 5000
+Channel6 DC offset: 5000
+Channel7 DC offset: 5000
+Channel0 temperature: 72
+Channel1 temperature: 72
+Channel2 temperature: 70
+Channel3 temperature: 70
+Channel4 temperature: 65
+Channel5 temperature: 65
+Channel6 temperature: 60
+Channel7 temperature: 60
+Number of buffers per channel = 0xa
+Global trigger mask value = 0x40000000
+GPO enable mask = 0x40000000
+Freeing previously allocated readout buffer
+Allocated buffer size (bytes) = 295216
+End of BOR
+Started run 738
+EOR
+Channel0 temperature: 72
+Channel1 temperature: 72
+Channel2 temperature: 70
+Channel3 temperature: 70
+Channel4 temperature: 65
+Channel5 temperature: 65
+Channel6 temperature: 60
+Channel7 temperature: 60
+Run stopped
+Initializing digitizer for running
+Check values on DT5730S: 
+Acquisition control settings = 0x0
+Trigger counting mode = 0x0
+Record length: 300
+Post-trigger size: 0
+Channel0 DC offset: 5000
+Channel1 DC offset: 5000
+Channel2 DC offset: 5000
+Channel3 DC offset: 5000
+Channel4 DC offset: 5000
+Channel5 DC offset: 5000
+Channel6 DC offset: 5000
+Channel7 DC offset: 5000
+Channel0 temperature: 72
+Channel1 temperature: 72
+Channel2 temperature: 70
+Channel3 temperature: 70
+Channel4 temperature: 65
+Channel5 temperature: 65
+Channel6 temperature: 60
+Channel7 temperature: 60
+Number of buffers per channel = 0xa
+Global trigger mask value = 0x40000000
+GPO enable mask = 0x40000000
+Freeing previously allocated readout buffer
+Allocated buffer size (bytes) = 295216
+End of BOR
+Started run 739
+EOR
+Channel0 temperature: 72
+Channel1 temperature: 72
+Channel2 temperature: 70
+Channel3 temperature: 70
+Channel4 temperature: 64
+Channel5 temperature: 64
+Channel6 temperature: 60
+Channel7 temperature: 60
+Run stopped
+Initializing digitizer for running
+Check values on DT5730S: 
+Acquisition control settings = 0x0
+Trigger counting mode = 0x0
+Record length: 300
+Post-trigger size: 0
+Channel0 DC offset: 5000
+Channel1 DC offset: 5000
+Channel2 DC offset: 5000
+Channel3 DC offset: 5000
+Channel4 DC offset: 5000
+Channel5 DC offset: 5000
+Channel6 DC offset: 5000
+Channel7 DC offset: 5000
+Channel0 temperature: 72
+Channel1 temperature: 72
+Channel2 temperature: 70
+Channel3 temperature: 70
+Channel4 temperature: 65
+Channel5 temperature: 65
+Channel6 temperature: 60
+Channel7 temperature: 60
+Number of buffers per channel = 0xa
+Global trigger mask value = 0x40000000
+GPO enable mask = 0x40000000
+Freeing previously allocated readout buffer
+Allocated buffer size (bytes) = 295216
+End of BOR
+Started run 740
+EOR
+Channel0 temperature: 72
+Channel1 temperature: 72
+Channel2 temperature: 70
+Channel3 temperature: 70
+Channel4 temperature: 64
+Channel5 temperature: 64
+Channel6 temperature: 60
+Channel7 temperature: 60
+Run stopped
+Initializing digitizer for running
+Check values on DT5730S: 
+Acquisition control settings = 0x0
+Trigger counting mode = 0x0
+Record length: 300
+Post-trigger size: 0
+Channel0 DC offset: 5000
+Channel1 DC offset: 5000
+Channel2 DC offset: 5000
+Channel3 DC offset: 5000
+Channel4 DC offset: 5000
+Channel5 DC offset: 5000
+Channel6 DC offset: 5000
+Channel7 DC offset: 5000
+Channel0 temperature: 72
+Channel1 temperature: 72
+Channel2 temperature: 70
+Channel3 temperature: 70
+Channel4 temperature: 64
+Channel5 temperature: 64
+Channel6 temperature: 60
+Channel7 temperature: 60
+Number of buffers per channel = 0xa
+Global trigger mask value = 0x40000000
+GPO enable mask = 0x40000000
+Freeing previously allocated readout buffer
+Allocated buffer size (bytes) = 295216
+End of BOR
+Started run 741
+EOR
+Channel0 temperature: 73
+Channel1 temperature: 73
+Channel2 temperature: 71
+Channel3 temperature: 71
+Channel4 temperature: 66
+Channel5 temperature: 66
+Channel6 temperature: 61
+Channel7 temperature: 61
+Run stopped
+Initializing digitizer for running
+Check values on DT5730S: 
+Acquisition control settings = 0x0
+Trigger counting mode = 0x0
+Record length: 300
+Post-trigger size: 0
+Channel0 DC offset: 5000
+Channel1 DC offset: 5000
+Channel2 DC offset: 5000
+Channel3 DC offset: 5000
+Channel4 DC offset: 5000
+Channel5 DC offset: 5000
+Channel6 DC offset: 5000
+Channel7 DC offset: 5000
+Channel0 temperature: 73
+Channel1 temperature: 73
+Channel2 temperature: 71
+Channel3 temperature: 71
+Channel4 temperature: 65
+Channel5 temperature: 65
+Channel6 temperature: 60
+Channel7 temperature: 60
+Number of buffers per channel = 0xa
+Global trigger mask value = 0x40000000
+GPO enable mask = 0x40000000
+Freeing previously allocated readout buffer
+Allocated buffer size (bytes) = 295216
+End of BOR
+Started run 742
+EOR
+Channel0 temperature: 73
+Channel1 temperature: 73
+Channel2 temperature: 71
+Channel3 temperature: 71
+Channel4 temperature: 66
+Channel5 temperature: 66
+Channel6 temperature: 61
+Channel7 temperature: 61
+Run stopped
+Initializing digitizer for running
+Check values on DT5730S: 
+Acquisition control settings = 0x0
+Trigger counting mode = 0x0
+Record length: 300
+Post-trigger size: 0
+Channel0 DC offset: 5000
+Channel1 DC offset: 5000
+Channel2 DC offset: 5000
+Channel3 DC offset: 5000
+Channel4 DC offset: 5000
+Channel5 DC offset: 5000
+Channel6 DC offset: 5000
+Channel7 DC offset: 5000
+Channel0 temperature: 73
+Channel1 temperature: 73
+Channel2 temperature: 71
+Channel3 temperature: 71
+Channel4 temperature: 66
+Channel5 temperature: 66
+Channel6 temperature: 61
+Channel7 temperature: 61
+Number of buffers per channel = 0xa
+Global trigger mask value = 0x40000000
+GPO enable mask = 0x40000000
+Freeing previously allocated readout buffer
+Allocated buffer size (bytes) = 295216
+End of BOR
+Started run 743
+EOR
+Channel0 temperature: 73
+Channel1 temperature: 73
+Channel2 temperature: 71
+Channel3 temperature: 71
+Channel4 temperature: 65
+Channel5 temperature: 65
+Channel6 temperature: 61
+Channel7 temperature: 61
+Run stopped
+Initializing digitizer for running
+Check values on DT5730S: 
+Acquisition control settings = 0x0
+Trigger counting mode = 0x0
+Record length: 300
+Post-trigger size: 0
+Channel0 DC offset: 5000
+Channel1 DC offset: 5000
+Channel2 DC offset: 5000
+Channel3 DC offset: 5000
+Channel4 DC offset: 5000
+Channel5 DC offset: 5000
+Channel6 DC offset: 5000
+Channel7 DC offset: 5000
+Channel0 temperature: 73
+Channel1 temperature: 73
+Channel2 temperature: 71
+Channel3 temperature: 71
+Channel4 temperature: 66
+Channel5 temperature: 66
+Channel6 temperature: 61
+Channel7 temperature: 61
+Number of buffers per channel = 0xa
+Global trigger mask value = 0x40000000
+GPO enable mask = 0x40000000
+Freeing previously allocated readout buffer
+Allocated buffer size (bytes) = 295216
+End of BOR
+Started run 744
+EOR
+Channel0 temperature: 73
+Channel1 temperature: 73
+Channel2 temperature: 71
+Channel3 temperature: 71
+Channel4 temperature: 66
+Channel5 temperature: 66
+Channel6 temperature: 61
+Channel7 temperature: 61
+Run stopped
+Initializing digitizer for running
+Check values on DT5730S: 
+Acquisition control settings = 0x0
+Trigger counting mode = 0x0
+Record length: 300
+Post-trigger size: 0
+Channel0 DC offset: 5000
+Channel1 DC offset: 5000
+Channel2 DC offset: 5000
+Channel3 DC offset: 5000
+Channel4 DC offset: 5000
+Channel5 DC offset: 5000
+Channel6 DC offset: 5000
+Channel7 DC offset: 5000
+Channel0 temperature: 73
+Channel1 temperature: 73
+Channel2 temperature: 71
+Channel3 temperature: 71
+Channel4 temperature: 66
+Channel5 temperature: 66
+Channel6 temperature: 61
+Channel7 temperature: 61
+Number of buffers per channel = 0xa
+Global trigger mask value = 0x40000000
+GPO enable mask = 0x40000000
+Freeing previously allocated readout buffer
+Allocated buffer size (bytes) = 295216
+End of BOR
+Started run 745
+EOR
+Channel0 temperature: 73
+Channel1 temperature: 73
+Channel2 temperature: 71
+Channel3 temperature: 71
+Channel4 temperature: 65
+Channel5 temperature: 65
+Channel6 temperature: 61
+Channel7 temperature: 61
+Run stopped
+Initializing digitizer for running
+Check values on DT5730S: 
+Acquisition control settings = 0x0
+Trigger counting mode = 0x0
+Record length: 300
+Post-trigger size: 0
+Channel0 DC offset: 5000
+Channel1 DC offset: 5000
+Channel2 DC offset: 5000
+Channel3 DC offset: 5000
+Channel4 DC offset: 5000
+Channel5 DC offset: 5000
+Channel6 DC offset: 5000
+Channel7 DC offset: 5000
+Channel0 temperature: 73
+Channel1 temperature: 73
+Channel2 temperature: 71
+Channel3 temperature: 71
+Channel4 temperature: 65
+Channel5 temperature: 65
+Channel6 temperature: 61
+Channel7 temperature: 61
+Number of buffers per channel = 0xa
+Global trigger mask value = 0x40000000
+GPO enable mask = 0x40000000
+Freeing previously allocated readout buffer
+Allocated buffer size (bytes) = 295216
+End of BOR
+Started run 746
+EOR
+Channel0 temperature: 72
+Channel1 temperature: 72
+Channel2 temperature: 70
+Channel3 temperature: 70
+Channel4 temperature: 64
+Channel5 temperature: 64
+Channel6 temperature: 59
+Channel7 temperature: 59
+Run stopped
+Initializing digitizer for running
+Check values on DT5730S: 
+Acquisition control settings = 0x0
+Trigger counting mode = 0x0
+Record length: 300
+Post-trigger size: 0
+Channel0 DC offset: 5000
+Channel1 DC offset: 5000
+Channel2 DC offset: 5000
+Channel3 DC offset: 5000
+Channel4 DC offset: 5000
+Channel5 DC offset: 5000
+Channel6 DC offset: 5000
+Channel7 DC offset: 5000
+Channel0 temperature: 72
+Channel1 temperature: 72
+Channel2 temperature: 70
+Channel3 temperature: 70
+Channel4 temperature: 64
+Channel5 temperature: 64
+Channel6 temperature: 59
+Channel7 temperature: 59
+Number of buffers per channel = 0xa
+Global trigger mask value = 0x40000000
+GPO enable mask = 0x40000000
+Freeing previously allocated readout buffer
+Allocated buffer size (bytes) = 295216
+End of BOR
+Started run 747
+EOR
+Channel0 temperature: 73
+Channel1 temperature: 73
+Channel2 temperature: 71
+Channel3 temperature: 71
+Channel4 temperature: 65
+Channel5 temperature: 65
+Channel6 temperature: 61
+Channel7 temperature: 61
+Run stopped
+Initializing digitizer for running
+Check values on DT5730S: 
+Acquisition control settings = 0x0
+Trigger counting mode = 0x0
+Record length: 300
+Post-trigger size: 0
+Channel0 DC offset: 5000
+Channel1 DC offset: 5000
+Channel2 DC offset: 5000
+Channel3 DC offset: 5000
+Channel4 DC offset: 5000
+Channel5 DC offset: 5000
+Channel6 DC offset: 5000
+Channel7 DC offset: 5000
+Channel0 temperature: 73
+Channel1 temperature: 73
+Channel2 temperature: 71
+Channel3 temperature: 71
+Channel4 temperature: 65
+Channel5 temperature: 65
+Channel6 temperature: 61
+Channel7 temperature: 61
+Number of buffers per channel = 0xa
+Global trigger mask value = 0x40000000
+GPO enable mask = 0x40000000
+Freeing previously allocated readout buffer
+Allocated buffer size (bytes) = 295216
+End of BOR
+Started run 748
+EOR
+Channel0 temperature: 73
+Channel1 temperature: 73
+Channel2 temperature: 71
+Channel3 temperature: 71
+Channel4 temperature: 65
+Channel5 temperature: 65
+Channel6 temperature: 61
+Channel7 temperature: 61
+Run stopped
+Initializing digitizer for running
+Check values on DT5730S: 
+Acquisition control settings = 0x0
+Trigger counting mode = 0x0
+Record length: 300
+Post-trigger size: 0
+Channel0 DC offset: 5000
+Channel1 DC offset: 5000
+Channel2 DC offset: 5000
+Channel3 DC offset: 5000
+Channel4 DC offset: 5000
+Channel5 DC offset: 5000
+Channel6 DC offset: 5000
+Channel7 DC offset: 5000
+Channel0 temperature: 73
+Channel1 temperature: 73
+Channel2 temperature: 71
+Channel3 temperature: 71
+Channel4 temperature: 65
+Channel5 temperature: 65
+Channel6 temperature: 60
+Channel7 temperature: 60
+Number of buffers per channel = 0xa
+Global trigger mask value = 0x40000000
+GPO enable mask = 0x40000000
+Freeing previously allocated readout buffer
+Allocated buffer size (bytes) = 295216
+End of BOR
+Started run 749
+EOR
+Channel0 temperature: 72
+Channel1 temperature: 72
+Channel2 temperature: 70
+Channel3 temperature: 70
+Channel4 temperature: 65
+Channel5 temperature: 65
+Channel6 temperature: 60
+Channel7 temperature: 60
+Run stopped
+Initializing digitizer for running
+Check values on DT5730S: 
+Acquisition control settings = 0x0
+Trigger counting mode = 0x0
+Record length: 300
+Post-trigger size: 0
+Channel0 DC offset: 5000
+Channel1 DC offset: 5000
+Channel2 DC offset: 5000
+Channel3 DC offset: 5000
+Channel4 DC offset: 5000
+Channel5 DC offset: 5000
+Channel6 DC offset: 5000
+Channel7 DC offset: 5000
+Channel0 temperature: 73
+Channel1 temperature: 73
+Channel2 temperature: 71
+Channel3 temperature: 71
+Channel4 temperature: 65
+Channel5 temperature: 65
+Channel6 temperature: 61
+Channel7 temperature: 61
+Number of buffers per channel = 0xa
+Global trigger mask value = 0x40000000
+GPO enable mask = 0x40000000
+Freeing previously allocated readout buffer
+Allocated buffer size (bytes) = 295216
+End of BOR
+Started run 750
+EOR
+Channel0 temperature: 72
+Channel1 temperature: 72
+Channel2 temperature: 70
+Channel3 temperature: 70
+Channel4 temperature: 65
+Channel5 temperature: 65
+Channel6 temperature: 60
+Channel7 temperature: 60
+Run stopped
+Initializing digitizer for running
+Check values on DT5730S: 
+Acquisition control settings = 0x0
+Trigger counting mode = 0x0
+Record length: 300
+Post-trigger size: 0
+Channel0 DC offset: 5000
+Channel1 DC offset: 5000
+Channel2 DC offset: 5000
+Channel3 DC offset: 5000
+Channel4 DC offset: 5000
+Channel5 DC offset: 5000
+Channel6 DC offset: 5000
+Channel7 DC offset: 5000
+Channel0 temperature: 72
+Channel1 temperature: 72
+Channel2 temperature: 70
+Channel3 temperature: 70
+Channel4 temperature: 65
+Channel5 temperature: 65
+Channel6 temperature: 60
+Channel7 temperature: 60
+Number of buffers per channel = 0xa
+Global trigger mask value = 0x40000000
+GPO enable mask = 0x40000000
+Freeing previously allocated readout buffer
+Allocated buffer size (bytes) = 295216
+End of BOR
+Started run 751
+EOR
+Channel0 temperature: 72
+Channel1 temperature: 72
+Channel2 temperature: 70
+Channel3 temperature: 70
+Channel4 temperature: 64
+Channel5 temperature: 64
+Channel6 temperature: 60
+Channel7 temperature: 60
+Run stopped
+Initializing digitizer for running
+Check values on DT5730S: 
+Acquisition control settings = 0x0
+Trigger counting mode = 0x0
+Record length: 300
+Post-trigger size: 0
+Channel0 DC offset: 5000
+Channel1 DC offset: 5000
+Channel2 DC offset: 5000
+Channel3 DC offset: 5000
+Channel4 DC offset: 5000
+Channel5 DC offset: 5000
+Channel6 DC offset: 5000
+Channel7 DC offset: 5000
+Channel0 temperature: 72
+Channel1 temperature: 72
+Channel2 temperature: 70
+Channel3 temperature: 70
+Channel4 temperature: 64
+Channel5 temperature: 64
+Channel6 temperature: 60
+Channel7 temperature: 60
+Number of buffers per channel = 0xa
+Global trigger mask value = 0x40000000
+GPO enable mask = 0x40000000
+Freeing previously allocated readout buffer
+Allocated buffer size (bytes) = 295216
+End of BOR
+Started run 752
+EOR
+Channel0 temperature: 72
+Channel1 temperature: 72
+Channel2 temperature: 70
+Channel3 temperature: 70
+Channel4 temperature: 65
+Channel5 temperature: 65
+Channel6 temperature: 60
+Channel7 temperature: 60
+Run stopped
+Initializing digitizer for running
+Check values on DT5730S: 
+Acquisition control settings = 0x0
+Trigger counting mode = 0x0
+Record length: 300
+Post-trigger size: 0
+Channel0 DC offset: 5000
+Channel1 DC offset: 5000
+Channel2 DC offset: 5000
+Channel3 DC offset: 5000
+Channel4 DC offset: 5000
+Channel5 DC offset: 5000
+Channel6 DC offset: 5000
+Channel7 DC offset: 5000
+Channel0 temperature: 72
+Channel1 temperature: 72
+Channel2 temperature: 70
+Channel3 temperature: 70
+Channel4 temperature: 65
+Channel5 temperature: 65
+Channel6 temperature: 60
+Channel7 temperature: 60
+Number of buffers per channel = 0xa
+Global trigger mask value = 0x40000000
+GPO enable mask = 0x40000000
+Freeing previously allocated readout buffer
+Allocated buffer size (bytes) = 295216
+End of BOR
+Started run 753
+EOR
+Channel0 temperature: 73
+Channel1 temperature: 73
+Channel2 temperature: 70
+Channel3 temperature: 70
+Channel4 temperature: 65
+Channel5 temperature: 65
+Channel6 temperature: 60
+Channel7 temperature: 60
+Run stopped
+Initializing digitizer for running
+Check values on DT5730S: 
+Acquisition control settings = 0x0
+Trigger counting mode = 0x0
+Record length: 300
+Post-trigger size: 0
+Channel0 DC offset: 5000
+Channel1 DC offset: 5000
+Channel2 DC offset: 5000
+Channel3 DC offset: 5000
+Channel4 DC offset: 5000
+Channel5 DC offset: 5000
+Channel6 DC offset: 5000
+Channel7 DC offset: 5000
+Channel0 temperature: 73
+Channel1 temperature: 73
+Channel2 temperature: 71
+Channel3 temperature: 71
+Channel4 temperature: 65
+Channel5 temperature: 65
+Channel6 temperature: 61
+Channel7 temperature: 61
+Number of buffers per channel = 0xa
+Global trigger mask value = 0x40000000
+GPO enable mask = 0x40000000
+Freeing previously allocated readout buffer
+Allocated buffer size (bytes) = 295216
+End of BOR
+Started run 754
+EOR
+Channel0 temperature: 73
+Channel1 temperature: 73
+Channel2 temperature: 71
+Channel3 temperature: 71
+Channel4 temperature: 65
+Channel5 temperature: 65
+Channel6 temperature: 61
+Channel7 temperature: 61
+Run stopped
+Initializing digitizer for running
+Check values on DT5730S: 
+Acquisition control settings = 0x0
+Trigger counting mode = 0x0
+Record length: 300
+Post-trigger size: 0
+Channel0 DC offset: 5000
+Channel1 DC offset: 5000
+Channel2 DC offset: 5000
+Channel3 DC offset: 5000
+Channel4 DC offset: 5000
+Channel5 DC offset: 5000
+Channel6 DC offset: 5000
+Channel7 DC offset: 5000
+Channel0 temperature: 73
+Channel1 temperature: 73
+Channel2 temperature: 71
+Channel3 temperature: 71
+Channel4 temperature: 65
+Channel5 temperature: 65
+Channel6 temperature: 61
+Channel7 temperature: 61
+Number of buffers per channel = 0xa
+Global trigger mask value = 0x40000000
+GPO enable mask = 0x40000000
+Freeing previously allocated readout buffer
+Allocated buffer size (bytes) = 295216
+End of BOR
+Started run 755
+EOR
+Channel0 temperature: 73
+Channel1 temperature: 73
+Channel2 temperature: 71
+Channel3 temperature: 71
+Channel4 temperature: 65
+Channel5 temperature: 65
+Channel6 temperature: 60
+Channel7 temperature: 60
+Run stopped
+Initializing digitizer for running
+Check values on DT5730S: 
+Acquisition control settings = 0x0
+Trigger counting mode = 0x0
+Record length: 300
+Post-trigger size: 0
+Channel0 DC offset: 5000
+Channel1 DC offset: 5000
+Channel2 DC offset: 5000
+Channel3 DC offset: 5000
+Channel4 DC offset: 5000
+Channel5 DC offset: 5000
+Channel6 DC offset: 5000
+Channel7 DC offset: 5000
+Channel0 temperature: 72
+Channel1 temperature: 72
+Channel2 temperature: 70
+Channel3 temperature: 70
+Channel4 temperature: 65
+Channel5 temperature: 65
+Channel6 temperature: 60
+Channel7 temperature: 60
+Number of buffers per channel = 0xa
+Global trigger mask value = 0x40000000
+GPO enable mask = 0x40000000
+Freeing previously allocated readout buffer
+Allocated buffer size (bytes) = 295216
+End of BOR
+Started run 756
+EOR
+Channel0 temperature: 73
+Channel1 temperature: 73
+Channel2 temperature: 71
+Channel3 temperature: 71
+Channel4 temperature: 66
+Channel5 temperature: 66
+Channel6 temperature: 61
+Channel7 temperature: 61
+Run stopped
+Initializing digitizer for running
+Check values on DT5730S: 
+Acquisition control settings = 0x0
+Trigger counting mode = 0x0
+Record length: 300
+Post-trigger size: 0
+Channel0 DC offset: 5000
+Channel1 DC offset: 5000
+Channel2 DC offset: 5000
+Channel3 DC offset: 5000
+Channel4 DC offset: 5000
+Channel5 DC offset: 5000
+Channel6 DC offset: 5000
+Channel7 DC offset: 5000
+Channel0 temperature: 73
+Channel1 temperature: 73
+Channel2 temperature: 71
+Channel3 temperature: 71
+Channel4 temperature: 65
+Channel5 temperature: 65
+Channel6 temperature: 61
+Channel7 temperature: 61
+Number of buffers per channel = 0xa
+Global trigger mask value = 0x40000000
+GPO enable mask = 0x40000000
+Freeing previously allocated readout buffer
+Allocated buffer size (bytes) = 295216
+End of BOR
+Started run 757
+EOR
+Channel0 temperature: 73
+Channel1 temperature: 73
+Channel2 temperature: 71
+Channel3 temperature: 71
+Channel4 temperature: 65
+Channel5 temperature: 65
+Channel6 temperature: 61
+Channel7 temperature: 61
+Run stopped
+Initializing digitizer for running
+Check values on DT5730S: 
+Acquisition control settings = 0x0
+Trigger counting mode = 0x0
+Record length: 300
+Post-trigger size: 0
+Channel0 DC offset: 5000
+Channel1 DC offset: 5000
+Channel2 DC offset: 5000
+Channel3 DC offset: 5000
+Channel4 DC offset: 5000
+Channel5 DC offset: 5000
+Channel6 DC offset: 5000
+Channel7 DC offset: 5000
+Channel0 temperature: 73
+Channel1 temperature: 73
+Channel2 temperature: 71
+Channel3 temperature: 71
+Channel4 temperature: 65
+Channel5 temperature: 65
+Channel6 temperature: 61
+Channel7 temperature: 61
+Number of buffers per channel = 0xa
+Global trigger mask value = 0x40000000
+GPO enable mask = 0x40000000
+Freeing previously allocated readout buffer
+Allocated buffer size (bytes) = 295216
+End of BOR
+Started run 758
+EOR
+Channel0 temperature: 72
+Channel1 temperature: 72
+Channel2 temperature: 70
+Channel3 temperature: 70
+Channel4 temperature: 64
+Channel5 temperature: 64
+Channel6 temperature: 60
+Channel7 temperature: 60
+Run stopped
+Initializing digitizer for running
+Check values on DT5730S: 
+Acquisition control settings = 0x0
+Trigger counting mode = 0x0
+Record length: 300
+Post-trigger size: 0
+Channel0 DC offset: 5000
+Channel1 DC offset: 5000
+Channel2 DC offset: 5000
+Channel3 DC offset: 5000
+Channel4 DC offset: 5000
+Channel5 DC offset: 5000
+Channel6 DC offset: 5000
+Channel7 DC offset: 5000
+Channel0 temperature: 73
+Channel1 temperature: 73
+Channel2 temperature: 71
+Channel3 temperature: 71
+Channel4 temperature: 65
+Channel5 temperature: 65
+Channel6 temperature: 61
+Channel7 temperature: 61
+Number of buffers per channel = 0xa
+Global trigger mask value = 0x40000000
+GPO enable mask = 0x40000000
+Freeing previously allocated readout buffer
+Allocated buffer size (bytes) = 295216
+End of BOR
+Started run 759
+EOR
+Channel0 temperature: 73
+Channel1 temperature: 73
+Channel2 temperature: 71
+Channel3 temperature: 71
+Channel4 temperature: 66
+Channel5 temperature: 66
+Channel6 temperature: 61
+Channel7 temperature: 61
+Run stopped
+Initializing digitizer for running
+Check values on DT5730S: 
+Acquisition control settings = 0x0
+Trigger counting mode = 0x0
+Record length: 300
+Post-trigger size: 0
+Channel0 DC offset: 5000
+Channel1 DC offset: 5000
+Channel2 DC offset: 5000
+Channel3 DC offset: 5000
+Channel4 DC offset: 5000
+Channel5 DC offset: 5000
+Channel6 DC offset: 5000
+Channel7 DC offset: 5000
+Channel0 temperature: 73
+Channel1 temperature: 73
+Channel2 temperature: 71
+Channel3 temperature: 71
+Channel4 temperature: 66
+Channel5 temperature: 66
+Channel6 temperature: 61
+Channel7 temperature: 61
+Number of buffers per channel = 0xa
+Global trigger mask value = 0x40000000
+GPO enable mask = 0x40000000
+Freeing previously allocated readout buffer
+Allocated buffer size (bytes) = 295216
+End of BOR
+Started run 760
+EOR
+Channel0 temperature: 73
+Channel1 temperature: 73
+Channel2 temperature: 70
+Channel3 temperature: 70
+Channel4 temperature: 65
+Channel5 temperature: 65
+Channel6 temperature: 60
+Channel7 temperature: 60
+Run stopped
+Initializing digitizer for running
+Check values on DT5730S: 
+Acquisition control settings = 0x0
+Trigger counting mode = 0x0
+Record length: 300
+Post-trigger size: 0
+Channel0 DC offset: 5000
+Channel1 DC offset: 5000
+Channel2 DC offset: 5000
+Channel3 DC offset: 5000
+Channel4 DC offset: 5000
+Channel5 DC offset: 5000
+Channel6 DC offset: 5000
+Channel7 DC offset: 5000
+Channel0 temperature: 73
+Channel1 temperature: 73
+Channel2 temperature: 71
+Channel3 temperature: 71
+Channel4 temperature: 65
+Channel5 temperature: 65
+Channel6 temperature: 61
+Channel7 temperature: 61
+Number of buffers per channel = 0xa
+Global trigger mask value = 0x40000000
+GPO enable mask = 0x40000000
+Freeing previously allocated readout buffer
+Allocated buffer size (bytes) = 295216
+End of BOR
+Started run 761
+EOR
+Channel0 temperature: 73
+Channel1 temperature: 73
+Channel2 temperature: 71
+Channel3 temperature: 71
+Channel4 temperature: 65
+Channel5 temperature: 65
+Channel6 temperature: 61
+Channel7 temperature: 61
+Run stopped
+Initializing digitizer for running
+Check values on DT5730S: 
+Acquisition control settings = 0x0
+Trigger counting mode = 0x0
+Record length: 300
+Post-trigger size: 0
+Channel0 DC offset: 5000
+Channel1 DC offset: 5000
+Channel2 DC offset: 5000
+Channel3 DC offset: 5000
+Channel4 DC offset: 5000
+Channel5 DC offset: 5000
+Channel6 DC offset: 5000
+Channel7 DC offset: 5000
+Channel0 temperature: 73
+Channel1 temperature: 73
+Channel2 temperature: 71
+Channel3 temperature: 71
+Channel4 temperature: 66
+Channel5 temperature: 66
+Channel6 temperature: 61
+Channel7 temperature: 61
+Number of buffers per channel = 0xa
+Global trigger mask value = 0x40000000
+GPO enable mask = 0x40000000
+Freeing previously allocated readout buffer
+Allocated buffer size (bytes) = 295216
+End of BOR
+Started run 762
+EOR
+Channel0 temperature: 73
+Channel1 temperature: 73
+Channel2 temperature: 71
+Channel3 temperature: 71
+Channel4 temperature: 65
+Channel5 temperature: 65
+Channel6 temperature: 60
+Channel7 temperature: 60
+Run stopped
+Initializing digitizer for running
+Check values on DT5730S: 
+Acquisition control settings = 0x0
+Trigger counting mode = 0x0
+Record length: 300
+Post-trigger size: 0
+Channel0 DC offset: 5000
+Channel1 DC offset: 5000
+Channel2 DC offset: 5000
+Channel3 DC offset: 5000
+Channel4 DC offset: 5000
+Channel5 DC offset: 5000
+Channel6 DC offset: 5000
+Channel7 DC offset: 5000
+Channel0 temperature: 73
+Channel1 temperature: 73
+Channel2 temperature: 71
+Channel3 temperature: 71
+Channel4 temperature: 66
+Channel5 temperature: 66
+Channel6 temperature: 61
+Channel7 temperature: 61
+Number of buffers per channel = 0xa
+Global trigger mask value = 0x40000000
+GPO enable mask = 0x40000000
+Freeing previously allocated readout buffer
+Allocated buffer size (bytes) = 295216
+End of BOR
+Started run 763
+EOR
+Channel0 temperature: 73
+Channel1 temperature: 73
+Channel2 temperature: 71
+Channel3 temperature: 71
+Channel4 temperature: 66
+Channel5 temperature: 66
+Channel6 temperature: 61
+Channel7 temperature: 61
+Run stopped
+Initializing digitizer for running
+Check values on DT5730S: 
+Acquisition control settings = 0x0
+Trigger counting mode = 0x0
+Record length: 300
+Post-trigger size: 0
+Channel0 DC offset: 5000
+Channel1 DC offset: 5000
+Channel2 DC offset: 5000
+Channel3 DC offset: 5000
+Channel4 DC offset: 5000
+Channel5 DC offset: 5000
+Channel6 DC offset: 5000
+Channel7 DC offset: 5000
+Channel0 temperature: 73
+Channel1 temperature: 73
+Channel2 temperature: 71
+Channel3 temperature: 71
+Channel4 temperature: 66
+Channel5 temperature: 66
+Channel6 temperature: 61
+Channel7 temperature: 61
+Number of buffers per channel = 0xa
+Global trigger mask value = 0x40000000
+GPO enable mask = 0x40000000
+Freeing previously allocated readout buffer
+Allocated buffer size (bytes) = 295216
+End of BOR
+Started run 764
+EOR
+Channel0 temperature: 73
+Channel1 temperature: 73
+Channel2 temperature: 71
+Channel3 temperature: 71
+Channel4 temperature: 66
+Channel5 temperature: 66
+Channel6 temperature: 61
+Channel7 temperature: 61
+Run stopped
+Initializing digitizer for running
+Check values on DT5730S: 
+Acquisition control settings = 0x0
+Trigger counting mode = 0x0
+Record length: 300
+Post-trigger size: 0
+Channel0 DC offset: 5000
+Channel1 DC offset: 5000
+Channel2 DC offset: 5000
+Channel3 DC offset: 5000
+Channel4 DC offset: 5000
+Channel5 DC offset: 5000
+Channel6 DC offset: 5000
+Channel7 DC offset: 5000
+Channel0 temperature: 73
+Channel1 temperature: 73
+Channel2 temperature: 71
+Channel3 temperature: 71
+Channel4 temperature: 66
+Channel5 temperature: 66
+Channel6 temperature: 61
+Channel7 temperature: 61
+Number of buffers per channel = 0xa
+Global trigger mask value = 0x40000000
+GPO enable mask = 0x40000000
+Freeing previously allocated readout buffer
+Allocated buffer size (bytes) = 295216
+End of BOR
+Started run 765
+EOR
+Channel0 temperature: 73
+Channel1 temperature: 73
+Channel2 temperature: 71
+Channel3 temperature: 71
+Channel4 temperature: 65
+Channel5 temperature: 65
+Channel6 temperature: 60
+Channel7 temperature: 60
+Run stopped
+Initializing digitizer for running
+Check values on DT5730S: 
+Acquisition control settings = 0x0
+Trigger counting mode = 0x0
+Record length: 300
+Post-trigger size: 0
+Channel0 DC offset: 5000
+Channel1 DC offset: 5000
+Channel2 DC offset: 5000
+Channel3 DC offset: 5000
+Channel4 DC offset: 5000
+Channel5 DC offset: 5000
+Channel6 DC offset: 5000
+Channel7 DC offset: 5000
+Channel0 temperature: 73
+Channel1 temperature: 73
+Channel2 temperature: 71
+Channel3 temperature: 71
+Channel4 temperature: 65
+Channel5 temperature: 65
+Channel6 temperature: 60
+Channel7 temperature: 60
+Number of buffers per channel = 0xa
+Global trigger mask value = 0x40000000
+GPO enable mask = 0x40000000
+Freeing previously allocated readout buffer
+Allocated buffer size (bytes) = 295216
+End of BOR
+Started run 766
+EOR
+Channel0 temperature: 72
+Channel1 temperature: 72
+Channel2 temperature: 70
+Channel3 temperature: 70
+Channel4 temperature: 65
+Channel5 temperature: 65
+Channel6 temperature: 60
+Channel7 temperature: 60
+Run stopped
+Initializing digitizer for running
+Check values on DT5730S: 
+Acquisition control settings = 0x0
+Trigger counting mode = 0x0
+Record length: 300
+Post-trigger size: 0
+Channel0 DC offset: 5000
+Channel1 DC offset: 5000
+Channel2 DC offset: 5000
+Channel3 DC offset: 5000
+Channel4 DC offset: 5000
+Channel5 DC offset: 5000
+Channel6 DC offset: 5000
+Channel7 DC offset: 5000
+Channel0 temperature: 72
+Channel1 temperature: 72
+Channel2 temperature: 70
+Channel3 temperature: 70
+Channel4 temperature: 65
+Channel5 temperature: 65
+Channel6 temperature: 60
+Channel7 temperature: 60
+Number of buffers per channel = 0xa
+Global trigger mask value = 0x40000000
+GPO enable mask = 0x40000000
+Freeing previously allocated readout buffer
+Allocated buffer size (bytes) = 295216
+End of BOR
+Started run 767
+EOR
+Channel0 temperature: 72
+Channel1 temperature: 72
+Channel2 temperature: 70
+Channel3 temperature: 70
+Channel4 temperature: 64
+Channel5 temperature: 64
+Channel6 temperature: 60
+Channel7 temperature: 60
+Run stopped
+Initializing digitizer for running
+Check values on DT5730S: 
+Acquisition control settings = 0x0
+Trigger counting mode = 0x0
+Record length: 300
+Post-trigger size: 0
+Channel0 DC offset: 5000
+Channel1 DC offset: 5000
+Channel2 DC offset: 5000
+Channel3 DC offset: 5000
+Channel4 DC offset: 5000
+Channel5 DC offset: 5000
+Channel6 DC offset: 5000
+Channel7 DC offset: 5000
+Channel0 temperature: 72
+Channel1 temperature: 72
+Channel2 temperature: 70
+Channel3 temperature: 70
+Channel4 temperature: 65
+Channel5 temperature: 65
+Channel6 temperature: 60
+Channel7 temperature: 60
+Number of buffers per channel = 0xa
+Global trigger mask value = 0x40000000
+GPO enable mask = 0x40000000
+Freeing previously allocated readout buffer
+Allocated buffer size (bytes) = 295216
+End of BOR
+Started run 768
+EOR
+Channel0 temperature: 73
+Channel1 temperature: 73
+Channel2 temperature: 71
+Channel3 temperature: 71
+Channel4 temperature: 66
+Channel5 temperature: 66
+Channel6 temperature: 61
+Channel7 temperature: 61
+Run stopped
+Initializing digitizer for running
+Check values on DT5730S: 
+Acquisition control settings = 0x0
+Trigger counting mode = 0x0
+Record length: 300
+Post-trigger size: 0
+Channel0 DC offset: 5000
+Channel1 DC offset: 5000
+Channel2 DC offset: 5000
+Channel3 DC offset: 5000
+Channel4 DC offset: 5000
+Channel5 DC offset: 5000
+Channel6 DC offset: 5000
+Channel7 DC offset: 5000
+Channel0 temperature: 73
+Channel1 temperature: 73
+Channel2 temperature: 71
+Channel3 temperature: 71
+Channel4 temperature: 65
+Channel5 temperature: 65
+Channel6 temperature: 61
+Channel7 temperature: 61
+Number of buffers per channel = 0xa
+Global trigger mask value = 0x40000000
+GPO enable mask = 0x40000000
+Freeing previously allocated readout buffer
+Allocated buffer size (bytes) = 295216
+End of BOR
+Started run 769
+EOR
+Channel0 temperature: 73
+Channel1 temperature: 73
+Channel2 temperature: 70
+Channel3 temperature: 70
+Channel4 temperature: 65
+Channel5 temperature: 65
+Channel6 temperature: 60
+Channel7 temperature: 60
+Run stopped
+Initializing digitizer for running
+Check values on DT5730S: 
+Acquisition control settings = 0x0
+Trigger counting mode = 0x0
+Record length: 300
+Post-trigger size: 0
+Channel0 DC offset: 5000
+Channel1 DC offset: 5000
+Channel2 DC offset: 5000
+Channel3 DC offset: 5000
+Channel4 DC offset: 5000
+Channel5 DC offset: 5000
+Channel6 DC offset: 5000
+Channel7 DC offset: 5000
+Channel0 temperature: 73
+Channel1 temperature: 73
+Channel2 temperature: 70
+Channel3 temperature: 70
+Channel4 temperature: 65
+Channel5 temperature: 65
+Channel6 temperature: 60
+Channel7 temperature: 60
+Number of buffers per channel = 0xa
+Global trigger mask value = 0x40000000
+GPO enable mask = 0x40000000
+Freeing previously allocated readout buffer
+Allocated buffer size (bytes) = 295216
+End of BOR
+Started run 770
+EOR
+Channel0 temperature: 73
+Channel1 temperature: 73
+Channel2 temperature: 70
+Channel3 temperature: 70
+Channel4 temperature: 65
+Channel5 temperature: 65
+Channel6 temperature: 60
+Channel7 temperature: 60
+Run stopped
+Initializing digitizer for running
+Check values on DT5730S: 
+Acquisition control settings = 0x0
+Trigger counting mode = 0x0
+Record length: 300
+Post-trigger size: 0
+Channel0 DC offset: 5000
+Channel1 DC offset: 5000
+Channel2 DC offset: 5000
+Channel3 DC offset: 5000
+Channel4 DC offset: 5000
+Channel5 DC offset: 5000
+Channel6 DC offset: 5000
+Channel7 DC offset: 5000
+Channel0 temperature: 73
+Channel1 temperature: 73
+Channel2 temperature: 70
+Channel3 temperature: 70
+Channel4 temperature: 65
+Channel5 temperature: 65
+Channel6 temperature: 60
+Channel7 temperature: 60
+Number of buffers per channel = 0xa
+Global trigger mask value = 0x40000000
+GPO enable mask = 0x40000000
+Freeing previously allocated readout buffer
+Allocated buffer size (bytes) = 295216
+End of BOR
+Started run 771
+EOR
+Channel0 temperature: 73
+Channel1 temperature: 73
+Channel2 temperature: 71
+Channel3 temperature: 71
+Channel4 temperature: 66
+Channel5 temperature: 66
+Channel6 temperature: 61
+Channel7 temperature: 61
+Run stopped
+Initializing digitizer for running
+Check values on DT5730S: 
+Acquisition control settings = 0x0
+Trigger counting mode = 0x0
+Record length: 300
+Post-trigger size: 0
+Channel0 DC offset: 5000
+Channel1 DC offset: 5000
+Channel2 DC offset: 5000
+Channel3 DC offset: 5000
+Channel4 DC offset: 5000
+Channel5 DC offset: 5000
+Channel6 DC offset: 5000
+Channel7 DC offset: 5000
+Channel0 temperature: 73
+Channel1 temperature: 73
+Channel2 temperature: 71
+Channel3 temperature: 71
+Channel4 temperature: 65
+Channel5 temperature: 65
+Channel6 temperature: 60
+Channel7 temperature: 60
+Number of buffers per channel = 0xa
+Global trigger mask value = 0x40000000
+GPO enable mask = 0x40000000
+Freeing previously allocated readout buffer
+Allocated buffer size (bytes) = 295216
+End of BOR
+Started run 772
+EOR
+Channel0 temperature: 72
+Channel1 temperature: 72
+Channel2 temperature: 70
+Channel3 temperature: 70
+Channel4 temperature: 65
+Channel5 temperature: 65
+Channel6 temperature: 60
+Channel7 temperature: 60
+Run stopped
+Initializing digitizer for running
+Check values on DT5730S: 
+Acquisition control settings = 0x0
+Trigger counting mode = 0x0
+Record length: 300
+Post-trigger size: 0
+Channel0 DC offset: 5000
+Channel1 DC offset: 5000
+Channel2 DC offset: 5000
+Channel3 DC offset: 5000
+Channel4 DC offset: 5000
+Channel5 DC offset: 5000
+Channel6 DC offset: 5000
+Channel7 DC offset: 5000
+Channel0 temperature: 73
+Channel1 temperature: 73
+Channel2 temperature: 71
+Channel3 temperature: 71
+Channel4 temperature: 65
+Channel5 temperature: 65
+Channel6 temperature: 61
+Channel7 temperature: 61
+Number of buffers per channel = 0xa
+Global trigger mask value = 0x40000000
+GPO enable mask = 0x40000000
+Freeing previously allocated readout buffer
+Allocated buffer size (bytes) = 295216
+End of BOR
+Started run 773
+EOR
+Channel0 temperature: 73
+Channel1 temperature: 73
+Channel2 temperature: 71
+Channel3 temperature: 71
+Channel4 temperature: 65
+Channel5 temperature: 65
+Channel6 temperature: 61
+Channel7 temperature: 61
+Run stopped
+Initializing digitizer for running
+Check values on DT5730S: 
+Acquisition control settings = 0x0
+Trigger counting mode = 0x0
+Record length: 300
+Post-trigger size: 0
+Channel0 DC offset: 5000
+Channel1 DC offset: 5000
+Channel2 DC offset: 5000
+Channel3 DC offset: 5000
+Channel4 DC offset: 5000
+Channel5 DC offset: 5000
+Channel6 DC offset: 5000
+Channel7 DC offset: 5000
+Channel0 temperature: 73
+Channel1 temperature: 73
+Channel2 temperature: 70
+Channel3 temperature: 70
+Channel4 temperature: 65
+Channel5 temperature: 65
+Channel6 temperature: 60
+Channel7 temperature: 60
+Number of buffers per channel = 0xa
+Global trigger mask value = 0x40000000
+GPO enable mask = 0x40000000
+Freeing previously allocated readout buffer
+Allocated buffer size (bytes) = 295216
+End of BOR
+Started run 774
+EOR
+Channel0 temperature: 73
+Channel1 temperature: 73
+Channel2 temperature: 71
+Channel3 temperature: 71
+Channel4 temperature: 65
+Channel5 temperature: 65
+Channel6 temperature: 61
+Channel7 temperature: 61
+Run stopped
+Initializing digitizer for running
+Check values on DT5730S: 
+Acquisition control settings = 0x0
+Trigger counting mode = 0x0
+Record length: 300
+Post-trigger size: 0
+Channel0 DC offset: 5000
+Channel1 DC offset: 5000
+Channel2 DC offset: 5000
+Channel3 DC offset: 5000
+Channel4 DC offset: 5000
+Channel5 DC offset: 5000
+Channel6 DC offset: 5000
+Channel7 DC offset: 5000
+Channel0 temperature: 73
+Channel1 temperature: 73
+Channel2 temperature: 71
+Channel3 temperature: 71
+Channel4 temperature: 65
+Channel5 temperature: 65
+Channel6 temperature: 61
+Channel7 temperature: 61
+Number of buffers per channel = 0xa
+Global trigger mask value = 0x40000000
+GPO enable mask = 0x40000000
+Freeing previously allocated readout buffer
+Allocated buffer size (bytes) = 295216
+End of BOR
+Started run 775
+EOR
+Channel0 temperature: 73
+Channel1 temperature: 73
+Channel2 temperature: 71
+Channel3 temperature: 71
+Channel4 temperature: 65
+Channel5 temperature: 65
+Channel6 temperature: 60
+Channel7 temperature: 60
+Run stopped
+Initializing digitizer for running
+Check values on DT5730S: 
+Acquisition control settings = 0x0
+Trigger counting mode = 0x0
+Record length: 300
+Post-trigger size: 0
+Channel0 DC offset: 5000
+Channel1 DC offset: 5000
+Channel2 DC offset: 5000
+Channel3 DC offset: 5000
+Channel4 DC offset: 5000
+Channel5 DC offset: 5000
+Channel6 DC offset: 5000
+Channel7 DC offset: 5000
+Channel0 temperature: 72
+Channel1 temperature: 72
+Channel2 temperature: 70
+Channel3 temperature: 70
+Channel4 temperature: 65
+Channel5 temperature: 65
+Channel6 temperature: 60
+Channel7 temperature: 60
+Number of buffers per channel = 0xa
+Global trigger mask value = 0x40000000
+GPO enable mask = 0x40000000
+Freeing previously allocated readout buffer
+Allocated buffer size (bytes) = 295216
+End of BOR
+Started run 776
+EOR
+Channel0 temperature: 71
+Channel1 temperature: 71
+Channel2 temperature: 69
+Channel3 temperature: 69
+Channel4 temperature: 63
+Channel5 temperature: 63
+Channel6 temperature: 59
+Channel7 temperature: 59
+Run stopped
+Initializing digitizer for running
+Check values on DT5730S: 
+Acquisition control settings = 0x0
+Trigger counting mode = 0x0
+Record length: 300
+Post-trigger size: 0
+Channel0 DC offset: 5000
+Channel1 DC offset: 5000
+Channel2 DC offset: 5000
+Channel3 DC offset: 5000
+Channel4 DC offset: 5000
+Channel5 DC offset: 5000
+Channel6 DC offset: 5000
+Channel7 DC offset: 5000
+Channel0 temperature: 71
+Channel1 temperature: 71
+Channel2 temperature: 69
+Channel3 temperature: 69
+Channel4 temperature: 64
+Channel5 temperature: 64
+Channel6 temperature: 59
+Channel7 temperature: 59
+Number of buffers per channel = 0xa
+Global trigger mask value = 0x40000000
+GPO enable mask = 0x40000000
+Freeing previously allocated readout buffer
+Allocated buffer size (bytes) = 295216
+End of BOR
+Started run 777
+EOR
+Channel0 temperature: 72
+Channel1 temperature: 72
+Channel2 temperature: 70
+Channel3 temperature: 70
+Channel4 temperature: 65
+Channel5 temperature: 65
+Channel6 temperature: 60
+Channel7 temperature: 60
+Run stopped
+Initializing digitizer for running
+Check values on DT5730S: 
+Acquisition control settings = 0x0
+Trigger counting mode = 0x0
+Record length: 300
+Post-trigger size: 0
+Channel0 DC offset: 5000
+Channel1 DC offset: 5000
+Channel2 DC offset: 5000
+Channel3 DC offset: 5000
+Channel4 DC offset: 5000
+Channel5 DC offset: 5000
+Channel6 DC offset: 5000
+Channel7 DC offset: 5000
+Channel0 temperature: 72
+Channel1 temperature: 72
+Channel2 temperature: 70
+Channel3 temperature: 70
+Channel4 temperature: 65
+Channel5 temperature: 65
+Channel6 temperature: 60
+Channel7 temperature: 60
+Number of buffers per channel = 0xa
+Global trigger mask value = 0x40000000
+GPO enable mask = 0x40000000
+Freeing previously allocated readout buffer
+Allocated buffer size (bytes) = 295216
+End of BOR
+Started run 778
+EOR
+Channel0 temperature: 73
+Channel1 temperature: 73
+Channel2 temperature: 71
+Channel3 temperature: 71
+Channel4 temperature: 66
+Channel5 temperature: 66
+Channel6 temperature: 61
+Channel7 temperature: 61
+Run stopped
+Initializing digitizer for running
+Check values on DT5730S: 
+Acquisition control settings = 0x0
+Trigger counting mode = 0x0
+Record length: 300
+Post-trigger size: 0
+Channel0 DC offset: 5000
+Channel1 DC offset: 5000
+Channel2 DC offset: 5000
+Channel3 DC offset: 5000
+Channel4 DC offset: 5000
+Channel5 DC offset: 5000
+Channel6 DC offset: 5000
+Channel7 DC offset: 5000
+Channel0 temperature: 73
+Channel1 temperature: 73
+Channel2 temperature: 71
+Channel3 temperature: 71
+Channel4 temperature: 65
+Channel5 temperature: 65
+Channel6 temperature: 60
+Channel7 temperature: 60
+Number of buffers per channel = 0xa
+Global trigger mask value = 0x40000000
+GPO enable mask = 0x40000000
+Freeing previously allocated readout buffer
+Allocated buffer size (bytes) = 295216
+End of BOR
+Started run 779
+EOR
+Channel0 temperature: 72
+Channel1 temperature: 72
+Channel2 temperature: 69
+Channel3 temperature: 69
+Channel4 temperature: 64
+Channel5 temperature: 64
+Channel6 temperature: 59
+Channel7 temperature: 59
+Run stopped
+Initializing digitizer for running
+Check values on DT5730S: 
+Acquisition control settings = 0x0
+Trigger counting mode = 0x0
+Record length: 300
+Post-trigger size: 0
+Channel0 DC offset: 5000
+Channel1 DC offset: 5000
+Channel2 DC offset: 5000
+Channel3 DC offset: 5000
+Channel4 DC offset: 5000
+Channel5 DC offset: 5000
+Channel6 DC offset: 5000
+Channel7 DC offset: 5000
+Channel0 temperature: 71
+Channel1 temperature: 71
+Channel2 temperature: 69
+Channel3 temperature: 69
+Channel4 temperature: 63
+Channel5 temperature: 63
+Channel6 temperature: 59
+Channel7 temperature: 59
+Number of buffers per channel = 0xa
+Global trigger mask value = 0x40000000
+GPO enable mask = 0x40000000
+Freeing previously allocated readout buffer
+Allocated buffer size (bytes) = 295216
+End of BOR
+Started run 780
+EOR
+Channel0 temperature: 72
+Channel1 temperature: 72
+Channel2 temperature: 70
+Channel3 temperature: 70
+Channel4 temperature: 64
+Channel5 temperature: 64
+Channel6 temperature: 60
+Channel7 temperature: 60
+Run stopped
+Initializing digitizer for running
+Check values on DT5730S: 
+Acquisition control settings = 0x0
+Trigger counting mode = 0x0
+Record length: 300
+Post-trigger size: 0
+Channel0 DC offset: 5000
+Channel1 DC offset: 5000
+Channel2 DC offset: 5000
+Channel3 DC offset: 5000
+Channel4 DC offset: 5000
+Channel5 DC offset: 5000
+Channel6 DC offset: 5000
+Channel7 DC offset: 5000
+Channel0 temperature: 72
+Channel1 temperature: 72
+Channel2 temperature: 70
+Channel3 temperature: 70
+Channel4 temperature: 64
+Channel5 temperature: 64
+Channel6 temperature: 60
+Channel7 temperature: 60
+Number of buffers per channel = 0xa
+Global trigger mask value = 0x40000000
+GPO enable mask = 0x40000000
+Freeing previously allocated readout buffer
+Allocated buffer size (bytes) = 295216
+End of BOR
+Started run 781
+EOR
+Channel0 temperature: 71
+Channel1 temperature: 71
+Channel2 temperature: 69
+Channel3 temperature: 69
+Channel4 temperature: 64
+Channel5 temperature: 64
+Channel6 temperature: 59
+Channel7 temperature: 59
+Run stopped
+Initializing digitizer for running
+Check values on DT5730S: 
+Acquisition control settings = 0x0
+Trigger counting mode = 0x0
+Record length: 300
+Post-trigger size: 0
+Channel0 DC offset: 5000
+Channel1 DC offset: 5000
+Channel2 DC offset: 5000
+Channel3 DC offset: 5000
+Channel4 DC offset: 5000
+Channel5 DC offset: 5000
+Channel6 DC offset: 5000
+Channel7 DC offset: 5000
+Channel0 temperature: 71
+Channel1 temperature: 71
+Channel2 temperature: 69
+Channel3 temperature: 69
+Channel4 temperature: 64
+Channel5 temperature: 64
+Channel6 temperature: 59
+Channel7 temperature: 59
+Number of buffers per channel = 0xa
+Global trigger mask value = 0x40000000
+GPO enable mask = 0x40000000
+Freeing previously allocated readout buffer
+Allocated buffer size (bytes) = 295216
+End of BOR
+Started run 782
+EOR
+Channel0 temperature: 72
+Channel1 temperature: 72
+Channel2 temperature: 70
+Channel3 temperature: 70
+Channel4 temperature: 64
+Channel5 temperature: 64
+Channel6 temperature: 60
+Channel7 temperature: 60
+Run stopped
+Initializing digitizer for running
+Check values on DT5730S: 
+Acquisition control settings = 0x0
+Trigger counting mode = 0x0
+Record length: 300
+Post-trigger size: 0
+Channel0 DC offset: 5000
+Channel1 DC offset: 5000
+Channel2 DC offset: 5000
+Channel3 DC offset: 5000
+Channel4 DC offset: 5000
+Channel5 DC offset: 5000
+Channel6 DC offset: 5000
+Channel7 DC offset: 5000
+Channel0 temperature: 72
+Channel1 temperature: 72
+Channel2 temperature: 70
+Channel3 temperature: 70
+Channel4 temperature: 64
+Channel5 temperature: 64
+Channel6 temperature: 59
+Channel7 temperature: 59
+Number of buffers per channel = 0xa
+Global trigger mask value = 0x40000000
+GPO enable mask = 0x40000000
+Freeing previously allocated readout buffer
+Allocated buffer size (bytes) = 295216
+End of BOR
+Started run 783
+EOR
+Channel0 temperature: 72
+Channel1 temperature: 72
+Channel2 temperature: 70
+Channel3 temperature: 70
+Channel4 temperature: 64
+Channel5 temperature: 64
+Channel6 temperature: 60
+Channel7 temperature: 60
+Run stopped
+Initializing digitizer for running
+Check values on DT5730S: 
+Acquisition control settings = 0x0
+Trigger counting mode = 0x0
+Record length: 300
+Post-trigger size: 0
+Channel0 DC offset: 5000
+Channel1 DC offset: 5000
+Channel2 DC offset: 5000
+Channel3 DC offset: 5000
+Channel4 DC offset: 5000
+Channel5 DC offset: 5000
+Channel6 DC offset: 5000
+Channel7 DC offset: 5000
+Channel0 temperature: 72
+Channel1 temperature: 72
+Channel2 temperature: 70
+Channel3 temperature: 70
+Channel4 temperature: 64
+Channel5 temperature: 64
+Channel6 temperature: 60
+Channel7 temperature: 60
+Number of buffers per channel = 0xa
+Global trigger mask value = 0x40000000
+GPO enable mask = 0x40000000
+Freeing previously allocated readout buffer
+Allocated buffer size (bytes) = 295216
+End of BOR
+Started run 784
+EOR
+Channel0 temperature: 72
+Channel1 temperature: 72
+Channel2 temperature: 69
+Channel3 temperature: 69
+Channel4 temperature: 63
+Channel5 temperature: 63
+Channel6 temperature: 59
+Channel7 temperature: 59
+Run stopped
+Initializing digitizer for running
+Check values on DT5730S: 
+Acquisition control settings = 0x0
+Trigger counting mode = 0x0
+Record length: 300
+Post-trigger size: 0
+Channel0 DC offset: 5000
+Channel1 DC offset: 5000
+Channel2 DC offset: 5000
+Channel3 DC offset: 5000
+Channel4 DC offset: 5000
+Channel5 DC offset: 5000
+Channel6 DC offset: 5000
+Channel7 DC offset: 5000
+Channel0 temperature: 72
+Channel1 temperature: 72
+Channel2 temperature: 70
+Channel3 temperature: 70
+Channel4 temperature: 65
+Channel5 temperature: 65
+Channel6 temperature: 60
+Channel7 temperature: 60
+Number of buffers per channel = 0xa
+Global trigger mask value = 0x40000000
+GPO enable mask = 0x40000000
+Freeing previously allocated readout buffer
+Allocated buffer size (bytes) = 295216
+End of BOR
+Started run 785
+EOR
+Channel0 temperature: 72
+Channel1 temperature: 72
+Channel2 temperature: 70
+Channel3 temperature: 70
+Channel4 temperature: 65
+Channel5 temperature: 65
+Channel6 temperature: 60
+Channel7 temperature: 60
+Run stopped
+Initializing digitizer for running
+Check values on DT5730S: 
+Acquisition control settings = 0x0
+Trigger counting mode = 0x0
+Record length: 300
+Post-trigger size: 0
+Channel0 DC offset: 5000
+Channel1 DC offset: 5000
+Channel2 DC offset: 5000
+Channel3 DC offset: 5000
+Channel4 DC offset: 5000
+Channel5 DC offset: 5000
+Channel6 DC offset: 5000
+Channel7 DC offset: 5000
+Channel0 temperature: 72
+Channel1 temperature: 72
+Channel2 temperature: 70
+Channel3 temperature: 70
+Channel4 temperature: 65
+Channel5 temperature: 65
+Channel6 temperature: 60
+Channel7 temperature: 60
+Number of buffers per channel = 0xa
+Global trigger mask value = 0x40000000
+GPO enable mask = 0x40000000
+Freeing previously allocated readout buffer
+Allocated buffer size (bytes) = 295216
+End of BOR
+Started run 786
+EOR
+Channel0 temperature: 72
+Channel1 temperature: 72
+Channel2 temperature: 70
+Channel3 temperature: 70
+Channel4 temperature: 65
+Channel5 temperature: 65
+Channel6 temperature: 60
+Channel7 temperature: 60
+Run stopped
+Initializing digitizer for running
+Check values on DT5730S: 
+Acquisition control settings = 0x0
+Trigger counting mode = 0x0
+Record length: 300
+Post-trigger size: 0
+Channel0 DC offset: 5000
+Channel1 DC offset: 5000
+Channel2 DC offset: 5000
+Channel3 DC offset: 5000
+Channel4 DC offset: 5000
+Channel5 DC offset: 5000
+Channel6 DC offset: 5000
+Channel7 DC offset: 5000
+Channel0 temperature: 72
+Channel1 temperature: 72
+Channel2 temperature: 70
+Channel3 temperature: 70
+Channel4 temperature: 65
+Channel5 temperature: 65
+Channel6 temperature: 60
+Channel7 temperature: 60
+Number of buffers per channel = 0xa
+Global trigger mask value = 0x40000000
+GPO enable mask = 0x40000000
+Freeing previously allocated readout buffer
+Allocated buffer size (bytes) = 295216
+End of BOR
+Started run 787
+EOR
+Channel0 temperature: 72
+Channel1 temperature: 72
+Channel2 temperature: 70
+Channel3 temperature: 70
+Channel4 temperature: 64
+Channel5 temperature: 64
+Channel6 temperature: 59
+Channel7 temperature: 59
+Run stopped
