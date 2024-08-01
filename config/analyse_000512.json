@@ -8,15 +8,15 @@
 
         "comment" : ["ACT0L","ACT0R", "ACT1L", "ACT1R", "ACT2L", "ACT2R", "ACT3L", "ACT3R", "TOF00", "TOF01", "TOF02", "TOF03", "TOF10", "TOF11", "TOF12", "TOF13", "Hole0", "Hole1", "PbGlass"],
 
-        "dataFile" : "/home/ac4317/Laptops/Year1/WCTE/BeamTestJuly2023/DataAnalysis/data/analysis-code/T9BeamTestAna/WindowIntMatched_final_000506.root",
+        "dataFile" : "/home/ac4317/Laptops/Year1/WCTE/BeamTestJuly2023/DataAnalysis/data/analysis-code/T9BeamTestAna/WindowIntMatched_final_000512.root",
 
-        "runNumber" : 506,
+        "runNumber" : 512,
         "isLowMomentum" : true,
         "isBerylliumTarget": true, 
 
 
         "comment" : "run momentum  in MeV/c, positive is positively charged beam and negative is negatively charged",
-        "runMomentum" : 260,
+        "runMomentum" : -240,
         "runRefractiveIndex": 1.15,
         "comment" : "text file that has the selection cuts, read as a function of momentum, reference set of cuts, which will be read as the default",
         "referenceSelectionCutFile" : "referenceNumberParticles.txt",
@@ -49,7 +49,7 @@
         "distanceTOF1toTOF0" : 3.49,
 
         "comment": "Selection of the particles, based on the previous studies on widnows at -16 to 45ns by acraplet",
-        "piMuBorderACT" : 25.0,
+        "piMuBorderACT" : 15.0,
         "ACTLowerCut": 1,
         "comment": "Slope of the muon-electron separaction on the left-handside of the ACT23 against ACT1 plot",
         "ACTlinearA": -6,
@@ -59,7 +59,7 @@
         "horizontal_el": 35,
 
         "comment": "cut on lead glas distribution to flag the weird electrons, in number of PE (not)",
-        "weirdElectronLGcut": 2.5,
+        "weirdElectronLGcut": 2.3,
 
 
         "comment": "File onto which we are going to output the information",

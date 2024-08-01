@@ -28,6 +28,61 @@ def fitFunction2(x, y, function):
     return params, covariance
 
 
+def plotManyBranchAgainstManyAnotherAndFit(df_base, branch_x, branch_x_err, branch_y, branch_y_err, x_axis_title, y_axis_title, title = None, label = "Data", fig = None, ax1 = None, ax2 = None):
+
+    if fig == "None":
+        fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(10, 8), gridspec_kw={'height_ratios': [3, 1]})
+
+
+    #remove flags
+    df_base = df_base[df_base[branch_x]!=-9999]
+    df_base = df_base[df_base[branch_y]!=-9999]
+
+    df_plus = df_base[df_base["runMomentum"]>0]
+    df_minus = df_base[df_base["runMomentum"]<0]
+
+    charge = ["Positively charged", "Negatively charged"]
+    colors = ["red", "blue"]
+    colors_fit = ["black", "gray"]
+
+    for i, df in enumerate([df_plus, df_minus]):   
+        if len(df[branch_x])>1:
+            # ax1.errorbar(df[branch_x],df[branch_y], xerr = df[branch_x_err], yerr = df[branch_y_err], fmt = 'x', label="%s, %s"%(label, charge[i]))
+
+            params, covariance = fitFunction(df[branch_x], df[branch_y], linear)
+
+            x = np.linspace(min(df[branch_x])*0.9, max(df[branch_x])*1.1, 100)
+            # ax1.plot(x, linear(x, params[0], params[1]), '--', color = colors_fit[i], label = '%s\nLinear Fit: %.2e x + %.2f'%(charge[i], params[0], params[1]))
+
+            ax1.errorbar(df[branch_x],df[branch_y], xerr = df[branch_x_err], yerr = df[branch_y_err], fmt = 'x', label="%s, %s \n %s"%(label, charge[i], 'Linear Fit: %.2e x + %.2f'%(params[0], params[1])))
+
+
+            ax2.errorbar(df[branch_x], (df[branch_y] - linear(df[branch_x], params[0], params[1]))/df[branch_y], xerr = df[branch_x_err], yerr = df[branch_y_err]/df[branch_y], fmt =  "x")
+
+            ax2.axhline(0, linestyle = "--", color = "black")
+
+    ax1.legend()
+
+    ax1.set_xlabel(x_axis_title, fontsize = 13)
+    ax1.set_ylabel(y_axis_title, fontsize = 13)
+
+    ax2.set_xlabel(x_axis_title, fontsize = 13)
+    ax2.set_ylabel("data-fit/data", fontsize = 13)
+
+
+    if title != None:
+        fig.suptitle(title, fontsize=22, weight ='bold')
+
+
+    savingpath = "/home/ac4317/Laptops/Year1/WCTE/BeamTestJuly2023/DataAnalysis/data/analysis-code/T9BeamTestAna/pdf_LGcalibration_results/Allresults_%s_against_%s.pdf"%(branch_x, branch_y)
+
+    fig.savefig(savingpath)
+    # plt.show()
+
+    return fig, ax1, ax2
+
+
+
 def plotOneBranchAgainstAnotherAndFit(df_base, branch_x, branch_x_err, branch_y, branch_y_err, x_axis_title, y_axis_title, title = None, label = "Data"):
 
     #remove flags
@@ -88,11 +143,11 @@ def plotOneBranchAgainstAnotherAndFit(df_base, branch_x, branch_x_err, branch_y,
 
 
 
-
+target = "both"
 
 #Read the information directly from the csv file
 
-LG_info_path = "/home/ac4317/Laptops/Year1/WCTE/BeamTestJuly2023/DataAnalysis/data/analysis-code/T9BeamTestAna/pdf_LGcalibration_results/LGCalibration_information.csv"
+LG_info_path = "/home/ac4317/Laptops/Year1/WCTE/BeamTestJuly2023/DataAnalysis/data/analysis-code/T9BeamTestAna/pdf_LGcalibration_results/LGCalibration_information_july2024.csv"
 
 # Read the CSV file into a DataFrame
 df = pd.read_csv(LG_info_path)
@@ -100,7 +155,21 @@ df = pd.read_csv(LG_info_path)
 df["zeros"] = df["runMomentum"] * 0
 #df["protonMomentumError"] = abs(df["protonMomentumError"])
 
+print(df["isBerylliumTarget"])
+
+df["isBerylliumTarget"] = df["isBerylliumTarget"].astype(int)
+
+
+#np.where(df["isBerylliumTarget"] == True, 1, 0)
 print(df.columns, df)
+
+
+if target == "Al":
+    df = df[(df["isBerylliumTarget"]) == 0]
+elif target == "Be":
+    df = df[(df["isBerylliumTarget"]) == 1]
+else:
+    df = df
 
 print(df["electronMomentumAtLG"])
 
@@ -116,6 +185,38 @@ plotOneBranchAgainstAnotherAndFit(df, "runMomentum", "zeros", "muonMomentumMean"
 plotOneBranchAgainstAnotherAndFit(df, "runMomentum", "zeros", "protonMomentumMean", "protonMomentumError", "Set run momentum (MeV/c)", "Proton TOF-measured Momentum (MeV/c)", "Beam momentum measurement: Protons")
 
 plotOneBranchAgainstAnotherAndFit(df, "runMomentum", "zeros", "deuteriumMomentumMean", "deuteriumMomentumError", "Set run momentum (MeV/c)", "Deuterium TOF-measured Momentum (MeV/c)", "Beam momentum measurement: Deuterium")
+
+
+fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(12, 8), gridspec_kw={'height_ratios': [3, 1]})
+
+ax1.grid()
+ax2.grid()
+
+fig, ax1, ax2 = plotManyBranchAgainstManyAnotherAndFit(df, "runMomentum", "zeros", "pionMomentumMean", "pionMomentumError", "Set run momentum (MeV/c)", "Pion TOF-measured Momentum (MeV/c)", "Beam momentum measurement: Pions", "Pions", fig, ax1, ax2)
+
+fig, ax1, ax2 = plotManyBranchAgainstManyAnotherAndFit(df, "runMomentum", "zeros", "muonMomentumMean", "muonMomentumError", "Set run momentum (MeV/c)", "Muon TOF-measured Momentum (MeV/c)", "Beam momentum measurement: Muons", "Muons", fig, ax1, ax2)
+
+fig, ax1, ax2 = plotManyBranchAgainstManyAnotherAndFit(df, "runMomentum", "zeros", "protonMomentumMean", "protonMomentumError", "Set run momentum (MeV/c)", "Proton TOF-measured Momentum (MeV/c)", "Beam momentum measurement: Protons", "Protons", fig, ax1, ax2)
+
+fig, ax1, ax2 = plotManyBranchAgainstManyAnotherAndFit(df, "runMomentum", "zeros", "deuteriumMomentumMean", "deuteriumMomentumError", "Set run momentum (MeV/c)", "Deuterium TOF-measured Momentum (MeV/c)", "Beam momentum measurement: Deuterium", "Deuterium", fig, ax1, ax2)
+
+
+
+title = "WCTE TOF-measured momentum: All particles - %s Target"%target
+fig.suptitle(title, fontsize=22, weight ='bold')
+
+
+savingpath = "/home/ac4317/Laptops/Year1/WCTE/BeamTestJuly2023/DataAnalysis/data/analysis-code/T9BeamTestAna/pdf_LGcalibration_results/AllParticles_Momentum_Target%s"%(target)
+
+
+fig.savefig("%s.png"%savingpath)
+fig.savefig("%s.pdf"%savingpath)
+
+
+
+
+
+
 
 # plotAllMomentum(df)
 

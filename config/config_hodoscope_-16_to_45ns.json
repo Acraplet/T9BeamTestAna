@@ -1,0 +1,106 @@
+{
+	"WaveAnalysis" :
+	{
+        "NumberOfChannels"   : 32,
+    
+        "VoltageScale"       : 0.00012207,
+
+	"comment"	: "Decide if we want to have the coincidence between the TOF PMTs or not, otherwise the timing of hits in TOF10 are used (it is advised to keep it as true) and then selects which PMTs are used in the coincidence, the numbers are as follows: TOF00 - 0, TOF01 - 2, TOF02 - 2, TOF03 - 3, TOF10 - 4, TOF11 - 5, TOF12 - 6, TOF13 - 7. The two PMTs that are used for the main coincidence (5sigma away from the mean) should be in the same Trigger scintillator module and the one used for loose coincidence should be in the other trigger scintillator. I recommend doing the maincoincidence in the downstream trigger scintillator.",
+        "checkCoincidence" : true,
+
+        "mainCoincidencePMTa" : 4,
+
+        "mainCoincidencePMTb" : 6,
+
+        "looseCoincidencePMT" : 1,
+
+	"comment" 	: "Previous voltage scale: 0.000610351",
+
+		"ChannelNames" : ["ACT0L", "ACT0R", "ACT1L", "ACT1R", "ACT3L", "ACT3R", "TriggerScint", null,
+						  "TOF00", "TOF01", "TOF02", "TOF03", "TOF10", "TOF11", "TOF12", "TOF13",
+						  "PbGlass", "HD8", "HD9", "HD10", "HD11", "HD12", "HD13", "HD14",
+						  "HD0", "HD1", "HD2", "HD3", "HD4", "HD5", "HD6", "HD7"],
+
+        "comment"            : "Enable/disable channels NOTE: remove the false for future hodoscope PMT channels!!!",
+            "comment"            : "ACT0-R ACT0-L ACT1-R ACT1-L ACT3-R ACT3-L TriggerScint [None] TOF0CH0 TOF0CH1 TOF0CH2 TOF0CH3 TOF1CH0 TOF1CH1 TOF1CH2 TOF1CH3 LeadGlass HDCH8 HDCH9 HDCH10 HDCH11 HDCH12 HDCH13 HDCH14 HDCH0 HDCH1 HDCH2 HDCH3 HDCH4 HDCH5 HDCH6 HDCH7",
+            "ActiveChannels"     : [true, true, true, true, true, true, true, false,
+				    true, true, true, true, true, true, true, true,
+				    true, true, true, true, true, true, true, true,
+				    true, true, true, true, true, true, true, true],
+	    
+        "comment"            : "Measure charge (integral of signal-pedestal in the analysis window)",
+            "ChargeMeasurements" : [true, true, true, true, true, true, true, true,
+				    true, true, true, true, true, true, true, true,
+				    true, true, true, true, true, true, true, true,
+				    true, true, true, true, true, true, true, true],
+
+        "comment"            : "Threshold w.r.t pedestal in V",
+            "Thresholds"         : [0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01,
+				    0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01,
+				    0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01,
+				    0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01],
+
+        "comment"            : "Measure time of the signal (only needed for TOF detectors)",
+            "TimeMeasurements"   : [true, true, true, true, true, true, true, true,
+				    true, true, true, true, true, true, true, true,
+				    true, true, true, true, true, true, true, true,
+				    true, true, true, true, true, true, true, true],
+
+        "comment"            : "Signal polarity: 0 - negative, 1 - positive.",
+            "Polarity"           : [0, 0, 0, 0, 0, 0, 0, 0,
+				    0, 0, 0, 0, 0, 0, 0, 0,
+				    0, 0, 0, 0, 0, 0, 0, 0,
+				    0, 0, 0, 0, 0, 0, 0, 0],
+
+        "comment"            : "Pedestal is estimated inside the pedestal bin window.",
+	"comment"	     : "The peak is centered at 50ns, instead of using the begining of the pusle to define the pedestal (which is very short) we will use the end of the waveform instead. The only case in which this doesn't work is for the hole counter for which the pulse ringing is too wide, there we will look at the begining of the pulse instead. Also note that the window durations are different for digitised zero (420 for digi0, 540 for the others)",
+
+            "PedestalWindowLow"  : [200, 200, 200, 200, 200, 200, 200, 200,
+				    300, 300, 300, 300, 300, 300, 300, 300,
+				    0, 300, 300, 300, 300, 300, 300, 300,
+				    300, 300, 300, 300, 300, 300, 300, 300],
+            "PedestalWindowHigh" : [420, 420, 420, 420, 420, 420, 420, 420,
+				    420, 420, 420, 420, 420, 420, 420, 420,
+				    80, 420, 420, 420, 420, 420, 420, 420,
+				    420, 420, 420, 420, 420, 420, 420, 420],
+
+        "comment" : "Analysis is done on the data in the analysis bin window.",
+            "AnalysisWindowLow"  : [ 0, 0, 0, 0, 0, 0, 0, 0,
+				    0, 0, 0, 0, 0, 0, 0, 0,
+				    80, 0, 0, 0, 0, 0, 0, 0,
+				    0, 0, 0, 0, 0, 0, 0, 0],
+            "AnalysisWindowHigh" : [200, 200, 200, 200, 200, 200, 200, 200,
+				    200, 200, 200, 200, 200, 200, 200, 200,
+				    200, 200, 200, 200, 200, 200, 200, 200,
+				    200, 200, 200, 200, 200, 200, 200, 200],
+
+		"comment" : "Timing calibration offsets for TOF",
+			"TimeOffset" : [ 0, 0, 0, 0, 0, 0, 0, 0,
+					0, 4.5538, 0.1996, 4.0006, -1.439, -0.13, -0.7766, -0.4064,
+					0, 0, 0, 0, 0, 0, 0, 0,
+					0, 0, 0, 0, 0, 0, 0, 0],
+
+
+		"comment" : "1pe position in the signal in V from a DR data run (676)",
+			"PMTgain" : [0.30446, 0.6183148, 0.2150617, 0.316799, 0.2256, 0.295012, 1, 1,
+						0.04457263158, 0.049545, 0.04662082192, 0.03502604651, 0.03854842105, 0.06932761905, 0.06069396226, 0.06920426087,
+						 1, 1, 1, 1, 1, 1, 1, 1,
+						 1, 1, 1, 1, 1, 1, 1, 1],
+
+		"comment" : "Previous calibration items,  0, 4.74776054315298, -0.1234580870906623, 4.171101270711057, -1.136279397422881, 0, -0.5336003405241031, -0.29412106806623584,",
+
+		"comment" : "lower boundary for the window integration, now that the timing is aligned we can have a  smaller integration window to get rid of the scintilaltion light in ACTs, different channels have a different integration window length",
+
+			"window_lower_bound" : [-16, -16, -16, -16, -16, -16, -16, -16,
+									-16, -16, -16, -16, -16, -16, -16, -16,
+									-16, -16, -16, -16, -16, -16, -16, -16,
+									-16, -16, -16, -16, -16, -16, -16, -16],
+
+			"window_upper_bound" : [45, 45, 45, 45, 45, 45, 45, 45,
+									45, 45, 45, 45, 45, 45, 45, 45,
+									45, 45, 45, 45, 45, 45, 45, 45,
+									45, 45, 45, 45, 45, 45, 45, 45],
+
+	}
+}
+

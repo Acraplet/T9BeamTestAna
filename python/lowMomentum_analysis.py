@@ -151,9 +151,6 @@ class LowMomentumAnalysis:
         self.TSwindow2totalChargeSelectionPassed = None
 
 
-
-
-
         #define some basic numbers
         self.numberOfTOFpmt = 4
         self.flag = -9999
@@ -194,8 +191,8 @@ class LowMomentumAnalysis:
         self.isMuon = None
         self.isPion = None
 
-        self.saving_folder_path_pdf = "pdf_LGcalibration_results"
-        self.saving_folder_path_png = "png_LGcalibration_results"
+        self.saving_folder_path_pdf = "pdf_LGnewCalibration_results"
+        self.saving_folder_path_png = "png_LGnewCalibration_results"
 
         self.LGCalibration_output_filename = "../%s/LGCalibration_information.csv"%self.saving_folder_path_pdf
 
@@ -219,6 +216,9 @@ class LowMomentumAnalysis:
             self.weirdElectronLGcut = config["weirdElectronLGcut"]
 
         #at low momentum we use the TOF to distinguish between pions and muons
+        self.usePiMuBorderTOF = False
+        if abs(self.runMomentum) < 250:
+            self.usePiMuBorderTOF = True
         self.piMuBorderTOF = None
 
         #for deuterium/proton selection we only want to try to fit if we have a large number of events
@@ -885,7 +885,11 @@ class LowMomentumAnalysis:
         ax.set_ylim([0.5, 10**5])
 
         if abs(self.runMomentum) < 400:
-            ax.set_xlim([self.dictTOFMean["electron"] - 1.5, self.dictTOFMean["pion"] + 3])
+            if self.dictTOFMean["pion"] != None:
+                ax.set_xlim([self.dictTOFMean["electron"] - 1.5, self.dictTOFMean["pion"] + 3])
+            else:
+                ax.set_xlim([self.dictTOFMean["electron"] - 1.5, self.dictTOFMean["electron"] + 4])
+
 
         ax.set_xlabel("Time of Flight (ns)", fontsize=15)
         ax.set_ylabel("Occurences/%.2f ns"%binWidth, fontsize=15)
@@ -1638,7 +1642,7 @@ class LowMomentumAnalysis:
 
             if runOptimalSelection:
                 #update the pion/muon cut, using true, 
-                self.piMuBorderACT = self.plotMuonsAndPionsACTseparation()
+                self.piMuBorderACT = self.getMuonsAndPionsACTseparation()
 
                 self.saving_folder_path_pdf = self.saving_folder_path_pdf + "_Optimal"
                 self.saving_folder_path_png = self.saving_folder_path_png + "_Optimal"
@@ -2053,15 +2057,15 @@ class LowMomentumAnalysis:
 
             #########################################################
 
-    def plotMuonsAndPionsACTseparation(self):
+    def getMuonsAndPionsACTseparation(self):
         
         optimal_cut = self.plotMuonsAndPionsACTseparationHighMomentum()
         #still want to plot TOF vs ACT
-        self.plotMuonsAndPionsACTseparationLowMomentum(optimal_cut)
+        self.plotMuonsAndPionsACTseparation(optimal_cut)
         return optimal_cut
         
         
-    def plotMuonsAndPionsACTseparationLowMomentum(self, optimal_ACT_cut = None):
+    def plotMuonsAndPionsACTseparation(self, optimal_ACT_cut = None):
         """Find the optimal position of the cut in ACT23 to separate muons from pions using the TOF to calculate purity"""
         self.isNotElectron = list(~self.isElectron)
         
@@ -2088,8 +2092,10 @@ class LowMomentumAnalysis:
         #try to have 10 hits in each bin
         nBinsTOF = min(max(int(len(ACT_all)/10), 15), 50)
 
-
-        binWidth_x = (self.dictTOFMean["pion"]+1.5 - (self.dictTOFMean["electron"]-1.2))/ nBinsTOF
+        if self.dictTOFMean["pion"] != None:
+            binWidth_x = (self.dictTOFMean["pion"]+1.5 - (self.dictTOFMean["electron"]-1.2))/ nBinsTOF
+        else:
+            binWidth_x = 5/nBinsTOF
         bins_all_x = int((max(TOF_all)-min(TOF_all)) / binWidth_x)
 
         nBinsACT =  min(2 * nBinsTOF, 200)
@@ -2099,8 +2105,10 @@ class LowMomentumAnalysis:
         ax.hist2d(TOF_all, ACT_all, bins = (bins_all_x, bins_all_y), norm = 'log')
         ax.set_xlabel("Time of flight (ns)", fontsize = 14)
         
-        
-        ax.set_xlim([self.dictTOFMean["electron"]-1.2, self.dictTOFMean["pion"]+1.5])
+        if self.dictTOFMean["pion"] != None:
+            ax.set_xlim([self.dictTOFMean["electron"]-1.2, self.dictTOFMean["pion"]+1.5])
+        else:
+            ax.set_xlim([self.dictTOFMean["electron"]-1.2, self.dictTOFMean["electron"]+5])
         ax.set_ylim([self.ACTLowerCut,None])
 
 
@@ -2122,8 +2130,8 @@ class LowMomentumAnalysis:
         fig.savefig("../%s/Mu_Pi_ACT_TOFseparation_Run%i.png"%(self.saving_folder_path_png, self.runNumber))
         fig.savefig("../%s/Mu_Pi_ACT_TOF_separation_Run%i.pdf"%(self.saving_folder_path_pdf, self.runNumber))
 
-        counts_TOF, bins_TOF, _ = ax_tof.hist(TOF_all, bins = bins_all_x, histtype="stepfilled", 
-                color="lightgray",
+        counts_TOF, bins_TOF, _ = ax_tof.hist(TOF_all, bins = bins_all_x, histtype="stepfilled", stacked = True, 
+                color="lightgray", 
                 label = "All non-electron slow particles: %i (%.2f %% of total)"%(len(ACT_all), len(ACT_all)/len(self.getArrayData()[0]["matchedHit0_WindowIntPE"])* 100))
 
         ax_tof.grid()
@@ -2223,10 +2231,10 @@ class LowMomentumAnalysis:
         axQualityPurityMuon.plot(cutPosition, mu_pur_array, color = 'green', marker = '^') 
         axQualityPurityPion.plot(cutPosition, pi_pur_array, color = 'green', marker = '^') 
 
-        axQualityPurityMuon.set_ylim(0.4, 1.01)
-        axQualityEfficiencyMuon.set_ylim(0.4, 1.01)
-        axQualityPurityPion.set_ylim(0.4, 1.01)
-        axQualityEfficiencyPion.set_ylim(0.4, 1.01)
+        # axQualityPurityMuon.set_ylim(0.4, 1.01)
+        # axQualityEfficiencyMuon.set_ylim(0.4, 1.01)
+        # axQualityPurityPion.set_ylim(0.4, 1.01)
+        # axQualityEfficiencyPion.set_ylim(0.4, 1.01)
         
         axQualityEfficiencyMuon.plot(cutPosition, mu_eff_array, color = 'red', marker = 'o') 
         axQualityEfficiencyPion.plot(cutPosition, pi_eff_array, color = 'red', marker = 'o') 
@@ -2247,8 +2255,8 @@ class LowMomentumAnalysis:
         axQualityEfficiencyMuon.tick_params(axis ='y', labelcolor = 'red')
         axQualityEfficiencyPion.tick_params(axis ='y', labelcolor = 'red')
 
-        axQualityPurityMuon.axvline(muTOFcut, color = 'black', label= "Cut line chosen: %.2f PE \n Muon purity = %.2f, efficiency = %.2f"%(muTOFcut, muonPurity * 100, muonEfficiency * 100))
-        axQualityPurityPion.axvline(muTOFcut, color = 'black', label= "Cut line chosen: %.2f PE \n Pion purity = %.2f, efficiency = %.2f"%(muTOFcut, pionPurity * 100, pionEfficiency * 100))
+        axQualityPurityMuon.axvline(muTOFcut, color = 'black', label= "Cut line chosen: %.2e PE \n Muon purity = %.2e, efficiency = %.2e"%(muTOFcut, muonPurity * 100, muonEfficiency * 100))
+        axQualityPurityPion.axvline(muTOFcut, color = 'black', label= "Cut line chosen: %.2e PE \n Pion purity = %.2e, efficiency = %.2e"%(muTOFcut, pionPurity * 100, pionEfficiency * 100))
 
         axQualityPurityMuon.legend(fontsize = 16)
         axQualityPurityPion.legend(fontsize = 16)
@@ -2268,6 +2276,9 @@ class LowMomentumAnalysis:
 
         fig.savefig("../%s/Mu_Pi_ACT_TOFseparation_Run%i.png"%(self.saving_folder_path_png, self.runNumber))
         fig.savefig("../%s/Mu_Pi_ACT_TOF_separation_Run%i.pdf"%(self.saving_folder_path_pdf, self.runNumber))
+
+        if self.usePiMuBorderTOF:
+            print("self.piMuBorderTOF = muTOFcut NOT IMPLEMENTED")
 
         return self.piMuBorderACT
 
@@ -2366,10 +2377,10 @@ class LowMomentumAnalysis:
         axQualityPurityMuon.plot(cutPosition, mu_pur_array, color = 'green', marker = '^') 
         axQualityPurityPion.plot(cutPosition, pi_pur_array, color = 'green', marker = '^') 
 
-        axQualityPurityMuon.set_ylim(0.4, 1.01)
-        axQualityEfficiencyMuon.set_ylim(0.4, 1.01)
-        axQualityPurityPion.set_ylim(0.4, 1.01)
-        axQualityEfficiencyPion.set_ylim(0.4, 1.01)
+        # axQualityPurityMuon.set_ylim(0.4, 1.01)
+        # axQualityEfficiencyMuon.set_ylim(0.4, 1.01)
+        # axQualityPurityPion.set_ylim(0.4, 1.01)
+        # axQualityEfficiencyPion.set_ylim(0.4, 1.01)
         
         axQualityEfficiencyMuon.plot(cutPosition, mu_eff_array, color = 'red', marker = 'o') 
         axQualityEfficiencyPion.plot(cutPosition, pi_eff_array, color = 'red', marker = 'o') 
@@ -3113,7 +3124,7 @@ class LowMomentumAnalysis:
 
         if self.piMuBorderTOF != None:
             #at low momentum, use the TOF instead of the ACT to make the selection
-            isAbovePiMuCutLine = self.getSelectionBasedOnCondition(0, "matchedHit0_TOF", ">=", self.piMuBorderTOF)
+            isBelowPiMuCutLine = self.getSelectionBasedOnCondition(0, "matchedHit0_TOF", ">=", self.piMuBorderTOF)
         else:
             isBelowPiMuCutLine = self.getSelectionBasedOnCondition(0, "sumDownstreamACTs", "<", self.piMuBorderACT)
 
