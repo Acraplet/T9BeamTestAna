@@ -22,14 +22,9 @@ leadGlassID = config["channelNames"].index("PbGlass")
 #make the analysis class
 BeamDataAna = lm.LowMomentumAnalysis(config)
 
-BeamDataAna.correctParticleTSdEdx("muon")
-BeamDataAna.correctParticleTSdEdx("pion")
-BeamDataAna.correctParticleTSdEdx("electron")
-BeamDataAna.correctParticleTSdEdx("proton")
-
-
 #open the data file 
 BeamDataAna.openDataFile()
+
 
 #make the helper, higher level variables  
 BeamDataAna.makeSumTS()
@@ -135,14 +130,12 @@ BeamDataAna.makeAllParticleSelection()
 BeamDataAna.fitMuonsAndElectronLGPeaks()
 
 # BeamDataAna.fitMuonsAndPionsACTPeaks()
-BeamDataAna.plotMuonsAndPionsACTseparation()
+# BeamDataAna.plotMuonsAndPionsACTseparation()
 
 
-BeamDataAna.findOptimalPiMuElCuts("p2e")
+#BeamDataAna.findOptimalPiMuElCuts("p2e")
 
-raise end
-
-
+# raise end
 
 #BeamDataAna.measureElTOFresolutionFunctionOfTScharge([6, 6, 5, 5, 5, 4])
 

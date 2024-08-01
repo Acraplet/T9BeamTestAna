@@ -8,15 +8,16 @@
 
         "comment" : ["ACT0L", "ACT0R", "ACT1L", "ACT1R", "ACT2L", "ACT2R", "ACT3L", "ACT3R", "TOF00", "TOF01", "TOF02", "TOF03", "TOF10", "TOF11", "TOF12", "TOF13", "Hole0", "Hole1", "PbGlass"],
 
-        "dataFile" : "/home/ac4317/Laptops/Year1/WCTE/BeamTestJuly2023/DataAnalysis/data/analysis-code/T9BeamTestAna/WindowIntMatched_final22_000432.root",
+        "dataFile" : "/home/ac4317/Laptops/Year1/WCTE/BeamTestJuly2023/DataAnalysis/data/analysis-code/T9BeamTestAna/WindowIntMatched_final_000385.root",
 
-        "runNumber" : 432,
+        "runNumber" : 385, 
         "isLowMomentum" : true,
         "isBerylliumTarget": true, 
+        "momentumSlit": 1,
 
         "comment" : "run momentum  in MeV/c, positive is positively charged beam and negative is negatively charged",
-        "runMomentum" : 460,
-        "runRefractiveIndex": 1.047,
+        "runMomentum" : -1000,
+        "runRefractiveIndex": 1.01,
         "comment" : "text file that has the selection cuts, read as a function of momentum, reference set of cuts, which will be read as the default",
         "referenceSelectionCutFile" : "referenceNumberParticles.txt",
         "comment" : "to run in batch mode, plots are saved instead of output and the selection does not require user input",
@@ -35,26 +36,29 @@
         "comment": "if we want to output a rootfile with the particleType as an iformation, slows down the process a lot",
         "saveRootFile": false,
 
+        "comment": "The proton TOF cut, any particle which is slower than this is considered a proton (deuterium after protonTOFMax), this value is the default but it can be changed by calling the makeProtonSelection method with another value",
+        "protonsTOFCut": 14,
+        "protonsTOFMax": 20,
+
+
         "comment": "To calculate the expected TOF of particles",
         "distanceTOF1toTOF0" : 3.49,
 
-        "comment": "Selection of the particles, based on the previous studies on widnows at -16 to 45ns by acraplet and optimal cut finding ",
-        "piMuBorderACT" : 37.63,
-        "ACTLowerCut": 1.83,
+        "comment": "Selection of the particles, based on the previous studies on widnows at -16 to 45ns by acraplet",
+        "piMuBorderACT" : 10,
+        "ACTLowerCut": 1,
         "comment": "Slope of the muon-electron separaction on the left-handside of the ACT23 against ACT1 plot",
-        "ACTlinearA": -7.47,
+        "ACTlinearA": -4,
         "comment": "Intercept with x = 0 of the muon-electron separaction on the left-handside of the ACT23 against ACT1 plot",
-        "ACTlinearB": 100,
-        "comment": "horizontal electron-muon separation",
-        "horizontal_el": 16.88,
-        "comment": "cut on lead glas distribution to flag the weird electrons, in number of PE (not)",
-        "weirdElectronLGcut": 4.70,
+        "ACTlinearB": 35,
+        "comment": "horizontal electron-muon separation also used for proton selection",
+        "horizontal_el": 10,
 
         "comment": "File onto which we are going to output the information",
-        
         "outputFileName": "../output.csv",
 
-        
+        "weirdElectronLGcut": 9.00,
+
     }
 
 }
