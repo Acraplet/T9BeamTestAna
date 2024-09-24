@@ -13,6 +13,7 @@ import scipy.integrate as integrate
 import os.path
 from scipy.integrate import quad
 from matplotlib.gridspec import GridSpec
+from matplotlib.colors import LogNorm
 
 
 import csv
@@ -162,6 +163,11 @@ class LowMomentumAnalysis:
         self.momentumLossFractionalError = 0.15 #assume 15%
         self.electronMeanTOF = None
 
+        #electron rejection using ACT0 and ACT1
+        self.electron_rejection_best_slope = None
+        self.electron_rejection_best_intercept = None
+        self.electron_rejection_x_offset = None 
+
 
         #Aerogel related items
         if self.isLowMomentum:
@@ -190,9 +196,11 @@ class LowMomentumAnalysis:
         self.isElectron = None
         self.isMuon = None
         self.isPion = None
+        #electron rejection using ACT1 and Act0 Thai-An's study
+        self.isTaggedElectronUsingACT0ACT1 = False
 
-        self.saving_folder_path_pdf = "pdf_LGnewCalibration_results"
-        self.saving_folder_path_png = "png_LGnewCalibration_results"
+        self.saving_folder_path_pdf = "pdf_newMomentumCalibration_results"
+        self.saving_folder_path_png = "png_newMomentumCalibration_results"
 
         self.LGCalibration_output_filename = "../%s/LGCalibration_information.csv"%self.saving_folder_path_pdf
 
@@ -321,8 +329,204 @@ class LowMomentumAnalysis:
         else:
             #no need to worry about deuterium
             return max(fiveSigmaOfPionTOF, protonTOFminus3ns), protonTOFplus3ns
-
         
+    def distanceToLine(self, x, y, a, b, offset):
+        "automatically calculate for an array of points the distance (positive or negative) to a (linear) cut line defined as ax + b = y"
+        return -(a * (x + offset) + b - y)/np.sqrt(a**2 + 1)
+
+    def makeElectronRejectionUsingACT0andACT1(self, rejection_level = 100):
+        """This is a study aiming at removing the bulk of electron using their signal in ACT0 and ACT1, it has been developped by Thai-An Le (thaianle@cmail.carleton.ca) information is available in the technote. In this Python conversion, written by acraplet, we first plot all the particles spectra then run through the possible linear cut values (similar to findOptimalPiMuElCuts) to try an reach the targeted rejection level with minimal losses"""
+
+
+        #step 0: select the populations, based on LG
+        electron_muon_LG_gaussian_params, nElectrons = self.fitMuonsAndElectronLGPeaks(100, False)
+
+        electron_gaussian_params = electron_muon_LG_gaussian_params[0]
+
+        electon_lead_glass_cut = electron_gaussian_params[1] - 3 * electron_gaussian_params[2] #3 sigma away from mean
+
+        LGid = self.channelNames.index("PbGlass")
+
+        if 'sumACT0' not in self.getBranchList(0):
+            self.makeSumACT0()
+
+        electron_df = self.arrayData[LGid][self.arrayData[LGid]['matchedHit0_WindowIntPE'] > electon_lead_glass_cut]
+        nonelectron_df = self.arrayData[LGid][self.arrayData[LGid]['matchedHit0_WindowIntPE'] < electon_lead_glass_cut]
+
+        #step 1: plot ACT1 vs ACT0
+        fig, ax = plt.subplots(1, 1, figsize = (16, 9))
+        ax.scatter(electron_df['sumACT0'], electron_df['sumACT1'], color = 'red', label = 'electron-like', s = 1)
+        ax.scatter(nonelectron_df['sumACT0'], nonelectron_df['sumACT1'], color = 'blue', label = 'non-electron-like', s = 1)
+        ax.set_xlabel("ACT0 wInt charge (a.u)", fontsize = 18)
+        ax.set_ylabel("ACT1 wInt charge (PE)", fontsize = 18)
+        ax.grid()
+        ax.legend(fontsize = 16)
+        fig.suptitle('WCTE Beamtest - Run %i, p = %i MeV/c'%(self.runNumber, self.runMomentum), fontsize=22, weight ='bold')
+        
+
+        #step 2 : define the range of cuts to be implemented
+        mean_ACT0_electron_population = electron_df['sumACT0'].mean()
+        mean_ACT1_electron_population = electron_df['sumACT1'].mean()
+        mean_ACT0_nonelectron_population = nonelectron_df['sumACT0'].mean()
+        mean_ACT1_nonelectron_population = nonelectron_df['sumACT1'].mean()
+
+        intercept_x = (mean_ACT0_electron_population + mean_ACT0_nonelectron_population)/2
+        intercept_y = (mean_ACT1_electron_population + mean_ACT1_nonelectron_population)/2
+
+        gradient_mean_to_mean = (mean_ACT1_electron_population-mean_ACT1_nonelectron_population)/(mean_ACT0_electron_population-mean_ACT0_nonelectron_population)
+        
+        gradient_separation = -1/(gradient_mean_to_mean)
+
+        intercept_to_0 = intercept_y - gradient_separation * intercept_x
+
+        all_intercepts = []
+        all_gradients = []
+        all_nonelectron_efficiency = []
+        all_electron_rejection_rate = []
+
+        x_offset = 5 #otherwise too close to 0
+
+        print(gradient_separation * 0.1, gradient_separation * 0.6)
+
+        for gradient_sep in np.linspace(gradient_separation * 0.01, gradient_separation * 0.5, 10):
+            for intercept in np.linspace(intercept_to_0 * 0.1, intercept_to_0 * 1.5, 10):
+                min_x = min(nonelectron_df['sumACT0'])
+                max_x = max(electron_df['sumACT0'])
+                x = np.linspace(min_x, max_x, 100)
+                ax.plot(x, (x_offset + x) * gradient_sep +intercept, 'black', label = 'base separation')
+
+                #calculate distance to the cut line and make a histogram of it
+
+                nonelectron_dist_cut_line = self.distanceToLine(nonelectron_df['sumACT0'], nonelectron_df['sumACT1'], gradient_sep, intercept, x_offset)
+
+                electron_dist_cut_line = self.distanceToLine(electron_df['sumACT0'], electron_df['sumACT1'], gradient_sep, intercept, x_offset)
+
+                min_x = min(nonelectron_dist_cut_line)
+                max_x = max(electron_dist_cut_line)
+
+                # fig1, ax1 = plt.subplots(1, 1, figsize = (16, 9))
+                # ax1.hist(nonelectron_dist_cut_line, bins = 100, range = (min_x, max_x), color = 'blue', alpha = 0.6, label = 'nonelectron-like')
+                # ax1.hist(electron_dist_cut_line, bins = 100, range = (min_x, max_x), color = 'red', alpha = 0.6, label = 'electron-like')
+                
+                # # ax1.set_xlabel('Distance to the cut line', fontsize = 18)
+                # ax1.set_ylabel('Number of events', fontsize = 18) 
+                # fig1.suptitle('WCTE Beamtest - Run %i, p = %i MeV/c'%(self.runNumber, self.runMomentum), fontsize=22, weight ='bold')
+
+                #the non-electrons kept are all the ones below the cut line
+                nonelectron_efficiency = sum(np.where(nonelectron_dist_cut_line<0, 1, 0)) / len(nonelectron_dist_cut_line)
+
+                electron_rejection_rate = sum(np.where(electron_dist_cut_line>0, 1, 0)) / sum(np.where(electron_dist_cut_line>0, 0, 1))
+
+                # ax1.axvline(0, color = 'black', label = 'Slope: %.2f intercept: %.2f \n e rejection rate: %.2e, non-electron efficiency: %.2f'%(gradient_sep, intercept, electron_rejection_rate, nonelectron_efficiency))
+
+                # ax1.grid()
+                # ax1.legend(fontsize = 16)
+
+                all_intercepts.append(intercept)
+                all_gradients.append(gradient_sep)
+                all_nonelectron_efficiency.append(nonelectron_efficiency)
+                all_electron_rejection_rate.append(electron_rejection_rate)
+
+
+        #now plot the results
+        df_results = pd.DataFrame()
+        df_results['intercept'] = all_intercepts
+        df_results['gradient'] = all_gradients
+        df_results['nonelectron_efficiency'] = all_nonelectron_efficiency
+        df_results['electron_rejection_rate'] = all_electron_rejection_rate
+
+
+        min_nonelectron_efficiency = 0.4
+        best_efficiency = 0
+        
+        fig2, ax2 = plt.subplots(1, 1, figsize = (16, 9))
+        for g in df_results['gradient'].unique():
+            max_rj = 0
+            df = df_results[df_results['gradient'] == g]
+            for i, rj in enumerate(df['electron_rejection_rate']):
+                if rj > rejection_level:
+                    if np.array(df['nonelectron_efficiency'])[i] > min_nonelectron_efficiency:
+                        if np.array(df['nonelectron_efficiency'])[i] > best_efficiency:
+                            max_rj = rj
+                            best_efficiency = np.array(df['nonelectron_efficiency'])[i]
+                            best_intercept = np.array(df['intercept'])[i]
+                            best_slope = np.array(df['gradient'])[i]
+
+            
+            if max_rj> 0:
+                ax2.plot(df['nonelectron_efficiency'], df['electron_rejection_rate'], 'o-', label = f'Gradient{g:.3f}, intercept {best_intercept:.3f} \n Best e rejection with >{min_nonelectron_efficiency:.1f} non-e efficiency: {max_rj:.1f}')
+            else:
+                ax2.plot(df['nonelectron_efficiency'], df['electron_rejection_rate'], 'o-', color = 'lightgray')
+
+        ax2.legend(fontsize = 16)
+        ax2.set_xlabel('nonelectron_efficiency', fontsize = 18)
+        ax2.set_ylabel('electron_rejection_rate', fontsize = 18)
+        ax2.grid()
+
+        ax2.set_ylim(1e-2, None)
+        ax2.set_ylim(0.6, 1)
+
+        ax2.set_yscale('log')
+        fig2.suptitle('WCTE Beamtest - Run %i, p = %i MeV/c'%(self.runNumber, self.runMomentum), fontsize=22, weight ='bold')
+
+
+        self.electron_rejection_best_slope = best_slope
+        self.electron_rejection_best_intercept = best_intercept
+        self.electron_rejection_x_offset = x_offset
+
+        self.saving_folder_path_pdf = self.saving_folder_path_pdf + '_WithElRemoval'
+        self.saving_folder_path_png = self.saving_folder_path_png + '_WithElRemoval'
+
+        os.makedirs("../%s"%self.saving_folder_path_png, exist_ok=True)
+        os.makedirs("../%s"%self.saving_folder_path_pdf, exist_ok=True)
+
+
+
+
+        # plt.show()
+
+        fig3, (ax3, ax4) = plt.subplots(1, 2, figsize = (16, 9))
+        scatter_electron = ax3.scatter(df_results['gradient'], df_results['intercept'], c=df_results['electron_rejection_rate'], cmap = 'Blues', norm=LogNorm())
+        ax3.set_xlabel('Slope')
+        ax3.set_ylabel('Intercept')
+        ax3.grid()
+        ax3.set_title('Electron Rejection Rate')
+        cbar1 = fig3.colorbar(scatter_electron, ax=ax3)
+        cbar1.set_label('Electron Rejection Rate')
+
+
+        scatter_nonelectron = ax4.scatter(df_results['gradient'], df_results['intercept'], c=df_results['nonelectron_efficiency'], cmap = 'Blues')
+        ax4.set_xlabel('Slope')
+        ax4.set_ylabel('Intercept')
+        ax4.grid()
+        ax4.set_title('Non-electron efficiency')
+        cbar2 = fig3.colorbar(scatter_nonelectron, ax=ax4)
+        cbar2.set_label('Non-electron efficiency')
+
+        fig3.suptitle('WCTE Beamtest - Run %i, p = %i MeV/c'%(self.runNumber, self.runMomentum), fontsize=22, weight ='bold')
+        
+
+    
+
+        # plt.show()
+
+        self.makeAllParticleSelection()
+        # raise end
+
+
+        # plt.show()
+
+
+
+
+
+
+
+
+
+
+
+
     
     def getDeuteriumTOFSelectionBounds(self, p=None):
         #for plotting, it is useful to be able to get these bounds for any momentum. 
@@ -711,6 +915,18 @@ class LowMomentumAnalysis:
                 print(f"Careful, PMT {ACTpmt} is not in your dataset")
                 return 0
         self.addBranchToAllDetectors("sumACT1", sumACT1)
+
+    def makeSumACT0(self):
+        "Sum of the waveform integrated charge (PE) for all the ACT0 PMTs"
+        sumACT0 = 0
+        for ACTpmt in ["ACT0L", "ACT0R"]:
+            if ACTpmt in self.channelNames:
+                detectorID = self.channelNames.index(ACTpmt)
+                sumACT0 += self.getDataFrameDetector(detectorID)["matchedHit0_WindowIntPE"]
+            else:
+                print(f"Careful, PMT {ACTpmt} is not in your dataset")
+                return 0
+        self.addBranchToAllDetectors("sumACT0", sumACT0)
 
     def makeSumTS(self):
         "Sum of the window integrated charge (PE) for all the Trigger Scintillators PMTs"
@@ -2067,7 +2283,7 @@ class LowMomentumAnalysis:
         
     def plotMuonsAndPionsACTseparation(self, optimal_ACT_cut = None):
         """Find the optimal position of the cut in ACT23 to separate muons from pions using the TOF to calculate purity"""
-        self.isNotElectron = list(~self.isElectron)
+        self.isNotElectron = list(~(self.isElectron | self.isTaggedElectronUsingACT0ACT1))
         
         fig = plt.figure(figsize=(8, 8))
         gs = GridSpec(4, 4, fig)
@@ -2269,6 +2485,7 @@ class LowMomentumAnalysis:
 
         figQuality.savefig("../%s/Mu_Pi_TOFseparationQuality_Run%i.png"%(self.saving_folder_path_png, self.runNumber))
         figQuality.savefig("../%s/Mu_Pi_TOFseparationQuality_Run%i.pdf"%(self.saving_folder_path_pdf, self.runNumber))
+        
 
         if self.runMomentum < 400:
             ax_tof.axvline(muTOFcut, color = "red")
@@ -2286,7 +2503,8 @@ class LowMomentumAnalysis:
 
     def plotMuonsAndPionsACTseparationHighMomentum(self):
         """Find the optimal position of the cut in ACT23 to separate muons from pions based only on the charge deposited in the ACTs and not TOF""" 
-        self.isNotElectron = list(~self.isElectron)
+        # self.isNotElectron = list(~self.isElectron)
+        self.isNotElectron = list(~(self.isElectron | self.isTaggedElectronUsingACT0ACT1))
         #slowEvents= self.makeNewDataFrameFromSelection(self.arrayData, self.arrayData[0]["matchedHit0_TOF"] < self.protonsTOFCut)
         fig, ax = plt.subplots(1, 1, figsize = (16, 9))
 
@@ -2735,9 +2953,13 @@ class LowMomentumAnalysis:
                 self.measureMomentumUsingTOF(0.1, "light")
 
             if abs(self.runMomentum) < 440:
-                electronInitialMomentum = (self.dictMomentumMean["pion"] + self.dictMomentumMean["muon"])/2
-                
-                electronInitialMomentumError = np.sqrt(self.dictMomentumTotalError["pion"] ** 2 + self.dictMomentumTotalError["muon"] ** 2)
+                if self.dictMomentumMean["pion"] != None:
+                    electronInitialMomentum = (self.dictMomentumMean["pion"] + self.dictMomentumMean["muon"])/2
+                    
+                    electronInitialMomentumError = np.sqrt(self.dictMomentumTotalError["pion"] ** 2 + self.dictMomentumTotalError["muon"] ** 2)
+                else:
+                    electronInitialMomentum = self.dictMomentumMean["muon"]
+                    electronInitialMomentumError = self.dictMomentumTotalError["muon"]
 
             elif self.runMomentum < -440:
             #negative high momentum, high error:
@@ -3153,7 +3375,15 @@ class LowMomentumAnalysis:
         if "sumDownstreamACTs" not in self.getBranchList(0):
                 self.makeSumDownstreamACTs()
 
-        isNotWeirdElectron = self.getSelectionBasedOnCondition(self.channelNames.index("PbGlass"), "matchedHit0_WindowIntPE", "<", self.weirdElectronLGcut)
+        if self.electron_rejection_best_slope != None:
+            #after we have the ACT0 vs ACt1 we can use that to tag the electrons instead of weird electron label
+            isNotTaggedElectionUsingACT0ACT1 = self.getSelectionBasedOnCondition(0, "sumACT1", "<", (self.getDataFrameDetector(0)["sumACT0"] + self.electron_rejection_x_offset) * (self.electron_rejection_best_slope) + self.electron_rejection_best_intercept)
+
+            isNotWeirdElectron = isNotTaggedElectionUsingACT0ACT1
+
+
+        else:
+            isNotWeirdElectron = self.getSelectionBasedOnCondition(self.channelNames.index("PbGlass"), "matchedHit0_WindowIntPE", "<", self.weirdElectronLGcut)
 
         isBelowMuElCut = self.getSelectionBasedOnCondition(0, "sumDownstreamACTs", "<=", self.getDataFrameDetector(0)["sumACT1"] * self.ACTlinearA + self.ACTlinearB)
 
@@ -3230,6 +3460,13 @@ class LowMomentumAnalysis:
 
             self.isElectron = self.isElectron & isSlow
 
+            if self.electron_rejection_best_slope != None:
+                self.isTaggedElectronUsingACT0ACT1 = self.getSelectionBasedOnCondition(0, "sumACT1", ">", (self.getDataFrameDetector(0)["sumACT0"] + self.electron_rejection_x_offset) * (self.electron_rejection_best_slope) + self.electron_rejection_best_intercept)
+
+                #remove all the tagged electrons
+                self.isElectron = self.isElectron &  np.logical_not(self.isTaggedElectronUsingACT0ACT1)
+
+
             self.electronArray = self.makeNewDataFrameFromSelection(self.arrayData, self.isElectron)
 
         else:
@@ -3266,9 +3503,10 @@ class LowMomentumAnalysis:
             expected_deuterium.append(self.momentumToTOF(p, "deuterium"))
         fig, ax = plt.subplots(1, 1, figsize = (16, 9))
         ax.fill_between(p_range, lower, upper, color = 'blue', alpha = 0.3, label = 'Proton TOF selection Bounds')
-        ax.plot(p_range, expected_proton, 'b--', label = 'Nominal proton TOF')
-        # ax.fill_between(p_range, lowerD, upperD, color = 'red', alpha = 0.3, label = 'Deuterium TOF selection Bounds')
-        # ax.plot(p_range, expected_deuterium, 'r--', label = 'Nominal deuterium TOF')
+        if self.isLowMomentum:
+            ax.plot(p_range, expected_proton, 'b--', label = 'Nominal proton TOF')
+            ax.fill_between(p_range, lowerD, upperD, color = 'red', alpha = 0.3, label = 'Deuterium TOF selection Bounds')
+        ax.plot(p_range, expected_deuterium, 'r--', label = 'Nominal deuterium TOF')
         ax.set_xlabel("Nominal beam momentum (MeV/c)",fontsize = 18)
         ax.set_ylabel("Time of flight (ns)",fontsize = 18)
         ax.tick_params(axis='both', which='major', labelsize=15)
@@ -3276,8 +3514,9 @@ class LowMomentumAnalysis:
         ax.grid()
         ax.legend(fontsize = 18)
         if self.isLowMomentum:
-            ax.fill_between(p_range, lowerD, upperD, color = 'red', alpha = 0.3, label = 'Deuterium TOF selection Bounds')
-            ax.plot(p_range, expected_deuterium, 'r--', label = 'Nominal deuterium TOF')
+            # ax.fill_between(p_range, lowerD, upperD, color = 'red', alpha = 0.3, label = 'Deuterium TOF selection Bounds')
+            # ax.plot(p_range, expected_deuterium, 'r--', label = 'Nominal deuterium TOF')
+
             ax.set_title("Time of flight selection for\n protons and deuterium - Low momentum configuration",fontsize = 20, weight = 'bold')
             fig.savefig("../%s/SelectionTOFBoundsLM.png"%self.saving_folder_path_png)
             fig.savefig("../%s/SelectionTOFBoundsLM.pdf"%self.saving_folder_path_pdf)

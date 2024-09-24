@@ -4,7 +4,7 @@
     {
         "comment" : "This is the config file that is used for the low momentum set-up analysis, it holds information about the runs",
         
-        "channelNames" : ["ACT1L", "ACT1R", "ACT2L", "ACT2R", "ACT3L", "ACT3R", "TOF00", "TOF01", "TOF02", "TOF03", "TOF10", "TOF11", "TOF12", "TOF13", "PbGlass"],
+        "channelNames" :["ACT0L","ACT0R", "ACT1L", "ACT1R", "ACT2L", "ACT2R", "ACT3L", "ACT3R", "TOF00", "TOF01", "TOF02", "TOF03", "TOF10", "TOF11", "TOF12", "TOF13", "Hole0", "Hole1", "PbGlass"],
 
         "comment" : ["ACT0L","ACT0R", "ACT1L", "ACT1R", "ACT2L", "ACT2R", "ACT3L", "ACT3R", "TOF00", "TOF01", "TOF02", "TOF03", "TOF10", "TOF11", "TOF12", "TOF13", "Hole0", "Hole1", "PbGlass"],
 

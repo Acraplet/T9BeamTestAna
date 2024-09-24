@@ -16,6 +16,8 @@
         "comment" : "run momentum  in MeV/c, positive is positively charged beam and negative is negatively charged",
         "runMomentum" : -300,
         "runRefractiveIndex": 1.06,
+
+        
         "comment" : "text file that has the selection cuts, read as a function of momentum, reference set of cuts, which will be read as the default",
         "referenceSelectionCutFile" : "referenceNumberParticles.txt",
         "comment" : "to run in batch mode, plots are saved instead of output and the selection does not require user input",

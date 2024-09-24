@@ -212,6 +212,8 @@ savingpath = "/home/ac4317/Laptops/Year1/WCTE/BeamTestJuly2023/DataAnalysis/data
 fig.savefig("%s.png"%savingpath)
 fig.savefig("%s.pdf"%savingpath)
 
+# plotOneBranchAgainstAnotherAndFit(df, "runMomentum", "zeros", "deuteriumMomentumMean", "deuteriumMomentumError", "Set run momentum (MeV/c)", "Deuterium TOF-measured Momentum (MeV/c)", "Beam momentum measurement: Deuterium")
+
 
 
 

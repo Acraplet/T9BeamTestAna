@@ -49,7 +49,10 @@ BeamDataAna.makeSumDownstreamACTs()
 BeamDataAna.makeSumDownstreamACTsWindow2()
 #######################################
 BeamDataAna.makeSumACT1()
+BeamDataAna.makeSumACT0()
 BeamDataAna.makeSumACT1window2()
+
+BeamDataAna.plotTOFbounds()
 
 resetPlotsForMem = [plt.close() for p in range(20)]
 
@@ -89,6 +92,25 @@ resetPlotsForMem = [plt.close() for p in range(20)]
 #based on the -16ns to 45ns window selection, ID all particles that we have in this run, values in the config file
 BeamDataAna.makeAllParticleSelection()
 
+print(BeamDataAna.arrayData)
+print('\n')
+print(BeamDataAna.arrayData[0])
+
+
+# BeamDataAna.plotMuonsAndPionsACTseparation(BeamDataAna.piMuBorderACT)
+
+BeamDataAna.measureMomentumUsingTOF(0.1)
+BeamDataAna.getLGcalibrationFromElectrons()
+
+
+# BeamDataAna.findOptimalPiMuElCuts("p2e", True)
+
+BeamDataAna.plotMuonsAndPionsACTseparation(BeamDataAna.piMuBorderACT)
+
+
+#Thai-An's veto study, not yet fully implemented
+# BeamDataAna.makeElectronRejectionUsingACT0andACT1()
+
 resetPlotsForMem = [plt.close() for p in range(20)]
 
 
@@ -104,22 +126,24 @@ print("The pi mu separation is ", BeamDataAna.piMuBorderACT)
 
 BeamDataAna.plotMuonsAndPionsACTseparation(BeamDataAna.piMuBorderACT)
 
+
+
 # raise end
 
-BeamDataAna.plotMuonsAndPionsACTseparation(BeamDataAna.piMuBorderACT)
 
 
+
+
+
+# BeamDataAna.plotMuonsAndPionsACTseparation(BeamDataAna.piMuBorderACT)
+
+BeamDataAna.measureMomentumUsingTOF(0.1)
 
 BeamDataAna.findOptimalPiMuElCuts("p2e", True)
 
-resetPlotsForMem = [plt.close() for p in range(20)]
-
-
-
-
-# raise END
 
 resetPlotsForMem = [plt.close() for p in range(20)]
+
 
 
 BeamDataAna.plotBranchHistForAllParticles(0, "matchedHit0_TOF", 5, True)
