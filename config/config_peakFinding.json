@@ -1,0 +1,61 @@
+{
+	"WaveAnalysis" :
+	{
+        "NumberOfChannels"   : 32,
+        "VoltageScale"       : 0.000610351,
+
+        "comment"            : "Enable/disable channels",
+        "comment"            : "0-ACT00, 1-ACT01, 2-ACT10, 3-ACT11, 4-ACT20, 5-ACT21, 6-LGC, 7-TOF03, 8-TOF00, 9-TOF01, 10-TOF02, 11-TOF03, 12-TOF10, 13-TOF11, 14-TOF12, 15-TOF13, 16-ACT00, 17-ACT01, 18-ACT10, 19-ACT11, 20-ACT20, 21-ACT21, 22-LGC, 23-TOF03, 24-TOF00, 25-TOF01, 26-TOF02, 27-TOF03, 28-TOF10, 29-TOF11, 30-TOF12, 31-TOF13",
+            "ActiveChannels"     : [true, true, true, true, true, true, true, true,
+				    true, true, true, true, true, true, true, true,
+				    true, true, true, true, true, true, true, true,
+				    true, true, true, true, true, true, true, true],
+	    
+        "comment"            : "Measure charge (integral of signal-pedestal in the analysis window)",
+            "ChargeMeasurements" : [true, true, true, true, true, true, true, true,
+				    true, true, true, true, true, true, true, true,
+				    true, true, true, true, true, true, true, true,
+				    true, true, true, true, true, true, true, true],
+
+        "comment"            : "Threshold w.r.t pedestal in V",
+            "Thresholds"         : [0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01,
+				    0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01,
+				    0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01,
+				    0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01],
+
+        "comment"            : "Measure time of the signal (only needed for TOF detectors)",
+            "TimeMeasurements"   : [true, true, true, true, true, true, true, true,
+				    true, true, true, true, true, true, true, true,
+				    true, true, true, true, true, true, true, true,
+				    true, true, true, true, true, true, true, true],
+
+        "comment"            : "Signal polarity: 0 - negative, 1 - positive.",
+            "Polarity"           : [0, 0, 0, 0, 0, 0, 0, 0,
+				    0, 0, 0, 0, 0, 0, 0, 0,
+				    0, 0, 0, 0, 0, 0, 0, 0,
+				    0, 0, 0, 0, 0, 0, 0, 0],
+
+        "comment"            : "Pedestal is estimated inside the pedestal bin window.",
+	"comment"	     : "The peak is centered at 50ns, instead of using the begining of the pusle to define the pedestal (which is very short) we will use the end of the waveform instead. The only case in which this doesn't work is for the hole counter for which the pulse ringing is too wide, there we will look at the begining of the pulse instead. Also note that the window durations are different for digitised zero (420 for digi0, 540 for the others)",
+
+            "PedestalWindowLow"  : [200, 200, 200, 200, 200, 200, 200, 200,
+				    300, 300, 300, 300, 300, 300, 300, 300,
+				    300, 300, 0, 0, 0, 0, 0, 0,
+				    0, 0, 0, 0, 0, 0, 0, 0],
+            "PedestalWindowHigh" : [420, 420, 420, 420, 420, 420, 420, 420,
+				    540, 540, 540, 540, 540, 540, 540, 540,
+				    540, 540, 80, 300, 300, 300, 300, 300,
+				    300, 300, 300, 300, 300, 300, 300, 300],
+
+        "comment" : "Analysis is done on the data in the analysis bin window.",
+            "AnalysisWindowLow"  : [ 0, 0, 0, 0, 0, 0, 0, 0,
+				    0, 0, 0, 0, 0, 0, 0, 0,
+				    80, 80, 80, 300, 300, 300, 300, 300,
+				    300, 300, 300, 300, 300, 300, 300, 300],
+            "AnalysisWindowHigh" : [420, 420, 420, 420, 420, 420, 420, 420,
+				    540, 540, 540, 540, 540, 540, 540, 540,
+				    540, 540, 540, 600, 600, 600, 600, 600,
+				    600, 600, 600, 600, 600, 600, 600, 600],
+	}
+}
+
