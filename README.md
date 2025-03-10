@@ -5,7 +5,7 @@ Analysis package for the T9 beam test
 ## Cleaned up version:
 
 
-Coincidence and config PR: 
+Coincidence and config PR: (slides with summary of changes: https://wcte.hyperk.ca/wg/beam/meetings/2024/20240408/meeting/coincidence-and-window-integration-pr)
 
 Instead of taking the hit time in TOF10 as the reference for the window integration we are now using the average time accross 2PMTs in TOF1 for which there is coincidence in TOF1 and loose coincidence with a third PMT, this one in TOF0. We are saving the 'cleaned up' timings in SignalTimeMatchedTOF1 and SignalTimeMatchedTOF0, these will be useful for calculating a clean TOF.  The config files now include the bounds for the window integration for each detector (TODO: values not final yet) and decide whether the window integration should be made with respect to hit times in TOF10 only or with respect to the coincidence hit times over 2+1 PMTs, which PMTs are used in coincidence is set in the config file.
 
