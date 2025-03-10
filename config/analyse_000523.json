@@ -1,6 +1,5 @@
 {
     "BeamDataAnalysis":
-
     {
         "comment" : "This is the config file that is used for the low momentum set-up analysis, it holds information about the runs",
         

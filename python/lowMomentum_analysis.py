@@ -585,9 +585,14 @@ class LowMomentumAnalysis:
     def correctParticleTSdEdx(self, particle, bool_output_to_file = True):
         """Calculates, using the nominal beam momnetum and the G4 dataset the energy deposited in the trigger scintillators, air and mylar upstream of the downstream TS so we can correct the dE/dx in our TOF-based momentum estimate."""
 
-        gamma = (np.sqrt(1 + (self.runMomentum/ms[particle])**2 ) - 1)
-        beta = np.sqrt(1 - 1/gamma**2)
-        kinetic_E = gamma * ms[particle]
+        # gamma = (np.sqrt(1 + (self.runMomentum/ms[particle])**2 ) - 1)
+        # beta = np.sqrt(1 - 1/gamma**2)
+        # kinetic_E = gamma * ms[particle]
+
+        gamma = np.sqrt(1 + (self.runMomentum / ms[particle])**2)
+        beta = np.sqrt(1 - 1 / gamma**2)
+        kinetic_E = (gamma - 1) * ms[particle]
+
 
         print("%s : Kinetic energy is: %.2f Mev/c, beta * gamma = %.1f"%(particle, kinetic_E, beta * gamma))
 
